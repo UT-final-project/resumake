@@ -19,6 +19,7 @@
   "homepage": "https://github.com/UT-final-project/group1-final-project#readme",
   "dependencies": {
     "express": "^4.17.1",
-    "express-session": "^1.17.1"
+    "express-session": "^1.17.1",
+    "mongoose": "^5.12.0"
   }
 }
