@@ -1,17 +1,14 @@
-import React, {useState} from 'react';
-import './login.css'
+import React from 'react';
+import './singup.css'
 
-function Login() {
-    const [username, setUsername] = useState("");
-    const [password, setPassword] = useState("");
-
+function Signup() {
     return(
     <div>
-        <h1 className="home-title">Resu-Make</h1>
+        <h1 className="home-title">Resume Builder</h1>
         <p className="home-intro">Show off your skills with our Resume Builder!</p>
         <div className="card login-card">
             <div className="card-header login-header">
-                Login
+                Signup
             </div>
             <div className="card-body">
                 <div className="input-group flex-nowrap login-input">
@@ -28,4 +25,4 @@ function Login() {
     )
 }
 
-export default Login;
+export default Signup;
