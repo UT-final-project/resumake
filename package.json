@@ -4,7 +4,8 @@
   "description": "Build a resume",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "install": "cd client && npm install"
   },
   "repository": {
     "type": "git",
@@ -15,5 +16,15 @@
   "bugs": {
     "url": "https://github.com/UT-final-project/group1-final-project/issues"
   },
-  "homepage": "https://github.com/UT-final-project/group1-final-project#readme"
+  "homepage": "https://github.com/UT-final-project/group1-final-project#readme",
+  "devDependencies": {
+    "nodemon": "^2.0.7"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "express-session": "^1.17.1",
+    "mongoose": "^5.12.0",
+    "passport": "^0.4.1",
+    "passport-local": "^1.0.0"
+  }
 }
