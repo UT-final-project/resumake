@@ -1,5 +1,6 @@
 const express = require("express");
 const logger = require("morgan");
+require('dotenv').config();
 
 const mongoose = require("mongoose");
 const app = express();
@@ -15,7 +16,12 @@ if (process.env.NODE_ENV === "production") {
 }
 
 // Connect to the Mongo DB
-// mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/resumeDB");
+mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/resumeDB", {
+  useNewUrlParser: true,
+  useFindAndModify: false,
+  useCreateIndex: true,
+  useUnifiedTopology: true
+});
 
 // Start the API server
 app.listen(PORT, function () {
