@@ -5,7 +5,14 @@
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "install": "cd client && npm install"
+    "install": "cd client && npm install",
+    "start": "if-env NODE_ENV=production && npm run start:prod || npm run start:dev",
+    "start:prod": "node server.js",
+    "start:dev": "concurrently \"nodemon --ignore 'client/*'\" \"npm run client\"",
+    "client": "cd client && npm run start",
+    "seed": "node scripts/seedDB.js",
+    "build": "cd client && npm run build",
+    "heroku-postbuild": "npm run build"
   },
   "repository": {
     "type": "git",
@@ -18,10 +25,12 @@
   },
   "homepage": "https://github.com/UT-final-project/group1-final-project#readme",
   "devDependencies": {
+    "concurrently": "^6.0.0",
     "nodemon": "^2.0.7"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
+    "express": "^4.17.1",
     "express-session": "^1.17.1",
     "mongoose": "^5.12.0",
     "passport": "^0.4.1",
