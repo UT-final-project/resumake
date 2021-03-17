@@ -1,9 +1,8 @@
-// import axios from "axios";
+import axios from "axios";
 
-// Placeholder function
-
-// export default {
-//     placeHolder: function() {
-//       return axios.get("/api/ ");
-//     }
-//   };
+export default {
+    // Create user
+    createUser: function (userData) {
+        return axios.post("/api/users", userData)
+    }
+};

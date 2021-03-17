@@ -13,26 +13,26 @@ module.exports = () => {
 
     // Mongoose connection lifecycles
     .then(() => {
-      console.log('///////////','Connection established with MongoDB');
+      console.log('///////////', 'Connection established with MongoDB');
     })
     .catch(error => {
       connection.on('connected', () => {
-      console.log('///////////','Mongoose connected to DB Cluster');
+        console.log('///////////', 'Mongoose connected to DB Cluster');
       })
 
       connection.on('error', (error) => {
-      console.error(error.message);
+        console.error(error.message);
       })
 
       connection.on('disconnected', () => {
-      console.log('///////////','Mongoose Disconnected');
+        console.log('///////////', 'Mongoose Disconnected');
       });
     });
-  
+
   // Kill the database connection if the app is stopped
-  process.on('SIGINT', function() {
+  process.on('SIGINT', function () {
     connection.close(function () {
-      console.log('///////////','Mongoose disconnected on app termination');
+      console.log('///////////', 'Mongoose disconnected on app termination');
       process.exit(0);
     });
   });
