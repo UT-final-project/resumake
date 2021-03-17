@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import './login.css'
 
 function Login() {
@@ -7,11 +7,9 @@ function Login() {
 
     return(
     <div>
-        <h1 className="home-title">Resu-Make</h1>
-        <p className="home-intro">Show off your skills with our Resume Builder!</p>
         <div className="card login-card">
             <div className="card-header login-header">
-                Login
+                Signup
             </div>
             <div className="card-body">
                 <div className="input-group flex-nowrap login-input">

@@ -1,0 +1,58 @@
+body {
+    background: #68829E;
+}
+.login-card{
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 125px;
+    margin-bottom: 20px;
+    box-shadow: 0 3px 6px #505160, 0 3px 6px #505160;
+}
+.primary-title{
+    font-family: 'Slabo 13px', Serif;
+    font-weight: 800;
+    font-size: 40px;
+    margin-top: 50px;
+    margin-bottom: 24px;
+    color: white
+}
+.secondary-title{
+    font-family: 'Slabo 13px', Serif;
+    text-decoration: underline;
+    color: white;
+}
+.home-intro{
+    Font-Family: 'Lato', Sans-Serif;
+    Font-Size: 20px;
+    color: white
+}
+.login-header{
+    font-family: 'Slabo 13px', Serif;
+    font-size: 24px;
+}
+.login-input{
+    margin-bottom: 16px;
+}
+.login-btn{
+    background-color: #AEBD38;
+    padding: 10px;
+}
+.signup-redirect{
+    margin-top: 20px;
+}
+.online-resume-img{
+    width: 75%;
+    height: 75%;
+}
+.resume-create-section, .web-portfolio-section{
+    margin-top: 56px;
+    margin-bottom: 56px;
+}
+.thinking-img{
+    width: 100%;
+    height: 100%;
+}
+.web-portfolio-img{
+    width: 100%;
+    height: 100%;
+}
