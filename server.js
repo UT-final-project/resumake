@@ -6,14 +6,14 @@ const passportLocal = require("passport-local").Strategy;
 const cookieParser = require("cookie-parser");
 const bcrypt = require("bcryptjs");
 const session = require("express-session");
-const routes = require("./routes");
+
 // Requires models listed on index.js file
 const db = require("./models");
-require('dotenv').config();
 // Mongoose connection config
 require('./initDB')();
 // =============== END OF IMPORTS ============ //
 
+const routes = require("./routes");
 const app = express();
 const PORT = process.env.PORT || 3001;
 

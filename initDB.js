@@ -1,13 +1,7 @@
-const { config } = require('dotenv');
 const { connect, connection } = require('mongoose');
 
 
 module.exports = () => {
-  // Invoking the dotenv config
-  // const envar = config(); 
-  // if (envar.error) {
-  //   throw envar.error;
-  // }
 
   connect(process.env.MONGODB_URI || "mongodb://localhost/resumeDB", {
     useNewUrlParser: true,

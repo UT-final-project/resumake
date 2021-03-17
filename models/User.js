@@ -26,14 +26,14 @@ const UserSchema = new Schema({
     min: 1,
     max: 15,
     trim: true
-  },  
+  },
   password: {
     type: String,
     required: [true, 'You must provide a password'],
     min: 6,
     max: 25,
     validate: [
-      ({length}) => length >= 6,
+      ({ length }) => length >= 6,
       "Password should be longer than 6 characters."
     ],
     trim: true
@@ -45,4 +45,6 @@ const UserSchema = new Schema({
   }
 });
 
-module.exports = mongoose.model('User', UserSchema);
+const User = mongoose.model('User', UserSchema);
+
+module.exports = User;
