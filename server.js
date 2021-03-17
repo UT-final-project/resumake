@@ -38,7 +38,7 @@ app.use(passport.session());
 require("./config/passportConfig")(passport);
 // =============== END OF MIDDLEWARE ============== //
 
-// app.use(routes);  <------ This can call all server side routes in the folder when we have any set up
+app.use(routes);  // <------ This can call all server side routes in the folder when we have any set up
 
 // Serve up static assets (usually on heroku)
 if (process.env.NODE_ENV === "production") {
