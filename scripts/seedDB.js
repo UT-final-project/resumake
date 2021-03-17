@@ -1,13 +1,5 @@
-const mongoose = require("mongoose");
 const db = require("../models");
 require('../initDB')();
-
-// This file empties the Books collection and inserts the books below
-
-// mongoose.connect(
-//   process.env.MONGODB_URI ||
-//   "mongodb://localhost/reactreadinglist"
-// );
 
 const userSeed = [
   {
@@ -15,11 +7,35 @@ const userSeed = [
     firstname: "stephen",
     lastname: "price",
     password: "password"
+  },
+  {
+    email: "trevor@mail.com",
+    firstname: "trevor",
+    lastname: "smith",
+    password: "password"
+  },
+  {
+    email: "dana@mail.com",
+    firstname: "dana",
+    lastname: "corona",
+    password: "password"
+  },
+  {
+    email: "carlos@mail.com",
+    firstname: "carlos",
+    lastname: "cantu",
+    password: "password"
+  },
+  {
+    email: "jake@mail.com",
+    firstname: "jake",
+    lastname: "hendershott",
+    password: "password"
   }
 ];
 
 db.User
-  .remove({})
+  .deleteMany({})
   .then(() => db.User.collection.insertMany(userSeed))
   .then(data => {
     console.log(data.result.n + " records inserted!");
