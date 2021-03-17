@@ -6,8 +6,9 @@ const passportLocal = require("passport-local").Strategy;
 const cookieParser = require("cookie-parser");
 const bcrypt = require("bcryptjs");
 const session = require("express-session");
-const User = require("./models/userTest");
 const routes = require("./routes");
+// Requires models listed on index.js file
+const db = require("./models");
 require('dotenv').config();
 // Mongoose connection config
 require('./initDB')();
@@ -43,9 +44,6 @@ require("./config/passportConfig")(passport);
 if (process.env.NODE_ENV === "production") {
     app.use(express.static("client/build"));
 }
-
-// Requires models listed on index.js file
-const db = require("./models");
 
 // Start the API server
 app.listen(PORT, function () {
