@@ -1,19 +1,24 @@
 const express = require("express");
+const logger = require("morgan");
 const cors = require("cors");
 const passport = require("passport");
 const passportLocal = require("passport-local").Strategy;
 const cookieParser = require("cookie-parser");
 const bcrypt = require("bcryptjs");
 const session = require("express-session");
-const User = require("./models/userTest");
 const routes = require("./routes");
+// Requires models listed on index.js file
+const db = require("./models");
+require('dotenv').config();
+// Mongoose connection config
+require('./initDB')();
 // =============== END OF IMPORTS ============ //
 
-const mongoose = require("mongoose");
 const app = express();
 const PORT = process.env.PORT || 3001;
 
 // =========== Define middleware here =========== //
+app.use(logger("dev"));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
@@ -39,17 +44,6 @@ require("./config/passportConfig")(passport);
 if (process.env.NODE_ENV === "production") {
     app.use(express.static("client/build"));
 }
-
-// Connect to the Mongo DB
-// mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/resumeDB", {
-//     useNewUrlParser: true,
-//     useUnifiedTopology: true,
-// },
-//     () => {
-//         console.log("Mongoose Is Connected");
-//     }
-// );
-
 
 // Start the API server
 app.listen(PORT, function () {
