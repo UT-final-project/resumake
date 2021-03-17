@@ -2,32 +2,46 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const ResumeSchema = new Schema({
-abstract: {
-    type: String,
-    unique: true,
-    required: [true, 'Field must be completed'],
-    trim: true
-  },
-employment: {
-    unique: true,
-    required: [false],
-    trim: true
-},
-education: {
-    unique: true,
-    required: [false],
-    trim: true
-},
-projects: {
-    unique: true,
-    required: [false],
-    trim: true
-},
-skills: {
-    unique: true,
-    required: [false],
-    trim: true
-},
+    resumeName: {
+        type: String,
+        required: [true, 'Provide a name to identify this resume'],
+        trim: true
+    },
+    abstract: {
+        type: String,
+        required: false,
+        trim: true
+    },
+    employment: {
+        type: String,
+        required: false,
+        trim: true
+    },
+    education: {
+        type: String,
+        required: false,
+        trim: true
+    },
+    projects: {
+        type: String,
+        required: false,
+        trim: true
+    },
+    skills: {
+        type: String,
+        required: false,
+        trim: true
+    },
+    created: {
+        type: Date,
+        default: Date.now,
+        required: true
+    },
+    updated: {
+        type: Date,
+        default: Date.now,
+        required: false
+    }
 });
 
 
