@@ -9,7 +9,7 @@ function Login() {
     <div>
         <div className="card login-card">
             <div className="card-header login-header">
-                Signup
+                Log In
             </div>
             <div className="card-body">
                 <div className="input-group flex-nowrap login-input">
