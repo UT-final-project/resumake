@@ -9,7 +9,6 @@ const session = require("express-session");
 const routes = require("./routes");
 // Requires models listed on index.js file
 const db = require("./models");
-require('dotenv').config();
 // Mongoose connection config
 require('./initDB')();
 // =============== END OF IMPORTS ============ //
