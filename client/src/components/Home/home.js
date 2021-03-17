@@ -17,47 +17,47 @@ function Login() {
                 <img src="https://raw.githubusercontent.com/UT-final-project/group1-final-project/34b34d8a8d8484e2bb38e13ab52ff5ce1d4e6e16/client/svg-images/undraw_online_resume_re_ru7s.svg" alt="online-resume" className="online-resume-img"/>
             </div>
             <div className="col-md-5">
-            <div className="card login-card">
-                <div className="card-header login-header">
+            <div className="card signup-card">
+                <div className="card-header signup-header">
                     Sign Up
                 </div>
                 <div className="card-body">
-                    <div className="input-group flex-nowrap login-input">
+                    <div className="input-group flex-nowrap signup-input">
                         <input type="text" 
                         className="form-control" 
                         placeholder="Email" 
                         onChange={event =>setEmail(event.target.value)}
                         />
                     </div>
-                    <div className="input-group flex-nowrap login-input">
+                    <div className="input-group flex-nowrap signup-input">
                         <input type="text" 
                         className="form-control" 
                         placeholder="First Name" 
                         onChange={event =>setFirstName(event.target.value)}
                         />
                     </div>
-                    <div className="input-group flex-nowrap login-input">
+                    <div className="input-group flex-nowrap signup-input">
                         <input type="text" 
                         className="form-control" 
                         placeholder="Last Name" 
                         onChange={event =>setLastName(event.target.value)}
                         />
                     </div>
-                    <div className="input-group flex-nowrap login-input">
+                    <div className="input-group flex-nowrap signup-input">
                         <input type="password" 
                         className="form-control" 
                         placeholder="Password" 
                         onChange={event =>setPassword(event.target.value)}
                         />
                     </div>
-                    <div className="input-group flex-nowrap login-input">
+                    <div className="input-group flex-nowrap signup-input">
                         <input type="password" 
                         className="form-control" 
                         placeholder="Verify Password"
                         onChange={event =>setVerifyPassword(event.target.value)}
                         />
                     </div>
-                    <button type="button" className="btn login-btn">Sign Up</button>
+                    <button type="button" className="btn signup-btn">Sign Up</button>
                     <p className="signup-redirect">Or you can <a href="#">Log In</a></p>
                 </div>
             </div>

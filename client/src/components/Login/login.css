@@ -2,23 +2,11 @@ body {
     background: #68829E;
 }
 .login-card{
-    width: 50%;
+    margin-top: 100px;
+    width: 400px;
     margin-left: auto;
     margin-right: auto;
-}
-.home-title{
-    font-family: 'Slabo 13px', Serif;
-    font-size: 64px;
-    text-align: center;
-    margin: 50px;
-    color: white
-}
-.home-intro{
-    Font-Family: 'Lato', Sans-Serif;
-    Font-Size: 20px;
-    text-align: center;
-    margin: 50px;
-    color: white
+    box-shadow: 0 3px 6px #505160, 0 3px 6px #505160;
 }
 .login-header{
     font-family: 'Slabo 13px', Serif;

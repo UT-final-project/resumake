@@ -1,7 +1,7 @@
 body {
     background: #68829E;
 }
-.login-card{
+.signup-card{
     margin-left: auto;
     margin-right: auto;
     margin-top: 125px;
@@ -26,14 +26,14 @@ body {
     Font-Size: 20px;
     color: white
 }
-.login-header{
+.signup-header{
     font-family: 'Slabo 13px', Serif;
     font-size: 24px;
 }
-.login-input{
+.signup-input{
     margin-bottom: 16px;
 }
-.login-btn{
+.signup-btn{
     background-color: #AEBD38;
     padding: 10px;
 }
