@@ -1,10 +1,24 @@
-import logo from './logo.svg';
 import './App.css';
-import Login from './components/Login/login'
+import Home from './components/Home/home.js';
+import Navbar from './components/Navbar/navbar.js';
+import Login from './components/Login/login.js';
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 function App() {
   return (
-    <Login />
+    <Router>
+      <div>
+        <Navbar />
+        <Switch>
+          <Route exact path ={["/", "/homepage"]}>
+            <Home />
+          </Route>
+          <Route exact path="/login">
+            <Login />
+          </Route>
+        </Switch>
+      </div>
+    </Router>
   );
 }
 
