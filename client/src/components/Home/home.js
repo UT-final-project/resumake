@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './home.css'
 import API from "../../utils/API";
+import { Link } from "react-router-dom";
 
 function Login() {
     const [email, setEmail] = useState("");
@@ -52,7 +53,7 @@ function Login() {
                     <div className="card signup-card">
                         <div className="card-header signup-header">
                             Sign Up
-                </div>
+                        </div>
                         <div className="card-body">
                             <div className="input-group flex-nowrap signup-input">
                                 <input type="email"
@@ -90,7 +91,11 @@ function Login() {
                                 />
                             </div>
                             <button type="button" className="btn signup-btn" onClick={handleFormSubmit}>Sign Up</button>
-                            <p className="signup-redirect">Or you can <a href="#">Log In</a></p>
+                            <p className="signup-redirect">Or you can 
+                            <Link to={"/login"}>
+                                <a href="#"> Log In</a>
+                            </Link>
+                            </p>
                         </div>
                     </div>
                 </div>
