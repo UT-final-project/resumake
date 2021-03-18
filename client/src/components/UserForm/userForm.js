@@ -26,7 +26,7 @@ function UserForm(){
         startYear: '',
         endYear: '',
     })
-    const [certfications, setCertfications] = useState({
+    const [certifications, setCertifications] = useState({
         certificate: '',
         awardedBy: ''
     })
@@ -62,7 +62,7 @@ function UserForm(){
     }
     function handleCertSubmit(event){
         const { name, value } = event.target;
-        setCertfications({...certfications, [name]: value})
+        setCertifications({...certifications, [name]: value})
     }
     function handleSkillsSubmit(event){
         setSkills(event.target.value)
@@ -101,7 +101,7 @@ function UserForm(){
                 nextStep={nextStep}
                 prevStep={prevStep}
                 handleChange={handleCertSubmit}
-                values={certfications}
+                values={certifications}
                 />
             )
         case 5:
@@ -115,7 +115,15 @@ function UserForm(){
             )
         case 6:
             return(
-                <Confirm />
+                <Confirm
+                abstractValue={abstract}
+                workValue={workHistory}
+                edValue={education}
+                certValue={certifications}
+                skillsValue={skills}
+                nextStep={nextStep}
+                prevStep={prevStep}
+                />
             )
         default:
             return(

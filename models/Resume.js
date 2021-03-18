@@ -4,7 +4,6 @@ const Schema = mongoose.Schema;
 const ResumeSchema = new Schema({
     resumeName: {
         type: String,
-        required: [true, 'Provide a name to identify this resume'],
         trim: true
     },
     abstract: {
