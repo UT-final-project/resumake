@@ -2,6 +2,16 @@ const db = require("../models");
 
 // Modify the following operations to fit specific front end requirements
 module.exports = {
+  findAll: function(req, res) {
+    db.Resume
+      .find(req.query)
+      .sort({ date: -1 })
+      .then(dbModel => {
+        res.status(200).json(dbModel);
+        console.log(dbModel);
+      })
+      .catch(err => res.status(422).json(err));
+  },
   findById: function(req, res) {
     db.Resume
       .findById(req.params.id)
