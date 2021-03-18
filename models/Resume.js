@@ -2,9 +2,12 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const ResumeSchema = new Schema({
+    author: {
+        type: Schema.Types.ObjectId,
+        ref: "User"
+    },
     resumeName: {
         type: String,
-        required: [true, 'Provide a name to identify this resume'],
         trim: true
     },
     abstract: {
