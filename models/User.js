@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
-
+const bcrypt = require("bcryptjs");
 
 const UserSchema = new Schema({
   email: {
@@ -42,8 +42,20 @@ const UserSchema = new Schema({
     type: Date,
     default: Date.now,
     required: true
-  }
+  },
+  resumes: [{
+    type: Schema.Types.ObjectId,
+    ref: "resume"
+  }]
 });
+
+UserSchema.methods.generateHash = function (password) {
+  return bcrypt.hashSync(password, bcrypt.genSaltSync(10));
+}
+
+UserSchema.methods.validPassword = function (password, encrypted) {
+  return bcrypt.compareSync(password, encrypted);
+}
 
 const User = mongoose.model('User', UserSchema);
 
