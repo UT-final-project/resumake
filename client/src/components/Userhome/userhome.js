@@ -15,7 +15,7 @@ function Userhome() {
             <div className="row">
                 <div className="col-md-4">
                     <h2>Your Resume</h2>
-                    <img src="https://raw.githubusercontent.com/UT-final-project/group1-final-project/f92e4abd48b13d8ffda7c872601d867ff3d34c39/client/svg-images/online-resume.svg" alt="resume" className="userhomeimg"/>
+                    <img src="https://raw.githubusercontent.com/UT-final-project/group1-final-project/b6ffc1b8d66a71b17e8bdcb6221ea519585026db/client/svg-images/undraw_Resume_re_hkth.svg" alt="resume" className="userhomeimg"/>
                     <br/>
                     <br/>
                     <div className="row">
