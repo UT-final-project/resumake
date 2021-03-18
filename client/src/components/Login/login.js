@@ -1,26 +1,39 @@
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
+import API from '../../utils/API';
 import './login.css'
 
 function Login() {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
 
-    return(
-    <div>
-        <div className="card login-card">
-            <div className="card-header login-header">
-                Log In
+    function handleLogin(e) {
+        e.preventDefault();
+        console.log(e);
+
+        API.loginUser({ username, password })
+            .then(res => {
+                console.log({ res });
+                console.log("Login Successful!")
+            })
+            .catch(err => console.log(err));
+    }
+
+    return (
+        <div>
+            <div className="card login-card">
+                <div className="card-header login-header">
+                    Log In
             </div>
-            <div className="card-body">
-                <div className="input-group flex-nowrap login-input">
-                    <input type="text" className="form-control" placeholder="Username" />
+                <div className="card-body">
+                    <div className="input-group flex-nowrap login-input">
+                        <input type="text" className="form-control" placeholder="Username" onChange={e => setUsername(e.target.value)} />
+                    </div>
+                    <div className="input-group flex-nowrap login-input">
+                        <input type="text" className="form-control" placeholder="Password" onChange={e => setPassword(e.target.value)} />
+                    </div>
+                    <button type="button" className="btn login-btn" onClick={handleLogin}>Log In</button>
+                    <p className="signup-redirect">Or you can <a href="#">signup</a></p>
                 </div>
-                <div className="input-group flex-nowrap login-input">
-                    <input type="text" className="form-control" placeholder="Password" />
-                </div>
-                <button type="button" className="btn login-btn">Log In</button>
-                <p className="signup-redirect">Or you can <a href="#">signup</a></p>
-            </div>
             </div>
         </div>
     )
