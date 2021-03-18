@@ -34,9 +34,33 @@ const userSeed = [
   }
 ];
 
+const resumeSeed = [
+  {
+    authorid: "60525770f378f51b15755077",
+    resumeName: 'Developer',
+    abstract: 'I am a great developer. Hire me! Please...',
+    employment: 'HS job',
+    education: 'college',
+    projects: 'node project',
+    skills: 'JS, HTML, CSS'
+  }
+];
+
 db.User
   .deleteMany({})
   .then(() => db.User.collection.insertMany(userSeed))
+  .then(data => {
+    console.log(data.result.n + " records inserted!");
+    process.exit(0);
+  })
+  .catch(err => {
+    console.error(err);
+    process.exit(1);
+  });
+
+  db.Resume
+  .deleteMany({})
+  .then(() => db.Resume.collection.insertMany(resumeSeed))
   .then(data => {
     console.log(data.result.n + " records inserted!");
     process.exit(0);

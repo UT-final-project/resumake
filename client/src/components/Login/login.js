@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import API from '../../utils/API';
-import './login.css'
+import './login.css';
+import { Link } from "react-router-dom";
 
 function Login() {
-    const [username, setUsername] = useState("");
+    const [username, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
     function handleLogin(e) {
@@ -26,13 +27,17 @@ function Login() {
             </div>
                 <div className="card-body">
                     <div className="input-group flex-nowrap login-input">
-                        <input type="text" className="form-control" placeholder="Username" onChange={e => setUsername(e.target.value)} />
+                        <input type="text" className="form-control" placeholder="Email" onChange={e => setEmail(e.target.value)} />
                     </div>
                     <div className="input-group flex-nowrap login-input">
-                        <input type="text" className="form-control" placeholder="Password" onChange={e => setPassword(e.target.value)} />
+                        <input type="password" className="form-control" placeholder="Password" onChange={e => setPassword(e.target.value)} />
                     </div>
                     <button type="button" className="btn login-btn" onClick={handleLogin}>Log In</button>
-                    <p className="signup-redirect">Or you can <a href="#">signup</a></p>
+                    <p className="signup-redirect">Or you can 
+                    <Link to={"/"}>
+                        <a href="#"> Sign Up</a>
+                    </Link>
+                    </p>
                 </div>
             </div>
         </div>

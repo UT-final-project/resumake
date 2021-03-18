@@ -4,8 +4,6 @@ import WorkForm from '../WorkForm/WorkForm';
 import EducationForm from '../EducationForm/EducationForm';
 import CertificateForm from '../CertificateForm/CertificateForm';
 import SkillsForm from '../SkillsForm/SkillsForm';
-import ProjectsForm from '../ProjectsForm/ProjectsForm';
-import ProfLinksForm from '../ProfLinksForm/ProfLinksForm';
 import Confirm from '../Confirm/Confirm';
 
 function UserForm(){
@@ -31,14 +29,6 @@ function UserForm(){
         awardedBy: ''
     })
     const [skills, setSkills] = useState('');
-    const [projects, setProjects] = useState({
-        title: '',
-        description: ''
-    })
-    const [links, setLink] = useState({
-        linkedIn: '',
-        website: ''
-    })
 
     // Functions to keep track of which step, or form, the user is at
     const nextStep = () => {
