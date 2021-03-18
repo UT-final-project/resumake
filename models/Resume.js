@@ -15,26 +15,58 @@ const ResumeSchema = new Schema({
         required: false,
         trim: true
     },
-    employment: {
+    employment: [{
+        jobTitle: {
+            type: String,
+            trim: true
+        },
+        jobDescription: {
+            type: String,
+            trim: true
+        },
+        prevEmployer: {
+            type: String,
+            trim: true
+        },
+        startDateMonth: {
+            type: String,
+        },
+        startDateYear: {
+            type: String
+        },
+        endDateMonth: {
+            type: String
+        },
+        endDateYear: {
+            type: String
+        }
+    }],
+    education: [{
+        degree: {
+            type: String
+        },
+        school: {
+            type: String
+        },
+        startYear: {
+            type: String
+        },
+        endYear: {
+            type: String
+        }
+    }],
+    certifications: [{
+        certificate: {
+            type: String
+        },
+        awardedBy: {
+            type: String
+        }
+    }],
+    skills: [{
         type: String,
-        required: false,
         trim: true
-    },
-    education: {
-        type: String,
-        required: false,
-        trim: true
-    },
-    projects: {
-        type: String,
-        required: false,
-        trim: true
-    },
-    skills: {
-        type: String,
-        required: false,
-        trim: true
-    },
+    }],
     created: {
         type: Date,
         default: Date.now,

@@ -13,6 +13,8 @@ function SkillsForm(props){
                             <input type="text" class="form-control" id="skillsInput" placeholder="ex. Javascript, Data Structures and Algorithims, React, etc." defaultValue={props.value} onChange={props.handleChange}/>
                         </div>
                     </form>
+                    <button type="submit" className="btn add-btn">+ Add</button>
+                    <br />
                     <button type="button" className="btn back-btn" onClick={props.prevStep}>Back</button>
                     <button type="button" className="btn continue-btn" onClick={props.nextStep}>Continue</button>
                 </div>
