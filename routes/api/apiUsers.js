@@ -5,7 +5,7 @@ const userController = require("../../controller/userController");
 router.route("/")
     .post(userController.createUser);
 
-// Route is api/users/login
+// Route is /api/users/login
 router.route("/login")
     .post(userController.loginUser);
 

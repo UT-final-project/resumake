@@ -45,7 +45,7 @@ const UserSchema = new Schema({
   },
   resumes: [{
     type: Schema.Types.ObjectId,
-    ref: "resume"
+    ref: "Resume"
   }]
 });
 
