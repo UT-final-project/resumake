@@ -3,10 +3,10 @@ const userController = require("../../controller/userController");
 
 // Matches with "/api/users"
 router.route("/")
-    // Responds with an array of all users
-    .get(userController.findAll)
-    // Adds a new user
-    .post(userController.create)
+  // Responds with an array of all users
+  .get(userController.findAll)
+  // Adds a new user
+  .post(userController.create)
 
 // Matches with "/api/users/:id"
 router.route('/:id')
@@ -19,6 +19,11 @@ router.route('/:id')
 
 // Matches with "api/users/login"
 router.route("/login")
-    .post(userController.loginUser);
+  .post(userController.loginUser)
+
+// Matches with "api/users/userhome"
+router.route("/userhome")
+  .post(userController.getUserHomepage)
+
 
 module.exports = router;

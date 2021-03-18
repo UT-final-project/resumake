@@ -21,6 +21,9 @@ export default {
 
     postCertifications: function (userData) {
         return axios.post("api/users/resume/certifications", userData)
-    }
+    },
 
+    isLoggedIn: function () {
+        return axios.get("/api/users/userhome")
+    }
 };

@@ -1,6 +1,7 @@
 const db = require("../models");
 const bcrypt = require("bcryptjs");
 const passport = require("passport");
+const auth = require("../config/isAuthenticated");
 
 // Defines querys for DB
 module.exports = {
@@ -23,44 +24,64 @@ module.exports = {
                     res.status(201).send("User created");
                 }
             })
-              .catch(err => res.status(422).json(err));
+            .catch(err => res.status(422).json(err));
     },
-    findAll: function(req, res) {
+    findAll: function (req, res) {
         db.User
-          .find(req.query)
-          .sort({ date: -1 })
-          .then(dbModel => res.status(200).json(dbModel))
-          .catch(err => res.status(422).json(err));
-      },
-      findById: function(req, res) {
+            .find(req.query)
+            .sort({ date: -1 })
+            .then(dbModel => res.status(200).json(dbModel))
+            .catch(err => res.status(422).json(err));
+    },
+    findById: function (req, res) {
         db.User
-          .findById(req.params.id)
-          .then(dbModel => res.status(200).json(dbModel))
-          .catch(err => res.status(422).json(err));
-      },
-      update: function(req, res) {
+            .findById(req.params.id)
+            .then(dbModel => res.status(200).json(dbModel))
+            .catch(err => res.status(422).json(err));
+    },
+    update: function (req, res) {
         db.User
-          .findOneAndUpdate({ _id: req.params.id }, req.body)
-          .then(dbModel => res.status(200).json(dbModel))
-          .catch(err => res.status(422).json(err));
-      },
-      remove: function(req, res) {
+            .findOneAndUpdate({ _id: req.params.id }, req.body)
+            .then(dbModel => res.status(200).json(dbModel))
+            .catch(err => res.status(422).json(err));
+    },
+    remove: function (req, res) {
         db.User
-          .findById({ _id: req.params.id })
-          .then(dbModel => dbModel.remove())
-          .then(dbModel => res.status(200).json(dbModel))
-          .catch(err => res.status(422).json(err));
-      },
+            .findById({ _id: req.params.id })
+            .then(dbModel => dbModel.remove())
+            .then(dbModel => res.status(200).json(dbModel))
+            .catch(err => res.status(422).json(err));
+    },
+    // loginUser: function (req, res, next) {
+    //     passport.authenticate("local", (err, user) => {
+    //         if (err) { return next(err) };
+    //         if (!user) { return res.redirect("/login") }
+    //         req.login(user, (err) => {
+    //             if (err) { return next(err) };
+    //             console.log("User Successfully Logged In!")
+    //             console.log(req.user);
+    //             return res.redirect("/");
+    //         });
+    //     })(req, res, next);
+    // },
     loginUser: function (req, res, next) {
-        passport.authenticate("local", (err, user) => {
-            if (err) { return next(err) };
-            if (!user) { return res.redirect("/login") }
-            req.login(user, (err) => {
-                if (err) { return next(err) };
-                console.log("User Successfully Logged In!")
-                console.log(req.user);
-                return res.redirect("/");
-            });
-        })(req, res, next);
+        passport.authenticate("local", {
+            sucessRedirect: "/",
+            falureRedirect: "/login"
+        })
+        console.log("Log In Successful!");
+        res.json({
+            user: req.user,
+            loggedIn: true
+        })
     },
+
+    getUserHomepage: function (req, res, next) {
+        auth.isLoggedIn;
+        res.json({
+            user: req.user,
+            loggedIn: true,
+        })
+    }
+
 };
