@@ -55,7 +55,7 @@ function Login() {
                 </div>
                         <div className="card-body">
                             <div className="input-group flex-nowrap signup-input">
-                                <input type="text"
+                                <input type="email"
                                     className="form-control"
                                     placeholder="Email"
                                     onChange={event => setEmail(event.target.value)}
