@@ -9,6 +9,9 @@ export default {
     // Login user
     loginUser: function (userData) {
         return axios.post("/api/users/login", userData)
-    }
+    },
 
+    isLoggedIn: function () {
+        return axios.get("/api/users/userhome")
+    }
 };

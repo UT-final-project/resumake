@@ -5,6 +5,7 @@ import './login.css'
 function Login() {
     const [username, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [loggedIn, setLoggedIn] = useState(false);
 
     function handleLogin(e) {
         e.preventDefault();
@@ -13,7 +14,11 @@ function Login() {
         API.loginUser({ username, password })
             .then(res => {
                 console.log({ res });
+                if (res.data.loggedIn) {
+                    setLoggedIn(true);
+                }
                 console.log("Login Successful!")
+                window.location.href = "/userhome"
             })
             .catch(err => console.log(err));
     }
