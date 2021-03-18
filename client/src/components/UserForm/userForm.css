@@ -18,6 +18,12 @@
     Font-Family: 'Lato', Sans-Serif;
     color: white;
 }
+.add-btn{
+    color: white;
+    background-color: #505160;
+    padding: 10px;
+    margin-bottom: 20px;
+}
 .back-btn{
     color: white;
     background-color: #AEBD38;
