@@ -7,8 +7,6 @@ const cookieParser = require("cookie-parser");
 const bcrypt = require("bcryptjs");
 const session = require("express-session");
 
-// Requires models listed on index.js file
-const db = require("./models");
 // Mongoose connection config
 require('./initDB')();
 // =============== END OF IMPORTS ============ //
@@ -38,7 +36,8 @@ app.use(passport.session());
 require("./config/passportConfig")(passport);
 // =============== END OF MIDDLEWARE ============== //
 
-app.use(routes);  // <------ This can call all server side routes in the folder when we have any set up
+// API and view routes
+app.use(routes);
 
 // Serve up static assets (usually on heroku)
 if (process.env.NODE_ENV === "production") {
