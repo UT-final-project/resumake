@@ -21,5 +21,4 @@ router.route('/:id')
 router.route("/login")
     .post(userController.loginUser);
 
-
 module.exports = router;
