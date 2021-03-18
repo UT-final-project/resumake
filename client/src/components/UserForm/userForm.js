@@ -117,6 +117,14 @@ function UserForm(){
             return(
                 <Confirm />
             )
+        default:
+            return(
+                <AbstractForm
+                nextStep={nextStep}
+                handleChange={handleAbstractSubmit}
+                value={abstract}
+                />
+            )
     }
 }
 
