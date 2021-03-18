@@ -26,18 +26,16 @@ module.exports = {
             .catch(err => res.status(422).json(err));
     },
 
-    loginUser: function (req, res) {
+    loginUser: function (req, res, next) {
         passport.authenticate("local", (err, user) => {
-            if (err) throw err;
-            if (!user) res.send("No User Exists");
-            else {
-                req.login(user, (err) => {
-                    if (err) throw err;
-                    res.send("Successfully Authenticated");
-                    console.log(req.user);
-                    res.redirect("/userhome");
-                })
-            }
-        })
+            if (err) { return next(err) };
+            if (!user) { return res.redirect("/login") }
+            req.login(user, (err) => {
+                if (err) { return next(err) };
+                console.log("User Successfully Logged In!")
+                console.log(req.user);
+                return res.redirect("/");
+            });
+        })(req, res, next);
     },
 };
