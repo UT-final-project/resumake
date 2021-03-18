@@ -2,11 +2,6 @@ import React from 'react';
 import '../UserForm/userForm.css'
 
 function AbstractForm(props){
-    const contForm = event => {
-        event.preventDefault();
-        props.nextStep();
-    }
-    
     return(
         <div className="container">
             <div className="row">
@@ -22,7 +17,7 @@ function AbstractForm(props){
                     <form>
                         <div class="form-group">
                             <label for="abstractTextArea" class="txtInput-heading">Abstract/Summary</label>
-                            <textarea class="form-control" id="abstractTextArea" rows="8" onChange={props.handleChange}></textarea>
+                            <textarea class="form-control" id="abstractTextArea" rows="8" defaultValue={props.value} onChange={props.handleChange}/>
                         </div>
                     </form>
                     <button type="button" className="btn continue-btn" onClick={props.nextStep}>Continue</button>

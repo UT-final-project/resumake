@@ -2,6 +2,8 @@ import React from 'react';
 import '../UserForm/userForm.css'
 
 function WorkForm(props){
+    // const { values } = props.values
+
     return(
         <div className="container">
             <div className="row">
@@ -10,15 +12,15 @@ function WorkForm(props){
                     <form>
                     <div className="form-group">
                         <label for="prevEmployerInput" className="txtInput-heading">Previous Employer</label>
-                        <input type="text" className="form-control" id="prevEmployerInput" placeholder="ex. Google LLC"/>
+                        <input type="text" className="form-control" id="prevEmployerInput" placeholder="ex. Google LLC" name="prevEmployer" defaultValue={props.values.prevEmployer} onChange={props.handleChange}/>
                         <label for="jobTitleInput" className="txtInput-heading">Job Title</label>
-                        <input type="text" className="form-control" id="jobTitleInput" placeholder="ex. Software Engineer"/>
-                        <label for="jobTitleInput" className="txtInput-heading">Job Description</label>
-                        <textarea className="form-control" id="jobTitleInput" rows="3"></textarea>
+                        <input type="text" className="form-control" id="jobTitleInput" placeholder="ex. Software Engineer" name="jobTitle" defaultValue={props.values.jobTitle} onChange={props.handleChange}/>
+                        <label for="jobDescriptionInput" className="txtInput-heading">Job Description</label>
+                        <textarea className="form-control" id="jobDescriptionInput" rows="3" onChange={props.handleChange} name="jobDescription" defaultValue={props.values.jobDescription}/>
                         <div className="row">
                             <div className="col-sm-3">
                                 <label for="startDateSelect" className="txtInput-heading">Start Date (mm/yyyy)</label>
-                                <select className="form-control month-dropdown" id="startDateSelect">
+                                <select className="form-control month-dropdown" id="startDateSelect" name="startDateMonth" defaultValue={props.values.startDateMonth} onChange={props.handleChange}>
                                     <option>- Month -</option>
                                     <option>January</option>
                                     <option>February</option>
@@ -33,7 +35,7 @@ function WorkForm(props){
                                     <option>November</option>
                                     <option>December</option>
                                 </select>
-                                <select className="form-control month-dropdown" id="startDateSelect">
+                                <select className="form-control month-dropdown" id="startDateSelect" name="startDateYear" defaultValue={props.values.startDateYear} onChange={props.handleChange}>
                                     <option>- Year -</option>
                                     <option>2000</option>
                                     <option>2001</option>
@@ -61,7 +63,7 @@ function WorkForm(props){
                             </div>
                             <div className="col-sm-3">
                                 <label for="startDateSelect" className="txtInput-heading">End Date (mm/yyyy)</label>
-                                <select className="form-control month-dropdown" id="startDateSelect">
+                                <select className="form-control month-dropdown" id="startDateSelect" name="endDateMonth" defaultValue={props.values.endDateMonth} onChange={props.handleChange}>
                                     <option>- Month -</option>
                                     <option>January</option>
                                     <option>February</option>
@@ -76,7 +78,7 @@ function WorkForm(props){
                                     <option>November</option>
                                     <option>December</option>
                                 </select>
-                                <select className="form-control month-dropdown" id="startDateSelect">
+                                <select className="form-control month-dropdown" id="startDateSelect" name="endDateYear" defaultValue={props.values.endDateYear} onChange={props.handleChange}>
                                     <option>- Year -</option>
                                     <option>2000</option>
                                     <option>2001</option>

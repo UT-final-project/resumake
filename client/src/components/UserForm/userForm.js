@@ -6,21 +6,29 @@ import CertificateForm from '../CertificateForm/CertificateForm';
 import SkillsForm from '../SkillsForm/SkillsForm';
 import ProjectsForm from '../ProjectsForm/ProjectsForm';
 import ProfLinksForm from '../ProfLinksForm/ProfLinksForm';
+import Confirm from '../Confirm/Confirm';
 
 function UserForm(){
     const [step, setStep] = useState(1);
     const [abstract, setAbstract] = useState('');
     const [workHistory, setWorkHistory] = useState({
         prevEmployer: '',
-        date: '',
         jobTitle: '',
-        jobDescription: ''
+        jobDescription: '',
+        startDateMonth: '',
+        startDateYear: '',
+        endDateYear: '',
+        endDateYear: ''
     })
     const [education, setEducation] = useState({
         degree: '',
-        fieldOfStudy: '',
-        years: 0,
-        certfications: ''
+        school: '',
+        startYear: '',
+        endYear: '',
+    })
+    const [certfications, setCertfications] = useState({
+        certificate: '',
+        awardedBy: ''
     })
     const [skills, setSkills] = useState('');
     const [projects, setProjects] = useState({
@@ -40,14 +48,24 @@ function UserForm(){
         setStep(step - 1)
     }
 
-    
-
     // Functions to handle change states depending on user input
-    const handleAbstractSubmit = event => {
+    function handleAbstractSubmit(event){
         setAbstract(event.target.value)
     }
-    const handleWorkSubmit = input => event => {
-        setWorkHistory({[input]: event.target.value})
+    function handleWorkSubmit(event){
+        const { name, value } = event.target;
+        setWorkHistory({...workHistory, [name]: value})
+    }
+    function handleEducationSubmit(event){
+        const { name, value } = event.target;
+        setEducation({...education, [name]: value})
+    }
+    function handleCertSubmit(event){
+        const { name, value } = event.target;
+        setCertfications({...certfications, [name]: value})
+    }
+    function handleSkillsSubmit(event){
+        setSkills(event.target.value)
     }
 
     switch(step) {
@@ -56,6 +74,7 @@ function UserForm(){
                 <AbstractForm
                 nextStep={nextStep}
                 handleChange={handleAbstractSubmit}
+                value={abstract}
                 />
             )
         case 2:
@@ -63,6 +82,8 @@ function UserForm(){
                 <WorkForm 
                 nextStep={nextStep}
                 prevStep={prevStep}
+                handleChange={handleWorkSubmit}
+                values={workHistory}
                 />
             )
         case 3:
@@ -70,6 +91,8 @@ function UserForm(){
                 <EducationForm 
                 nextStep={nextStep}
                 prevStep={prevStep}
+                handleChange={handleEducationSubmit}
+                values={education}
                 />
             )
         case 4:
@@ -77,6 +100,8 @@ function UserForm(){
                 <CertificateForm 
                 nextStep={nextStep}
                 prevStep={prevStep}
+                handleChange={handleCertSubmit}
+                values={certfications}
                 />
             )
         case 5:
@@ -84,18 +109,13 @@ function UserForm(){
                 <SkillsForm 
                 nextStep={nextStep}
                 prevStep={prevStep}
+                handleChange={handleSkillsSubmit}
+                value={skills}
                 />
             )
         case 6:
             return(
-                <ProjectsForm 
-                nextStep={nextStep}
-                prevStep={prevStep}
-                />
-            )
-        case 7:
-            return(
-                <ProfLinksForm />
+                <Confirm />
             )
     }
 }
