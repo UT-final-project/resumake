@@ -23,6 +23,7 @@ module.exports = {
                     res.send("User created");
                 }
             })
+            .catch(err => res.status(422).json(err));
     },
 
     loginUser: function (req, res) {
