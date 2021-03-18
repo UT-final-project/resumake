@@ -1,0 +1,38 @@
+.form-title, .form-paragraph{
+    color: white;
+    text-align: center;
+}
+.form-title{
+    text-align: center;
+    margin-top: 56px;
+    font-family: 'Slabo 13px', Serif;
+    font-weight: 800;
+}
+.form-paragraph{
+    Font-Family: 'Lato', Sans-Serif;
+}
+.txtInput-heading{
+    font-size: 20px;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    Font-Family: 'Lato', Sans-Serif;
+    color: white;
+}
+.back-btn{
+    color: white;
+    background-color: #AEBD38;
+    margin-right: 10px;
+    padding: 8px;
+}
+.continue-btn{
+    color: white;
+    background-color: #598234;
+    padding: 8px;
+}
+.back-btn, .continue-btn{
+    margin-bottom: 20px;
+}
+.month-dropdown{
+    width: fit-content;
+    margin-bottom: 10px;
+}
