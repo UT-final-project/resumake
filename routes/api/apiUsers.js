@@ -17,4 +17,9 @@ router.route('/:id')
   // Removes the user matching the provided ID
   .delete(userController.remove)
 
+// Matches with "api/users/login"
+router.route("/login")
+    .post(userController.loginUser);
+
+
 module.exports = router;

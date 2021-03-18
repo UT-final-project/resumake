@@ -10,8 +10,9 @@ module.exports = {
                 if (err) throw err;
                 if (result) res.status(403).send("User already exists");
                 if (!result) {
+                    // use bcrypt to hash and salt password on signup
                     const hashedPassword = await bcrypt.hash(req.body.password, 10);
-
+                    // Creates new user with the hashed password
                     const newUser = new db.User({
                         email: req.body.email,
                         firstname: req.body.firstname,
@@ -21,7 +22,8 @@ module.exports = {
                     await newUser.save()
                     res.status(201).send("User created");
                 }
-            });
+            })
+              .catch(err => res.status(422).json(err));
     },
     findAll: function(req, res) {
         db.User
@@ -36,12 +38,6 @@ module.exports = {
           .then(dbModel => res.status(200).json(dbModel))
           .catch(err => res.status(422).json(err));
       },
-      create: function(req, res) {
-        db.User
-          .create(req.body)
-          .then(dbModel => res.status(201).json(dbModel))
-          .catch(err => res.status(422).json(err));
-      },
       update: function(req, res) {
         db.User
           .findOneAndUpdate({ _id: req.params.id }, req.body)
@@ -54,5 +50,19 @@ module.exports = {
           .then(dbModel => dbModel.remove())
           .then(dbModel => res.status(200).json(dbModel))
           .catch(err => res.status(422).json(err));
-      }
+      },
+    loginUser: function (req, res) {
+        passport.authenticate("local", (err, user) => {
+            if (err) throw err;
+            if (!user) res.send("No User Exists");
+            else {
+                req.login(user, (err) => {
+                    if (err) throw err;
+                    res.send("Successfully Authenticated");
+                    console.log(req.user);
+                    res.redirect("/userhome");
+                })
+            }
+        })
+    },
 };

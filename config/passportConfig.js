@@ -5,8 +5,8 @@ const localStrategy = require("passport-local").Strategy;
 module.exports = function (passport) {
     passport.use(
         // Createt instance using Passport Local Strategy
-        new localStrategy((username, password, done) => {
-            User.findOne({ username: username }, (err, user) => {
+        new localStrategy((email, password, done) => {
+            User.findOne({ email: email }, (err, user) => {
                 if (err) throw err;
                 // If user doesn't exist return false
                 if (!user) return done(null, false);
