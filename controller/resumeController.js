@@ -6,10 +6,7 @@ module.exports = {
     db.Resume
       .find(req.query)
       .sort({ date: -1 })
-      .then(dbModel => {
-        res.status(200).json(dbModel);
-        console.log(dbModel);
-      })
+      .then(dbModel => res.status(200).json(dbModel))
       .catch(err => res.status(422).json(err));
   },
   findById: function(req, res) {
