@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import API from '../../utils/API';
-import './login.css'
+import './login.css';
+import { Link } from "react-router-dom";
 
 function Login() {
     const [username, setEmail] = useState("");
@@ -37,7 +38,11 @@ function Login() {
                         <input type="password" className="form-control" placeholder="Password" onChange={e => setPassword(e.target.value)} />
                     </div>
                     <button type="button" className="btn login-btn" onClick={handleLogin}>Log In</button>
-                    <p className="signup-redirect">Or you can <a href="#">signup</a></p>
+                    <p className="signup-redirect">Or you can 
+                    <Link to={"/"}>
+                        <a href="#"> Sign Up</a>
+                    </Link>
+                    </p>
                 </div>
             </div>
         </div>
