@@ -28,7 +28,17 @@ function UserForm(){
         certificate: '',
         awardedBy: ''
     })
-    const [skills, setSkills] = useState('');
+    const [skills, setSkills] = useState();
+
+    const [resume, setResume] = useState({
+        author: '',
+        resumeName: '',
+        abstract: abstract,
+        employment: workHistory,
+        education: education,
+        certifications: certifications,
+        skills: skills
+    });
 
     // Functions to keep track of which step, or form, the user is at
     const nextStep = () => {
@@ -39,6 +49,10 @@ function UserForm(){
     }
 
     // Functions to handle change states depending on user input
+
+    const handleSubmit = (event) => {
+        setResume(event.target.value)
+    };
     function handleAbstractSubmit(event){
         setAbstract(event.target.value)
     }
@@ -106,11 +120,7 @@ function UserForm(){
         case 6:
             return(
                 <Confirm
-                abstractValue={abstract}
-                workValue={workHistory}
-                edValue={education}
-                certValue={certifications}
-                skillsValue={skills}
+                resume={resume}
                 nextStep={nextStep}
                 prevStep={prevStep}
                 />
@@ -119,7 +129,7 @@ function UserForm(){
             return(
                 <AbstractForm
                 nextStep={nextStep}
-                handleChange={handleAbstractSubmit}
+                handleSubmit={handleSubmit}
                 value={abstract}
                 />
             )

@@ -34,11 +34,11 @@ function Confirm(props){
                     <h2 className="form-paragraph">Skills</h2>
                         <p className="form-paragraph">{props.skillsValue}</p>
                     <button type="button" className="btn back-btn" onClick={props.prevStep}>Back</button>
-                    <button type="button" className="btn continue-btn" onClick={props.nextStep}>Continue</button>
+                    <button type="button" className="btn submit-btn" onClick={props.handleSubmit}>Save</button>
                 </div>
             </div>
         </div>
     )
-}
+};
 
 export default Confirm;
