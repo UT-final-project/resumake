@@ -30,6 +30,14 @@ function UserForm(){
     })
     const [skills, setSkills] = useState('');
 
+    const [resume, setResume] = useState({
+        abstract: abstract,
+        employment: workHistory,
+        education: education,
+        certifications: certifications,
+        skills: skills
+    });
+
     // Functions to keep track of which step, or form, the user is at
     const nextStep = () => {
         setStep(step + 1)
