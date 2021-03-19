@@ -16,18 +16,18 @@ function UserForm(){
         startDateMonth: '',
         startDateYear: '',
         endDateYear: '',
-        endDateYear: ''
-    })
+        endDateMonth: ''
+    });
     const [education, setEducation] = useState({
         degree: '',
         school: '',
         startYear: '',
         endYear: '',
-    })
+    });
     const [certifications, setCertifications] = useState({
         certificate: '',
         awardedBy: ''
-    })
+    });
     const [skills, setSkills] = useState();
 
     const [resume, setResume] = useState({
@@ -43,10 +43,10 @@ function UserForm(){
     // Functions to keep track of which step, or form, the user is at
     const nextStep = () => {
         setStep(step + 1)
-    }
+    };
     const prevStep = () => {
         setStep(step - 1)
-    }
+    };
 
     // Functions to handle change states depending on user input
 
@@ -55,22 +55,22 @@ function UserForm(){
     };
     function handleAbstractSubmit(event){
         setAbstract(event.target.value)
-    }
+    };
     function handleWorkSubmit(event){
         const { name, value } = event.target;
         setWorkHistory({...workHistory, [name]: value})
-    }
+    };
     function handleEducationSubmit(event){
         const { name, value } = event.target;
         setEducation({...education, [name]: value})
-    }
+    };
     function handleCertSubmit(event){
         const { name, value } = event.target;
         setCertifications({...certifications, [name]: value})
-    }
+    };
     function handleSkillsSubmit(event){
         setSkills(event.target.value)
-    }
+    };
 
     switch(step) {
         case 1:
@@ -121,15 +121,15 @@ function UserForm(){
             return(
                 <Confirm
                 resume={resume}
-                nextStep={nextStep}
                 prevStep={prevStep}
+                handleSubmit={handleSubmit}
                 />
             )
         default:
             return(
                 <AbstractForm
                 nextStep={nextStep}
-                handleSubmit={handleSubmit}
+                handleChange={handleAbstractSubmit}
                 value={abstract}
                 />
             )
