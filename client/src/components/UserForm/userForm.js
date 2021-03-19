@@ -51,9 +51,6 @@ function UserForm(){
     // Posts new resume to the DB
     const handleSubmit = (event) => {
         setResume(event.target.value)
-    };
-
-    useEffect(() => {
         // API.getList()
         //     .then(res => {
         //         if (res.data.length === 0) {
@@ -64,7 +61,7 @@ function UserForm(){
         //         }
         //     })
         //     .catch(err => console.log(err));
-    }, [resume]);
+    };
 
     // Functions to handle state changes depending on user input
     function handleAbstractSubmit(event){
