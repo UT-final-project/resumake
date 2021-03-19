@@ -9,6 +9,8 @@ function Login() {
     const [lastName, setLastName] = useState("");
     const [password, setPassword] = useState("");
     const [verifyPassword, setVerifyPassword] = useState("");
+    const [loggedIn, setLoggedIn] = useState(false);
+
 
     // Function to create user on submit form
     function handleFormSubmit(e) {
@@ -35,7 +37,11 @@ function Login() {
             })
                 .then(res => {
                     console.log({ res });
+                    if (res.data.loggedIn) {
+                        setLoggedIn(true);
+                    }
                     console.log("User Successfully Created");
+                    window.location.href = "/userhome";
                 })
                 .catch(err => console.log(err));
         }
@@ -91,10 +97,10 @@ function Login() {
                                 />
                             </div>
                             <button type="button" className="btn signup-btn" onClick={handleFormSubmit}>Sign Up</button>
-                            <p className="signup-redirect">Or you can 
+                            <p className="signup-redirect">Or you can
                             <Link to={"/login"}>
-                                <a href="#"> Log In</a>
-                            </Link>
+                                    <a href="#"> Log In</a>
+                                </Link>
                             </p>
                         </div>
                     </div>

@@ -12,9 +12,16 @@ function Login() {
         e.preventDefault();
         console.log(e);
 
-        API.loginUser({ username, password })
-            .then(res => {
-                console.log({ res });
+        if (!username || !password) {
+            return;
+        }
+
+        API.loginUser({
+            email: username,
+            password: password
+        })
+            .then((res) => {
+                console.log(res);
                 if (res.data.loggedIn) {
                     setLoggedIn(true);
                 }
@@ -38,10 +45,10 @@ function Login() {
                         <input type="password" className="form-control" placeholder="Password" onChange={e => setPassword(e.target.value)} />
                     </div>
                     <button type="button" className="btn login-btn" onClick={handleLogin}>Log In</button>
-                    <p className="signup-redirect">Or you can 
+                    <p className="signup-redirect">Or you can
                     <Link to={"/"}>
-                        <a href="#"> Sign Up</a>
-                    </Link>
+                            <a href="#"> Sign Up</a>
+                        </Link>
                     </p>
                 </div>
             </div>
