@@ -1,6 +1,6 @@
 const db = require("../models");
 const bcrypt = require("bcryptjs");
-const passport = require("passport");
+const passport = require("../config/passportConfig");
 const auth = require("../config/isAuthenticated");
 
 // Defines querys for DB
@@ -52,23 +52,13 @@ module.exports = {
             .then(dbModel => res.status(200).json(dbModel))
             .catch(err => res.status(422).json(err));
     },
-    // loginUser: function (req, res, next) {
-    //     passport.authenticate("local", (err, user) => {
-    //         if (err) { return next(err) };
-    //         if (!user) { return res.redirect("/login") }
-    //         req.login(user, (err) => {
-    //             if (err) { return next(err) };
-    //             console.log("User Successfully Logged In!")
-    //             console.log(req.user);
-    //             return res.redirect("/");
-    //         });
-    //     })(req, res, next);
-    // },
+
     loginUser: function (req, res, next) {
         passport.authenticate("local", {
             sucessRedirect: "/",
             falureRedirect: "/login"
         })
+        console.log("req.user: " + req.user);
         console.log("Log In Successful!");
         res.json({
             user: req.user,

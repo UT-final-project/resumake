@@ -1,6 +1,8 @@
 const auth = {
     isLoggedIn: (req, res, next) => {
-        if (req.isAuthenticated()) {
+        console.log("/// isLoggedIn Auth");
+        console.log(req.user);
+        if (req.user) {
             console.log("User authenticated");
             next();
         } else {
@@ -10,7 +12,7 @@ const auth = {
     },
 
     logoutUser: (req, res, next) => {
-        if (req.isAuthenticated()) {
+        if (req.user) {
             console.log("logged out successfully")
             req.logout();
             next();

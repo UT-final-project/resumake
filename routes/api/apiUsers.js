@@ -1,5 +1,7 @@
 const router = require("express").Router();
 const userController = require("../../controller/userController");
+const passport = require("../../config/passportConfig");
+const auth = require("../../config/isAuthenticated");
 
 // Matches with "/api/users"
 router.route("/")
@@ -18,12 +20,22 @@ router.route('/:id')
   .delete(userController.remove)
 
 // Matches with "api/users/login"
-router.route("/login")
-  .post(userController.loginUser)
+router.post("/login", passport.authenticate("local"), (req, res) => {
+  console.log("/// API LOGIN ///");
+  console.log(req.user);
+  res.json({
+    user: req.user,
+    loggedIn: true
+  })
+})
 
 // Matches with "api/users/userhome"
-router.route("/userhome")
-  .post(userController.getUserHomepage)
+router.get("/userhome", auth.isLoggedIn, (req, res) => {
+  res.json({
+    user: req.user,
+    loggedIn: true
+  })
+})
 
 
 module.exports = router;
