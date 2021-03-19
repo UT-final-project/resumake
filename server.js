@@ -1,3 +1,4 @@
+const path = require('path');
 const express = require("express");
 const logger = require("morgan");
 const cors = require("cors");
@@ -41,12 +42,21 @@ require("./config/passportConfig")(passport);
 app.use(routes);
 
 // Serve up static assets (usually on heroku)
-if (process.env.NODE_ENV === "production") {
-    app.use(express.static("client/build"));
-}
-else if (process.env.NODE_ENV === "development") {
-    app.use(express.static("./client/index.html"));
-}
+// if (process.env.NODE_ENV === "production") {
+//     app.use(express.static(path.join(__dirname,"./client/build/static")));
+// }
+// else if (process.env.NODE_ENV === "development") {
+//     app.use(express.static(path.join(__dirname,"./client/build/static")));
+// }
+if (process.env.NODE_ENV === 'production') {
+    // Expreses will serve up production assets
+    app.use(express.static(path.resolve(__dirname,'client/build')));
+  
+    // Express serves up the index.html file if it doesn't recognize the route
+    app.get('*', (req, res) => {
+      res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
+    });
+  }
 
 // Start the API server
 app.listen(PORT, function () {

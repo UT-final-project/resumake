@@ -48,11 +48,25 @@ function UserForm(){
         setStep(step - 1)
     };
 
-    // Functions to handle change states depending on user input
-
+    // Posts new resume to the DB
     const handleSubmit = (event) => {
         setResume(event.target.value)
     };
+
+    useEffect(() => {
+        // API.getList()
+        //     .then(res => {
+        //         if (res.data.length === 0) {
+        //         throw new Error("No results found.");
+        //         }
+        //         if (res.data.status === "error") {
+        //         throw new Error(res.data.message);
+        //         }
+        //     })
+        //     .catch(err => console.log(err));
+    }, [resume]);
+
+    // Functions to handle state changes depending on user input
     function handleAbstractSubmit(event){
         setAbstract(event.target.value)
     };
