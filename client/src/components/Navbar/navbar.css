@@ -1,0 +1,18 @@
+.navbar{
+    background-color: #505160;
+}
+.navbar-header{
+    font-family: 'Slabo 13px', Serif;
+    font-weight: 800;
+    font-size: 20px;
+    color: #598234;
+}
+.navbar-link{
+    font-family: 'Lato', Sans-Serif;
+    color: black;
+}
+.btn-meadow{
+    color: white;
+    background-color: #598234;
+    padding: 8px;
+}

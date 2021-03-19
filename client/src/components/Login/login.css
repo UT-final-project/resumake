@@ -1,0 +1,23 @@
+body {
+    background: #68829E;
+}
+.login-card{
+    margin-top: 100px;
+    width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+    box-shadow: 0 3px 6px #505160, 0 3px 6px #505160;
+}
+.login-header{
+    font-family: 'Slabo 13px', Serif;
+    font-size: 24px;
+}
+.login-input{
+    margin-bottom: 16px;
+}
+.login-btn{
+    background-color: #AEBD38;
+}
+.signup-redirect{
+    margin-top: 10px;
+}
