@@ -16,15 +16,18 @@ function Login() {
         //// For now I'm just consloe logging this ////
         //// But would like to give a response if invalid info is entered ////
         //// And if successfull maybe redirect to the next page ////
-
+        let errormessage = document.getElementById('error');
         if (!email) {
-            console.log("Invalid Email Entered")
+            errormessage.innerHTML= 'Please enter an Email Address!';
             return
         } else if (!firstName || !lastName) {
-            console.log("Invalid Name Entered")
+            errormessage.innerHTML= 'Please enter your First and Last name!';
+            return
+        } else if (!password) {
+            errormessage.innerHTML= 'Please enter a Password!';
             return
         } else if (password !== verifyPassword) {
-            console.log("Invalid Password Entered")
+            errormessage.innerHTML= 'Passwords do not match!';
             return
         } else {
             API.createUser({
@@ -90,6 +93,7 @@ function Login() {
                                     onChange={event => setVerifyPassword(event.target.value)}
                                 />
                             </div>
+                            <p id="error"></p>
                             <button type="button" className="btn signup-btn" onClick={handleFormSubmit}>Sign Up</button>
                             <p className="signup-redirect">Or you can 
                             <Link to={"/login"}>
