@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from 'react';
+import API from '../../utils/API';
 import AbstractForm from '../AbstractForm/AbstractForm';
 import WorkForm from '../WorkForm/WorkForm';
 import EducationForm from '../EducationForm/EducationForm';
@@ -9,26 +10,64 @@ import Confirm from '../Confirm/Confirm';
 function UserForm(){
     const [step, setStep] = useState(1);
     const [abstract, setAbstract] = useState('');
-    const [workHistory, setWorkHistory] = useState({
-        prevEmployer: '',
-        jobTitle: '',
-        jobDescription: '',
-        startDateMonth: '',
-        startDateYear: '',
-        endDateYear: '',
-        endDateYear: ''
-    })
-    const [education, setEducation] = useState({
-        degree: '',
-        school: '',
-        startYear: '',
-        endYear: '',
-    })
-    const [certifications, setCertifications] = useState({
-        certificate: '',
-        awardedBy: ''
-    })
+    const [workHistory, setWorkHistory] = useState([
+        {
+            prevEmployer: '',
+            jobTitle: '',
+            jobDescription: '',
+            startDateMonth: '',
+            startDateYear: '',
+            endDateYear: '',
+            endDateYear: ''
+        }
+    ])
+    const [education, setEducation] = useState([
+        {
+            degree: '',
+            school: '',
+            startYear: '',
+            endYear: '',
+        }
+    ])
+    const [certifications, setCertifications] = useState([
+        {
+            certificate: '',
+            awardedBy: ''
+        }
+    ])
     const [skills, setSkills] = useState('');
+
+    const [resume, setResume] = useState({
+        abstract: abstract,
+        employment: workHistory,
+        education: education,
+        certifications: certifications,
+        skills: skills
+    });
+
+
+    // Was thinking of using an array to hold employment history instead, with objects being stored
+    // inside of it. Maybe we can push the info on the employment page to this array? Just a thought.
+    let employment = [];
+
+    function addEmployment(event){
+        event.preventDefault();
+        employment.push(event.target.value)
+    }
+
+    // Function for the Submit button to post resume data
+
+    function handleResumeSubmit(event){
+        event.preventDefault();
+        API.createResume({
+            resumeName: 'Sample Resume',
+            abstract: abstract,
+            employment: workHistory,
+            education: education,
+            certifications: certifications,
+            skills: skills
+        })
+    }
 
     // Functions to keep track of which step, or form, the user is at
     const nextStep = () => {
@@ -111,8 +150,8 @@ function UserForm(){
                 edValue={education}
                 certValue={certifications}
                 skillsValue={skills}
-                nextStep={nextStep}
                 prevStep={prevStep}
+                submitResume={handleResumeSubmit}
                 />
             )
         default:

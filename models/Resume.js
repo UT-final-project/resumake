@@ -63,10 +63,10 @@ const ResumeSchema = new Schema({
             type: String
         }
     }],
-    skills: [{
+    skills: {
         type: String,
-        trim: true
-    }],
+        trim: true  
+    },
     created: {
         type: Date,
         default: Date.now,
