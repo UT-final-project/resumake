@@ -10,7 +10,7 @@ function SkillsForm(props){
                     <form>
                         <div className="form-group">
                             <label for="skillsInput" className="txtInput-heading">Skills</label>
-                            <input type="text" class="form-control" id="skillsInput" placeholder="ex. Javascript, Data Structures and Algorithims, React, etc." defaultValue={props.value} onChange={props.handleChange}/>
+                            <input type="text" class="form-control" id="skillsInput" placeholder="ex. Javascript, Data Structures and Algorithims, React, etc." name="skill" onChange={props.handleChange}/>
                         </div>
                     </form>
                     <button type="submit" className="btn add-btn">+ Add</button>

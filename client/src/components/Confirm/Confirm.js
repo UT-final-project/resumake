@@ -32,9 +32,9 @@ function Confirm(props){
                         <h4 className="form-title">Awaraded By</h4>
                         <p className="form-paragraph">{props.certValue.awardedBy}</p>
                     <h2 className="form-paragraph">Skills</h2>
-                        <p className="form-paragraph">{props.skillsValue}</p>
+                        <p className="form-paragraph">{props.skillsValue.skill}</p>
                     <button type="button" className="btn back-btn" onClick={props.prevStep}>Back</button>
-                    <button type="button" className="btn continue-btn" onClick={props.nextStep}>Continue</button>
+                    <button type="button" className="btn add-btn" onClick={props.submitResume}>Submit</button>
                 </div>
             </div>
         </div>
