@@ -3,24 +3,6 @@ import '../UserForm/userForm.css';
 import $ from 'jquery';
 
 function EducationForm(props){
-    let click = 1
-
-    function addAnotherEd(){
-        if (click === 1){
-            $("#ed-form2").show();
-            click += 1;
-        }
-        else if (click === 2){
-            $("#ed-form3").show()
-            $(".add-btn").hide();
-        }
-    }
-
-    useEffect(() => {
-        $('#ed-form2').hide();
-        $('#ed-form3').hide();
-    }, [])
-
     return(
         <div className="container">
             <div className="row">
