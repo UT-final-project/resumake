@@ -5,24 +5,42 @@ import Login from './components/Login/login.js';
 import UserForm from './components/UserForm/userForm.js';
 import Userhome from './components/Userhome/userhome.js';
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { useState } from 'react';
+import API from "./utils/API";
 
 function App() {
+  const [user, setUser] = useState()
+
+  function handleUserState(id) {
+    API.isLoggedIn(id)
+      .then((res) => {
+        setUser(res.data)
+      })
+  }
+
+
   return (
     <Router>
       <div>
         <Navbar />
         <Switch>
           <Route exact path={["/", "/homepage"]}>
-            <Home />
+            <Home
+              handleUserState={handleUserState}
+            />
           </Route>
           <Route exact path="/login">
-            <Login />
+            <Login
+              handleUserState={handleUserState}
+            />
           </Route>
           <Route exact path="/form">
             <UserForm />
           </Route>
           <Route exact path="/userhome">
-            <Userhome />
+            <Userhome
+              user={user}
+            />
           </Route>
         </Switch>
       </div>
