@@ -12,7 +12,7 @@ function App() {
       <div>
         <Navbar />
         <Switch>
-          <Route exact path ={["/", "/homepage"]}>
+          <Route exact path={["/", "/homepage"]}>
             <Home />
           </Route>
           <Route exact path="/login">

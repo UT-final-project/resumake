@@ -1,5 +1,8 @@
 const router = require("express").Router();
 const userController = require("../../controller/userController");
+const passport = require("passport");
+const auth = require("../../config/isAuthenticated");
+const User = require("../../models/User");
 
 // Matches with "/api/users"
 router.route("/")
@@ -18,12 +21,44 @@ router.route('/:id')
   .delete(userController.remove)
 
 // Matches with "api/users/login"
-router.route("/login")
-  .post(userController.loginUser)
+// router.post("/login", passport.authenticate("local"), (req, res) => {
+//   console.log("/// API LOGIN ///");
+//   console.log(req.user);
+//   res.json({
+//     user: req.user,
+//     loggedIn: true
+//   })
+// })
+
+let userObj = {};
+
+router.post("/login", (req, res, next) => {
+  passport.authenticate("local", (err, user, info) => {
+    console.log("/// Passport Authenticating ///");
+    if (err) throw err;
+    if (!user) res.send("User Doesn't Exist");
+    else {
+      req.login(user, err => {
+        if (err) throw err;
+        userObj = user;
+        res.json(userObj)
+        console.log("/// Logged In ///");
+        console.log({ userObj });
+      })
+    }
+  })(req, res, next);
+})
+
 
 // Matches with "api/users/userhome"
-router.route("/userhome")
-  .post(userController.getUserHomepage)
+router.get("/" + userObj._id, (req, res) => {
+  User.findById({ _id: userObj._id }, (err, user) => {
+    if (err) throw err;
+    else {
+      res.json(user);
+    }
+  })
+})
 
 
 module.exports = router;
