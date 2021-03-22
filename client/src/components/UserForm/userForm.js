@@ -10,25 +10,25 @@ import Confirm from '../Confirm/Confirm';
 function UserForm(){
     const [step, setStep] = useState(1);
     const [abstract, setAbstract] = useState('');
-    const [workHistory, setWorkHistory] = useState([
+    const [workHistory, setWorkHistory] = useState(
         {
             prevEmployer: '',
             jobTitle: '',
             jobDescription: '',
             startDateMonth: '',
-            startDateYear: '',
-            endDateYear: '',
+            startDateMonth: '',
+            endDateMonth: '',
             endDateYear: ''
         }
-    ])
-    const [education, setEducation] = useState([
+    )
+    const [education, setEducation] = useState(
         {
             degree: '',
             school: '',
             startYear: '',
             endYear: '',
         }
-    ])
+    )
     const [certifications, setCertifications] = useState([
         {
             certificate: '',
@@ -36,24 +36,6 @@ function UserForm(){
         }
     ])
     const [skills, setSkills] = useState('');
-
-    const [resume, setResume] = useState({
-        abstract: abstract,
-        employment: workHistory,
-        education: education,
-        certifications: certifications,
-        skills: skills
-    });
-
-
-    // Was thinking of using an array to hold employment history instead, with objects being stored
-    // inside of it. Maybe we can push the info on the employment page to this array? Just a thought.
-    let employment = [];
-
-    function addEmployment(event){
-        event.preventDefault();
-        employment.push(event.target.value)
-    }
 
     // Function for the Submit button to post resume data
 
@@ -76,6 +58,8 @@ function UserForm(){
     const prevStep = () => {
         setStep(step - 1)
     }
+
+    console.log(workHistory)
 
     // Functions to handle change states depending on user input
     function handleAbstractSubmit(event){

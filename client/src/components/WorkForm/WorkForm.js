@@ -1,8 +1,6 @@
 import React from 'react';
 import '../UserForm/userForm.css'
 
-const addJobBtn = document.querySelectorAll(".add-btn");
-
 function WorkForm(props){
     return(
         <div className="container">
@@ -17,7 +15,7 @@ function WorkForm(props){
                             <label for="jobTitleInput" className="txtInput-heading">Job Title</label>
                             <input type="text" className="form-control" id="jobTitleInput" placeholder="ex. Software Engineer" name="jobTitle" defaultValue={props.values.jobTitle} onChange={props.handleChange}/>
                             <label for="jobDescriptionInput" className="txtInput-heading">Job Description</label>
-                            <textarea className="form-control" id="jobDescriptionInput" rows="3" onChange={props.handleChange} name="jobDescription" defaultValue={props.values.jobDescription}/>
+                            <textarea className="form-control" id="jobDescriptionInput" rows="3" onChange={props.handleChange} defaultValue={props.values.jobDescription} name="jobDescription"/>
                             <div className="row">
                                 <div className="col-sm-3">
                                     <label for="startDateSelect" className="txtInput-heading">Start Date (mm/yyyy)</label>
@@ -109,7 +107,6 @@ function WorkForm(props){
                             </div>
                         </div>
                     </form>
-                    <button type="submit" className="btn add-btn">+ Add Another Job</button>
                     <br />
                     <button type="button" className="btn back-btn" onClick={props.prevStep}>Back</button>
                     <button type="button" className="btn continue-btn" onClick={props.nextStep}>Continue</button>
