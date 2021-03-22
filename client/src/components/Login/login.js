@@ -3,7 +3,7 @@ import API from '../../utils/API';
 import './login.css';
 import { Link, Redirect } from "react-router-dom";
 
-function Login() {
+function Login({ handleUserState }) {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [redirect, setRedirect] = useState(false);
@@ -26,8 +26,9 @@ function Login() {
                     return
                 }
                 else {
-                    console.log("Login Successful!");
-                    API.isLoggedIn(res.data._id);
+                    // console.log("Login Successful!");
+                    // API.isLoggedIn(res.data._id);
+                    handleUserState(res.data._id);
                     setRedirect(true);
                 }
             })
