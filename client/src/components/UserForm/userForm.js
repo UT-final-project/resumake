@@ -10,17 +10,17 @@ import Confirm from '../Confirm/Confirm';
 function UserForm(){
     const [step, setStep] = useState(1);
     const [abstract, setAbstract] = useState('');
-    const [workHistory, setWorkHistory] = useState([
-        {
-            prevEmployer: '',
-            jobTitle: '',
-            jobDescription: '',
-            startDateMonth: '',
-            startDateYear: '',
-            endDateYear: '',
-            endDateYear: ''
-        }
-    ])
+    const [employment, setEmployment] = useState([]);
+    const [job, setJob] = useState({
+        id: '',
+        prevEmployer: '',
+        jobTitle: '',
+        jobDescription: '',
+        startDateMonth: '',
+        startDateYear: '',
+        endDateMonth: '',
+        endDateYear: ''
+    });
     const [education, setEducation] = useState([
         {
             degree: '',
@@ -28,32 +28,50 @@ function UserForm(){
             startYear: '',
             endYear: '',
         }
-    ])
+    ]);
     const [certifications, setCertifications] = useState([
         {
             certificate: '',
             awardedBy: ''
         }
-    ])
+    ]);
     const [skills, setSkills] = useState('');
 
     const [resume, setResume] = useState({
         abstract: abstract,
-        employment: workHistory,
+        employment: employment,
         education: education,
         certifications: certifications,
         skills: skills
     });
 
+    useEffect(() => {
+        setJob({
+            id: '',
+            prevEmployer: '',
+            jobTitle: '',
+            jobDescription: '',
+            startDateMonth: '',
+            startDateYear: '',
+            endDateMonth: '',
+            endDateYear: ''
+        });
+    },[employment])
 
-    // Was thinking of using an array to hold employment history instead, with objects being stored
-    // inside of it. Maybe we can push the info on the employment page to this array? Just a thought.
-    let employment = [];
-
-    function addEmployment(event){
-        event.preventDefault();
-        employment.push(event.target.value)
-    }
+    const addJob = () => {
+        setEmployment((employment) => [...employment, job]);
+        console.log('employment', employment);
+        setJob({
+            id: '',
+            prevEmployer: '',
+            jobTitle: '',
+            jobDescription: '',
+            startDateMonth: '',
+            startDateYear: '',
+            endDateMonth: '',
+            endDateYear: ''
+        });
+    };
 
     // Function for the Submit button to post resume data
 
@@ -62,40 +80,40 @@ function UserForm(){
         API.createResume({
             resumeName: 'Sample Resume',
             abstract: abstract,
-            employment: workHistory,
+            employment: employment,
             education: education,
             certifications: certifications,
             skills: skills
-        })
-    }
+        });
+    };
 
     // Functions to keep track of which step, or form, the user is at
     const nextStep = () => {
-        setStep(step + 1)
+        setStep(step + 1);
     }
     const prevStep = () => {
-        setStep(step - 1)
+        setStep(step - 1);
     }
 
     // Functions to handle change states depending on user input
     function handleAbstractSubmit(event){
-        setAbstract(event.target.value)
-    }
-    function handleWorkSubmit(event){
+        setAbstract(event.target.value);
+    };
+    function handleJobSubmit(event){
         const { name, value } = event.target;
-        setWorkHistory({...workHistory, [name]: value})
-    }
+        setJob({...job, [name]: value, id: Math.random().toString(36).substr(2, 9)});
+    };
     function handleEducationSubmit(event){
         const { name, value } = event.target;
-        setEducation({...education, [name]: value})
-    }
+        setEducation({...education, [name]: value});
+    };
     function handleCertSubmit(event){
         const { name, value } = event.target;
-        setCertifications({...certifications, [name]: value})
-    }
+        setCertifications({...certifications, [name]: value});
+    };
     function handleSkillsSubmit(event){
-        setSkills(event.target.value)
-    }
+        setSkills(event.target.value);
+    };
 
     switch(step) {
         case 1:
@@ -111,8 +129,10 @@ function UserForm(){
                 <WorkForm 
                 nextStep={nextStep}
                 prevStep={prevStep}
-                handleChange={handleWorkSubmit}
-                values={workHistory}
+                handleChange={handleJobSubmit}
+                values={job}
+                employment={employment}
+                addJob={addJob}
                 />
             )
         case 3:
@@ -146,7 +166,7 @@ function UserForm(){
             return(
                 <Confirm
                 abstractValue={abstract}
-                workValue={workHistory}
+                workValue={employment}
                 edValue={education}
                 certValue={certifications}
                 skillsValue={skills}
