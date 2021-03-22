@@ -15,9 +15,9 @@ function AbstractForm(props){
             <div className="row">
                 <div className="col-md-12">
                     <form>
-                        <div class="form-group">
-                            <label for="abstractTextArea" class="txtInput-heading">Abstract/Summary</label>
-                            <textarea class="form-control" id="abstractTextArea" rows="8" defaultValue={props.value} onChange={props.handleChange}/>
+                        <div className="form-group">
+                            <label for="abstractTextArea" className="txtInput-heading">Abstract/Summary</label>
+                            <textarea className="form-control" id="abstractTextArea" rows="8" defaultValue={props.value} onChange={props.handleChange}/>
                         </div>
                     </form>
                     <button type="button" className="btn continue-btn" onClick={props.nextStep}>Continue</button>

@@ -1,4 +1,5 @@
 import React from 'react';
+import JobList from './JobList/JobList';
 import '../UserForm/userForm.css'
 
 function WorkForm(props){
@@ -113,7 +114,8 @@ function WorkForm(props){
                             <button type="button" className="btn back-btn" onClick={props.prevStep}>Back</button>
                             <button type="button" className="btn continue-btn" onClick={props.nextStep}>Continue</button>
                             <hr/>
-                            {props.employment.length ? (
+                            <JobList employment={props.employment}/>
+                            {/* {props.employment.length ? (
                                 props.employment.map(jobs => (
                                     <div key={Math.random().toString(36).substr(2, 9)}>
                                         <label for="prevEmployerInput" className="txtInput-heading">Previous Employer</label>
@@ -213,7 +215,7 @@ function WorkForm(props){
                                         </div>
                                         <hr/>
                                     </div>
-                                ))) : (<div></div>)}
+                                ))) : (<div></div>)} */}
                         </div>
                     </form>
                 </div>

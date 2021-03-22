@@ -10,9 +10,9 @@ function CertificateForm(props){
                     <form>
                         <div className="form-group">
                             <label for="certInput" className="txtInput-heading">Certifications</label>
-                            <input type="text" class="form-control" id="certInput" placeholder="ex. Certificate of Completion: Computer Science Career Path" name="certificate" defaultValue={props.values.certificate} onChange={props.handleChange}/>
+                            <input type="text" className="form-control" id="certInput" placeholder="ex. Certificate of Completion: Computer Science Career Path" name="certificate" defaultValue={props.values.certificate} onChange={props.handleChange}/>
                             <label for="awardedByInput" className="txtInput-heading">Awarded By</label>
-                            <input type="text" class="form-control" id="awardedByInput" placeholder="ex. Codecademy" name="awardedBy" defaultValue={props.values.awardedBy} onChange={props.handleChange}/>
+                            <input type="text" className="form-control" id="awardedByInput" placeholder="ex. Codecademy" name="awardedBy" defaultValue={props.values.awardedBy} onChange={props.handleChange}/>
                         </div>
                     </form>
                     <button type="submit" className="btn add-btn">+ Add</button>

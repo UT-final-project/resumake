@@ -10,13 +10,13 @@ function EducationForm(props){
                     <form>
                         <div className="form-group">
                             <label for="prevEmployerInput" className="txtInput-heading">Degree</label>
-                            <input type="text" class="form-control" id="prevEmployerInput" placeholder="ex. Bachelor's of Science in Computer Science" name="degree" defaultValue={props.values.degree} onChange={props.handleChange}/>
+                            <input type="text" className="form-control" id="prevEmployerInput" placeholder="ex. Bachelor's of Science in Computer Science" name="degree" defaultValue={props.values.degree} onChange={props.handleChange}/>
                             <label for="jobTitleInput" className="txtInput-heading">University/College</label>
-                            <input type="text" class="form-control" id="jobTitleInput" placeholder="ex. The University of Texas at Austin" name="school" defaultValue={props.values.school} onChange={props.handleChange}/>
+                            <input type="text" className="form-control" id="jobTitleInput" placeholder="ex. The University of Texas at Austin" name="school" defaultValue={props.values.school} onChange={props.handleChange}/>
                             <div className="row">
                                 <div className="col-md-2">
                                     <label for="exampleFormControlSelect1" className="txtInput-heading">Start Year</label>
-                                    <select class="form-control month-dropdown" id="exampleFormControlSelect1" name="startYear" defaultValue={props.values.startYear} onChange={props.handleChange}>
+                                    <select className="form-control month-dropdown" id="exampleFormControlSelect1" name="startYear" defaultValue={props.values.startYear} onChange={props.handleChange}>
                                         <option>- Year -</option>
                                         <option>2000</option>
                                         <option>2001</option>
@@ -44,7 +44,7 @@ function EducationForm(props){
                                 </div>
                                 <div className="col-md-2">
                                     <label for="exampleFormControlSelect1" className="txtInput-heading">End Year</label>
-                                    <select class="form-control month-dropdown" id="exampleFormControlSelect1" name="endYear" defaultValue={props.values.endYear} onChange={props.handleChange}>
+                                    <select className="form-control month-dropdown" id="exampleFormControlSelect1" name="endYear" defaultValue={props.values.endYear} onChange={props.handleChange}>
                                         <option>- Year -</option>
                                         <option>2000</option>
                                         <option>2001</option>

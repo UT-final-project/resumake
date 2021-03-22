@@ -37,13 +37,13 @@ function UserForm(){
     ]);
     const [skills, setSkills] = useState('');
 
-    const [resume, setResume] = useState({
-        abstract: abstract,
-        employment: employment,
-        education: education,
-        certifications: certifications,
-        skills: skills
-    });
+    // const [resume, setResume] = useState({
+    //     abstract: abstract,
+    //     employment: employment,
+    //     education: education,
+    //     certifications: certifications,
+    //     skills: skills
+    // });
 
     useEffect(() => {
         setJob({

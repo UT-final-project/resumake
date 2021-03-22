@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import './home.css'
 import API from "../../utils/API";
 import { Link } from "react-router-dom";
@@ -53,7 +53,7 @@ function Login() {
                     <img src="https://raw.githubusercontent.com/UT-final-project/group1-final-project/34b34d8a8d8484e2bb38e13ab52ff5ce1d4e6e16/client/svg-images/undraw_online_resume_re_ru7s.svg" alt="online-resume" className="online-resume-img" />
                 </div>
                 <div className="col-md-5">
-                    <div className="card signup-card">
+                    <form className="card signup-card">
                         <div className="card-header signup-header">
                             Sign Up
                         </div>
@@ -63,6 +63,7 @@ function Login() {
                                     className="form-control"
                                     placeholder="Email"
                                     onChange={event => setEmail(event.target.value)}
+                                    autocomplete="email"
                                 />
                             </div>
                             <div className="input-group flex-nowrap signup-input">
@@ -70,6 +71,7 @@ function Login() {
                                     className="form-control"
                                     placeholder="First Name"
                                     onChange={event => setFirstName(event.target.value)}
+                                    autocomplete="first name"
                                 />
                             </div>
                             <div className="input-group flex-nowrap signup-input">
@@ -77,6 +79,7 @@ function Login() {
                                     className="form-control"
                                     placeholder="Last Name"
                                     onChange={event => setLastName(event.target.value)}
+                                    autocomplete="last name"
                                 />
                             </div>
                             <div className="input-group flex-nowrap signup-input">
@@ -84,6 +87,7 @@ function Login() {
                                     className="form-control"
                                     placeholder="Password"
                                     onChange={event => setPassword(event.target.value)}
+                                    autocomplete="password"
                                 />
                             </div>
                             <div className="input-group flex-nowrap signup-input">
@@ -91,17 +95,18 @@ function Login() {
                                     className="form-control"
                                     placeholder="Verify Password"
                                     onChange={event => setVerifyPassword(event.target.value)}
+                                    autocomplete="password confirm"
                                 />
                             </div>
                             <p id="error"></p>
                             <button type="button" className="btn signup-btn" onClick={handleFormSubmit}>Sign Up</button>
                             <p className="signup-redirect">Or you can 
                             <Link to={"/login"}>
-                                <a href="#"> Log In</a>
+                                <span> Log In</span>
                             </Link>
                             </p>
                         </div>
-                    </div>
+                    </form>
                 </div>
             </div>
             <br />
