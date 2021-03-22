@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import '../UserForm/userForm.css';
+import $ from 'jquery';
 
 function EducationForm(props){
     return(
@@ -7,7 +8,8 @@ function EducationForm(props){
             <div className="row">
                 <div className="col-md-12">
                 <h1 className="form-title">Education</h1>
-                    <form>
+                <hr />
+                    <form id="ed-form">
                         <div className="form-group">
                             <label for="prevEmployerInput" className="txtInput-heading">Degree</label>
                             <input type="text" class="form-control" id="prevEmployerInput" placeholder="ex. Bachelor's of Science in Computer Science" name="degree" defaultValue={props.values.degree} onChange={props.handleChange}/>
@@ -74,7 +76,6 @@ function EducationForm(props){
                             </div>
                         </div>
                     </form>
-                    <button type="submit" className="btn add-btn">+ Add</button>
                     <br />
                     <button type="button" className="btn back-btn" onClick={props.prevStep}>Back</button>
                     <button type="button" className="btn continue-btn" onClick={props.nextStep}>Continue</button>

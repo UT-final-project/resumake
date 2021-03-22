@@ -7,6 +7,7 @@ function CertificateForm(props){
             <div className="row">
                 <div className="col-md-12">
                 <h1 className="form-title">Certifications</h1>
+                <hr />
                     <form>
                         <div className="form-group">
                             <label for="certInput" className="txtInput-heading">Certifications</label>
@@ -15,7 +16,6 @@ function CertificateForm(props){
                             <input type="text" class="form-control" id="awardedByInput" placeholder="ex. Codecademy" name="awardedBy" defaultValue={props.values.awardedBy} onChange={props.handleChange}/>
                         </div>
                     </form>
-                    <button type="submit" className="btn add-btn">+ Add</button>
                     <br />
                     <button type="button" className="btn back-btn" onClick={props.prevStep}>Back</button>
                     <button type="button" className="btn continue-btn" onClick={props.nextStep}>Continue</button>
