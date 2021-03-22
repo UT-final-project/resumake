@@ -11,7 +11,7 @@ export default {
         return axios.post("/api/users/login", userData)
     },
 
-    createResume: function (resumeData){
+    createResume: function (resumeData) {
         return axios.post("/api/resume", resumeData)
     },
 

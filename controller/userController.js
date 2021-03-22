@@ -21,7 +21,8 @@ module.exports = {
                         password: hashedPassword,
                     });
                     await newUser.save()
-                    res.status(201).send("User created");
+                    // res.status(201).send("User created");
+                    res.redirect(301, "/api/users/userhome")
                 }
             })
             .catch(err => res.status(422).json(err));

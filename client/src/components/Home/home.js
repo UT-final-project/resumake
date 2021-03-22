@@ -9,7 +9,6 @@ function Login() {
     const [lastName, setLastName] = useState("");
     const [password, setPassword] = useState("");
     const [verifyPassword, setVerifyPassword] = useState("");
-    const [loggedIn, setLoggedIn] = useState(false);
 
 
     // Function to create user on submit form
@@ -20,16 +19,16 @@ function Login() {
         //// And if successfull maybe redirect to the next page ////
         let errormessage = document.getElementById('error');
         if (!email) {
-            errormessage.innerHTML= 'Please enter an Email Address!';
+            errormessage.innerHTML = 'Please enter an Email Address!';
             return
         } else if (!firstName || !lastName) {
-            errormessage.innerHTML= 'Please enter your First and Last name!';
+            errormessage.innerHTML = 'Please enter your First and Last name!';
             return
         } else if (!password) {
-            errormessage.innerHTML= 'Please enter a Password!';
+            errormessage.innerHTML = 'Please enter a Password!';
             return
         } else if (password !== verifyPassword) {
-            errormessage.innerHTML= 'Passwords do not match!';
+            errormessage.innerHTML = 'Passwords do not match!';
             return
         } else {
             API.createUser({
@@ -40,9 +39,6 @@ function Login() {
             })
                 .then(res => {
                     console.log({ res });
-                    if (res.data.loggedIn) {
-                        setLoggedIn(true);
-                    }
                     console.log("User Successfully Created");
                     window.location.href = "/userhome";
                 })

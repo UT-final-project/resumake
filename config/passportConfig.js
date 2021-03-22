@@ -66,9 +66,10 @@ passport.serializeUser((user, cb) => {
 //Deserializes user id from cookie and matches with DB
 passport.deserializeUser((id, cb) => {
     console.log("deserializer");
-    User.findOne({ _id: id }, (err, user) => {
+    User.findById({ _id: id }, (err, user) => {
         cb(err, user);
     })
+    // cb(null, obj);
 })
 
 module.exports = passport;

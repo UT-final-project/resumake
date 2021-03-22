@@ -4,29 +4,30 @@ import './login.css';
 import { Link } from "react-router-dom";
 
 function Login() {
-    const [username, setEmail] = useState("");
+    const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const [loggedIn, setLoggedIn] = useState(false);
 
     function handleLogin(e) {
         e.preventDefault();
-        console.log(e);
 
-        if (!username || !password) {
+        if (!email || !password) {
             return;
         }
 
         API.loginUser({
-            email: username,
-            password: password
+            email: email,
+            password: password,
+            withCredentials: true
         })
             .then((res) => {
-                console.log(res);
-                if (res.data.loggedIn) {
-                    setLoggedIn(true);
+                console.log(res.data);
+                if (!res.data.email || !res.data.password) {
+                    return
                 }
-                console.log("Login Successful!")
-                window.location.href = "/userhome"
+                else {
+                    console.log("Login Successful!");
+                    window.location.href = "/userhome";
+                }
             })
             .catch(err => console.log(err));
     }
