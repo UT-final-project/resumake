@@ -20,6 +20,7 @@ const PORT = process.env.PORT || 3001;
 app.use(logger("dev"));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+app.use(express.static("public"));
 
 // Express-session, cors, passport and cookie parser for user authentication
 app.use(cors({
@@ -34,6 +35,7 @@ app.use(session({
 app.use(cookieParser("keyboard cat"));
 app.use(passport.initialize());
 app.use(passport.session());
+require("./config/passportConfig")(passport);
 // =============== END OF MIDDLEWARE ============== //
 
 // API and view routes

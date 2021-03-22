@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './home.css'
 import API from "../../utils/API";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 
 function Login() {
     const [email, setEmail] = useState("");
@@ -9,7 +9,7 @@ function Login() {
     const [lastName, setLastName] = useState("");
     const [password, setPassword] = useState("");
     const [verifyPassword, setVerifyPassword] = useState("");
-    const [loggedIn, setLoggedIn] = useState(false);
+    const [redirect, setRedirect] = useState(false);
 
 
     // Function to create user on submit form
@@ -20,16 +20,16 @@ function Login() {
         //// And if successfull maybe redirect to the next page ////
         let errormessage = document.getElementById('error');
         if (!email) {
-            errormessage.innerHTML= 'Please enter an Email Address!';
+            errormessage.innerHTML = 'Please enter an Email Address!';
             return
         } else if (!firstName || !lastName) {
-            errormessage.innerHTML= 'Please enter your First and Last name!';
+            errormessage.innerHTML = 'Please enter your First and Last name!';
             return
         } else if (!password) {
-            errormessage.innerHTML= 'Please enter a Password!';
+            errormessage.innerHTML = 'Please enter a Password!';
             return
         } else if (password !== verifyPassword) {
-            errormessage.innerHTML= 'Passwords do not match!';
+            errormessage.innerHTML = 'Passwords do not match!';
             return
         } else {
             API.createUser({
@@ -40,11 +40,15 @@ function Login() {
             })
                 .then(res => {
                     console.log({ res });
-                    if (res.data.loggedIn) {
-                        setLoggedIn(true);
-                    }
                     console.log("User Successfully Created");
-                    window.location.href = "/userhome";
+                    if (!res.data.email || !res.data.password) {
+                        return
+                    }
+                    else {
+                        console.log("Login Successful!");
+                        API.isLoggedIn(res.data._id);
+                        setRedirect(true);
+                    }
                 })
                 .catch(err => console.log(err));
         }
@@ -52,6 +56,7 @@ function Login() {
 
     return (
         <div className="container">
+            {redirect ? <Redirect push to="/userhome" /> : <></>}
             <div className="row">
                 <div className="col-md-7">
                     <h1 className="primary-title">Used by Professionals</h1>

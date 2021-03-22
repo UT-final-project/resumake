@@ -21,7 +21,8 @@ module.exports = {
                         password: hashedPassword,
                     });
                     await newUser.save()
-                    res.status(201).send("User created");
+                    // res.status(201).send("User created");
+                    res.json(newUser);
                 }
             })
             .catch(err => res.status(422).json(err));

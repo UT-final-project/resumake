@@ -1,38 +1,42 @@
 import React, { useState, useEffect } from 'react';
 import API from '../../utils/API';
 import './login.css';
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 
 function Login() {
-    const [username, setEmail] = useState("");
+    const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const [loggedIn, setLoggedIn] = useState(false);
+    const [redirect, setRedirect] = useState(false);
 
     function handleLogin(e) {
         e.preventDefault();
-        console.log(e);
 
-        if (!username || !password) {
+        if (!email || !password) {
             return;
         }
 
         API.loginUser({
-            email: username,
-            password: password
+            email: email,
+            password: password,
+            withCredentials: true
         })
             .then((res) => {
-                console.log(res);
-                if (res.data.loggedIn) {
-                    setLoggedIn(true);
+                console.log(res.data);
+                if (!res.data.email || !res.data.password) {
+                    return
                 }
-                console.log("Login Successful!")
-                window.location.href = "/userhome"
+                else {
+                    console.log("Login Successful!");
+                    API.isLoggedIn(res.data._id);
+                    setRedirect(true);
+                }
             })
             .catch(err => console.log(err));
     }
 
     return (
         <div>
+            {redirect ? <Redirect push to="/userhome" /> : <></>}
             <div className="card login-card">
                 <div className="card-header login-header">
                     Log In
