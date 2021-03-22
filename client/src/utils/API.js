@@ -27,7 +27,7 @@ export default {
         return axios.post("api/users/resume/certifications", userData)
     },
 
-    isLoggedIn: function () {
-        return axios.get("/api/users/userhome")
+    isLoggedIn: function (id) {
+        return axios.get("/api/users/" + id)
     }
 };

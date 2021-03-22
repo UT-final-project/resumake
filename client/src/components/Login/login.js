@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import API from '../../utils/API';
 import './login.css';
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 
 function Login() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [redirect, setRedirect] = useState(false);
 
     function handleLogin(e) {
         e.preventDefault();
@@ -26,7 +27,8 @@ function Login() {
                 }
                 else {
                     console.log("Login Successful!");
-                    window.location.href = "/userhome";
+                    API.isLoggedIn(res.data._id);
+                    setRedirect(true);
                 }
             })
             .catch(err => console.log(err));
@@ -34,6 +36,7 @@ function Login() {
 
     return (
         <div>
+            {redirect ? <Redirect push to="/userhome" /> : <></>}
             <div className="card login-card">
                 <div className="card-header login-header">
                     Log In

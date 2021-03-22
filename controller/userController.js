@@ -22,7 +22,7 @@ module.exports = {
                     });
                     await newUser.save()
                     // res.status(201).send("User created");
-                    res.redirect(301, "/api/users/userhome")
+                    res.json(newUser);
                 }
             })
             .catch(err => res.status(422).json(err));

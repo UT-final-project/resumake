@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './home.css'
 import API from "../../utils/API";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 
 function Login() {
     const [email, setEmail] = useState("");
@@ -9,6 +9,7 @@ function Login() {
     const [lastName, setLastName] = useState("");
     const [password, setPassword] = useState("");
     const [verifyPassword, setVerifyPassword] = useState("");
+    const [redirect, setRedirect] = useState(false);
 
 
     // Function to create user on submit form
@@ -40,7 +41,14 @@ function Login() {
                 .then(res => {
                     console.log({ res });
                     console.log("User Successfully Created");
-                    window.location.href = "/userhome";
+                    if (!res.data.email || !res.data.password) {
+                        return
+                    }
+                    else {
+                        console.log("Login Successful!");
+                        API.isLoggedIn(res.data._id);
+                        setRedirect(true);
+                    }
                 })
                 .catch(err => console.log(err));
         }
@@ -48,6 +56,7 @@ function Login() {
 
     return (
         <div className="container">
+            {redirect ? <Redirect push to="/userhome" /> : <></>}
             <div className="row">
                 <div className="col-md-7">
                     <h1 className="primary-title">Used by Professionals</h1>

@@ -35,6 +35,7 @@ app.use(session({
 app.use(cookieParser("keyboard cat"));
 app.use(passport.initialize());
 app.use(passport.session());
+require("./config/passportConfig")(passport);
 // =============== END OF MIDDLEWARE ============== //
 
 // API and view routes

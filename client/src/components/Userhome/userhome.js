@@ -5,21 +5,21 @@ import API from "../../utils/API";
 function Userhome() {
     const [user, setUser] = useState();
 
-    useEffect(() => {
-        loadUser()
-    }, [])
+    // useEffect(() => {
+    //     loadUser()
+    // }, [])
 
 
-    function loadUser() {
-        API.isLoggedIn().then(res => {
-            console.log(res.user);
-            setUser(res.user);
-            console.log(user);
-        })
-            .catch(err => {
-                console.log(err);
-            })
-    }
+    // function loadUser() {
+    //     API.isLoggedIn().then(res => {
+    //         console.log(res.user);
+    //         setUser(res.user);
+    //         console.log(user);
+    //     })
+    //         .catch(err => {
+    //             console.log(err);
+    //         })
+    // }
 
 
     return (

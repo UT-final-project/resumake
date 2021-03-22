@@ -1,12 +1,13 @@
 const router = require("express").Router();
 const userController = require("../../controller/userController");
-const passport = require("../../config/passportConfig");
+const passport = require("passport");
 const auth = require("../../config/isAuthenticated");
+const User = require("../../models/User");
 
 // Matches with "/api/users"
 router.route("/")
   // Responds with an array of all users
-  // .get(userController.findAll)
+  .get(userController.findAll)
   // Adds a new user
   .post(userController.create)
 
@@ -29,6 +30,8 @@ router.route('/:id')
 //   })
 // })
 
+let userObj = {};
+
 router.post("/login", (req, res, next) => {
   passport.authenticate("local", (err, user, info) => {
     console.log("/// Passport Authenticating ///");
@@ -37,9 +40,10 @@ router.post("/login", (req, res, next) => {
     else {
       req.login(user, err => {
         if (err) throw err;
-        res.json(user)
+        userObj = user;
+        res.json(userObj)
         console.log("/// Logged In ///");
-        console.log({ user });
+        console.log({ userObj });
       })
     }
   })(req, res, next);
@@ -47,10 +51,13 @@ router.post("/login", (req, res, next) => {
 
 
 // Matches with "api/users/userhome"
-router.get("/userhome", (req, res) => {
-  console.log(req.user);
-  console.log(req.user.firstname);
-  res.json(req.user);
+router.get("/" + userObj._id, (req, res) => {
+  User.findById({ _id: userObj._id }, (err, user) => {
+    if (err) throw err;
+    else {
+      res.json(user);
+    }
+  })
 })
 
 
