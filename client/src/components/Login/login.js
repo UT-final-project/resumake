@@ -52,7 +52,7 @@ function Login({ handleUserState }) {
                     <div className="input-group flex-nowrap login-input">
                         <input type="password" className="form-control" placeholder="Password" onChange={e => setPassword(e.target.value)} autoComplete="password" />
                     </div>
-                    <p class="error"></p>
+                    <p className="error"></p>
                     <button type="button" className="btn login-btn" onClick={handleLogin}>Log In</button>
                     <p className="signup-redirect">Or you can
                     <Link to={"/"}>

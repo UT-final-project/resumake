@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './Confirm.css';
 import styled, { css } from 'styled-components';
 
@@ -33,12 +33,20 @@ const ResumeContent = styled.p`
     color: white;
 `
 
-function Confirm(props){
-    function capitalize(str){
-        return str.charAt(0).toUpperCase() + str.slice(1);
+function Confirm(props) {
+    const [redirect, setRedirect] = useState(false)
+
+    function handleRedirect(e) {
+        e.preventDefault();
+
+        setRedirect(true);
     }
 
-    return(
+    function capitalize(str) {
+        return str.charAt(0).toUpperCase() + str.slice(1);
+    };
+
+    return (
         <div className="container">
             <br/>
             <Header>{capitalize(props.user.firstname)} {capitalize(props.user.lastname)}</Header>
@@ -103,11 +111,10 @@ function Confirm(props){
                         </section>
                     )
                 })
-                // <CertList values={props.certHistory} />
             ) : (<div />)}
             <br/>
             <button type="button" className="btn back-btn" onClick={props.prevStep}>Back</button>
-            <button type="button" className="btn add-btn" onClick={props.submitResume}>Submit</button>
+            <button type="button" className="btn add-btn" data-bs-toggle="modal" data-bs-target="#submitModal" onClick={props.submitResume}>Submit</button>
         </div>
     );
 };
