@@ -10,6 +10,16 @@ const ResumeSchema = new Schema({
         type: String,
         trim: true
     },
+    firstName: {
+        type: String,
+        trim: true,
+        required: true
+    },
+    lastName: {
+        type: String,
+        trim: true,
+        required: true
+    },
     abstract: {
         type: String,
         required: false,

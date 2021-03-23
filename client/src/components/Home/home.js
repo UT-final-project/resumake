@@ -56,7 +56,7 @@ function Login({ handleUserState }) {
 
     return (
         <div className="container">
-            {redirect ? <Redirect push to="/userhome" /> : <></>}
+            {redirect ? <Redirect push to="/form" /> : <></>}
             <div className="row">
                 <div className="col-md-7">
                     <h1 className="primary-title">Used by Professionals</h1>

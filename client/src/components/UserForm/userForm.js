@@ -7,7 +7,7 @@ import CertificateForm from '../CertificateForm/CertificateForm';
 import SkillsForm from '../SkillsForm/SkillsForm';
 import Confirm from '../Confirm/Confirm';
 
-function UserForm(){
+function UserForm({ user, getUser, userLoggedIn }){
     const [step, setStep] = useState(1);
     const [abstract, setAbstract] = useState('');
     const [employment, setEmployment] = useState([]);
@@ -58,7 +58,11 @@ function UserForm(){
             awardedBy: ''
         });
         setSkills('');
-    },[employment, eduHistory, certHistory, skillList])
+        console.log(`User Logged In ${userLoggedIn}`);
+        if (userLoggedIn) {
+            getUser(user);
+        }
+    },[employment, eduHistory, certHistory, skillList, userLoggedIn])
 
     // Adds job to employment array and clears job state for new inputs
     const addJob = () => {
@@ -129,6 +133,10 @@ function UserForm(){
         setSkills(event.target.value);
     };
 
+    function capitalize(str){
+        return str.charAt(0).toUpperCase() + str.slice(1);
+    }
+
     // Function for the Submit button to post resume data
     function handleResumeSubmit(event){
         event.preventDefault();
@@ -140,6 +148,8 @@ function UserForm(){
         API.createResume({
             author: 1,
             resumeName: 'Sample Resume',
+            firstName: capitalize(user.firstname),
+            lastName: capitalize(user.lastname),
             abstract: abstract,
             employment: employment,
             education: eduHistory,
@@ -207,6 +217,7 @@ function UserForm(){
         case 6:
             return(
                 <Confirm
+                user={user}
                 summary={abstract}
                 skillList={skillList}
                 employment={employment}
