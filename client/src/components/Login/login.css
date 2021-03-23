@@ -21,3 +21,7 @@ body {
 .signup-redirect{
     margin-top: 10px;
 }
+
+.error{
+    color: red;
+}

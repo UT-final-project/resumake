@@ -5,7 +5,7 @@ const passportLocal = require("passport-local").Strategy;
 const cookieParser = require("cookie-parser");
 const bcrypt = require("bcryptjs");
 const session = require("express-session");
-const passport = require("passport");
+const passport = require("./config/passportConfig");
 require('dotenv').config();
 
 // Mongoose connection config
@@ -20,6 +20,7 @@ const PORT = process.env.PORT || 3001;
 app.use(logger("dev"));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+app.use(express.static("public"));
 
 // Express-session, cors, passport and cookie parser for user authentication
 app.use(cors({

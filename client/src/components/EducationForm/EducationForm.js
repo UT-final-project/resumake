@@ -1,18 +1,19 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import '../UserForm/userForm.css';
 
-function EducationForm(props){
-    return(
+function EducationForm(props) {
+    return (
         <div className="container">
             <div className="row">
                 <div className="col-md-12">
-                <h1 className="form-title">Education</h1>
-                    <form>
+                    <h1 className="form-title">Education</h1>
+                    <hr />
+                    <form id="ed-form">
                         <div className="form-group">
                             <label for="prevEmployerInput" className="txtInput-heading">Degree</label>
-                            <input type="text" class="form-control" id="prevEmployerInput" placeholder="ex. Bachelor's of Science in Computer Science" name="degree" defaultValue={props.values.degree} onChange={props.handleChange}/>
+                            <input type="text" class="form-control" id="prevEmployerInput" placeholder="ex. Bachelor's of Science in Computer Science" name="degree" defaultValue={props.values.degree} onChange={props.handleChange} />
                             <label for="jobTitleInput" className="txtInput-heading">University/College</label>
-                            <input type="text" class="form-control" id="jobTitleInput" placeholder="ex. The University of Texas at Austin" name="school" defaultValue={props.values.school} onChange={props.handleChange}/>
+                            <input type="text" class="form-control" id="jobTitleInput" placeholder="ex. The University of Texas at Austin" name="school" defaultValue={props.values.school} onChange={props.handleChange} />
                             <div className="row">
                                 <div className="col-md-2">
                                     <label for="exampleFormControlSelect1" className="txtInput-heading">Start Year</label>
@@ -74,7 +75,6 @@ function EducationForm(props){
                             </div>
                         </div>
                     </form>
-                    <button type="submit" className="btn add-btn">+ Add</button>
                     <br />
                     <button type="button" className="btn back-btn" onClick={props.prevStep}>Back</button>
                     <button type="button" className="btn continue-btn" onClick={props.nextStep}>Continue</button>

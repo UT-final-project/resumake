@@ -60,15 +60,19 @@ passport.use(
 //Serialize user stores a cookie in the browser of the user id
 passport.serializeUser((user, cb) => {
     console.log("serializer");
-    cb(null, user.id);
+    console.log(user);
+    cb(null, user);
 });
 
 //Deserializes user id from cookie and matches with DB
-passport.deserializeUser((id, cb) => {
+passport.deserializeUser((obj, cb) => {
     console.log("deserializer");
-    User.findOne({ _id: id }, (err, user) => {
-        cb(err, user);
+    console.log(obj);
+    let userId = obj._id;
+    User.findOne({ _id: userId }, (err, user) => {
+        cb(err, obj);
     })
+    // cb(null, obj);
 })
 
 module.exports = passport;
