@@ -1,13 +1,11 @@
 # ResuMake
-
+<!-- will need to update screen shot for final  -->
 ![image](https://user-images.githubusercontent.com/70990105/112179234-7eae3c00-8bc8-11eb-8ec2-47e56ec0a03a.png)
 
 <hr>
 
 ## Table of Contents
 * [Description](#description)
-* [Installation](#installation)
-* [Constribution](#contribution)
 * [Credits](#credits)
 * [License](#license)
         
@@ -18,10 +16,12 @@ https://github.com/UT-final-project/group1-final-project
 
 An application to build, edit, and export your résumé to a pdf.
 
+<!-- will need to add link -->
 Available here: 
 
+<!-- add future developements if needed
 ## Future Developement
-* Currently needing to resolve issues with add employee and add role functions.
+*  -->
 
 
 ## Credits
