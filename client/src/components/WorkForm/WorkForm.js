@@ -2,6 +2,8 @@ import React from 'react';
 import JobList from '../Lists/JobList/JobList';
 import _ from "lodash";
 import '../UserForm/userForm.css'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+
 
 function WorkForm(props){
     const current = new Date();
@@ -79,10 +81,10 @@ function WorkForm(props){
                                 </div>
                             </div>
                             <br/>
-                            <button type="button" className="btn add-btn" onClick={props.addJob}>+ Add Another Job</button>
+                            <button type="button" className="btn add-btn" onClick={props.addJob}><FontAwesomeIcon icon="plus"/> Add Another Job</button>
                             <br/>
-                            <button type="button" className="btn back-btn" onClick={props.prevStep}>Back</button>
-                            <button type="button" className="btn continue-btn" onClick={props.nextStep}>Continue</button>
+                            <button type="button" className="btn back-btn" onClick={props.prevStep}><FontAwesomeIcon icon="arrow-left"/> Back</button>
+                            <button type="button" className="btn continue-btn" onClick={props.nextStep}><FontAwesomeIcon icon="arrow-right"/> Continue</button>
                             {props.employment.length ? (
                                 <section>
                                     <div>
