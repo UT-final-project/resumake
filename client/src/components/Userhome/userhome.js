@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import './userhome.css';
 import API from "../../utils/API";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 
 function Userhome({ user, getUser, userLoggedIn }) {
