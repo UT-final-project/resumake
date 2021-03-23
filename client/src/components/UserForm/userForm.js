@@ -146,8 +146,7 @@ function UserForm({ user, getUser, userLoggedIn }){
         console.log('certifications', certHistory);
         console.log('skills', skillList);
         API.createResume({
-            author: 1,
-            resumeName: 'Sample Resume',
+            author: user._id,
             firstName: capitalize(user.firstname),
             lastName: capitalize(user.lastname),
             abstract: abstract,
