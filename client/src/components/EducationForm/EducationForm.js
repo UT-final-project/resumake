@@ -65,13 +65,15 @@ function EducationForm(props){
                     <button type="button" className="btn continue-btn" onClick={props.nextStep}>Continue</button>
                     <br/>
                     {props.eduHistory.length ? (
-                        <div>
-                            <h1 className="form-title">Preview</h1>
-                            <hr/>
-                            <br/>
-                        </div>
+                        <section>
+                            <div>
+                                <h1 className="form-title">Preview</h1>
+                                <hr/>
+                                <br/>
+                            </div>
+                            <EduList values={props.eduHistory}/>
+                        </section>
                     ):( <div/>)}
-                    <EduList values={props.eduHistory}/>
                 </div>
             </div>
         </div>

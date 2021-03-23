@@ -22,20 +22,17 @@ function UserForm(){
         endDateYear: ''
     });
     const [eduHistory, setEduHistory] = useState([]);
-    const [education, setEducation] = useState([
-        {
-            degree: '',
-            school: '',
-            startYear: '',
-            endYear: '',
-        }
-    ]);
-    const [certifications, setCertifications] = useState([
-        {
-            certificate: '',
-            awardedBy: ''
-        }
-    ]);
+    const [education, setEducation] = useState({
+        degree: '',
+        school: '',
+        startYear: '',
+        endYear: '',
+    });
+    const [certHistory, setCertHistory] = useState([]);
+    const [certifications, setCertifications] = useState({
+        certificate: '',
+        awardedBy: ''
+    });
     const [skills, setSkills] = useState('');
 
     useEffect(() => {
@@ -55,8 +52,13 @@ function UserForm(){
             startYear: '',
             endYear: '',
         });
-    },[employment, eduHistory])
+        setCertifications({
+            certificate: '',
+            awardedBy: ''
+        });
+    },[employment, eduHistory, certHistory])
 
+    // Adds job to employment array and clears job state for new inputs
     const addJob = () => {
         setEmployment((employment) => [...employment, job]);
         setJob({
@@ -71,13 +73,22 @@ function UserForm(){
         });
     };
 
+    // Adds education to eduHistory array and clears education state for new inputs
     const addEdu = () => {
-        setEduHistory((employment) => [...employment, education]);
+        setEduHistory((school) => [...school, education]);
         setEducation({
             degree: '',
             school: '',
             startYear: '',
             endYear: '',
+        });
+    };
+
+    const addCert = () => {
+        setCertHistory((cert) => [...cert, certifications]);
+        setCertifications({
+            certificate: '',
+            awardedBy: ''
         });
     };
 
@@ -117,7 +128,7 @@ function UserForm(){
             abstract: abstract,
             employment: employment,
             education: eduHistory,
-            certifications: certifications,
+            certifications: eduHistory,
             skills: skills
         });
     };
@@ -160,6 +171,8 @@ function UserForm(){
                 prevStep={prevStep}
                 handleChange={handleCertSubmit}
                 values={certifications}
+                certHistory={certHistory}
+                addCert={addCert}
                 />
             )
         case 5:

@@ -85,13 +85,15 @@ function WorkForm(props){
                             <button type="button" className="btn continue-btn" onClick={props.nextStep}>Continue</button>
                             <br/>
                             {props.employment.length ? (
-                                <div>
-                                    <h1 className="form-title">Preview</h1>
-                                    <hr/>
-                                    <br/>
-                                </div>
+                                <section>
+                                    <div>
+                                        <h1 className="form-title">Preview</h1>
+                                        <hr/>
+                                        <br/>
+                                    </div>
+                                    <JobList employment={props.employment}/>
+                                </section>
                             ):( <div/>)}
-                            <JobList employment={props.employment}/>
                         </div>
                     </form>
                 </div>
