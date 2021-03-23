@@ -104,12 +104,10 @@ function UserForm(){
     // Functions to keep track of which step, or form, the user is at
     const nextStep = () => {
         setStep(step + 1);
-    }
+    };
     const prevStep = () => {
         setStep(step - 1);
-    }
-
-    console.log(workHistory)
+    };
 
     // Functions to handle change states depending on user input
     function handleAbstractSubmit(event){
