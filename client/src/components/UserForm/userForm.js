@@ -137,9 +137,12 @@ function UserForm(){
             abstract: abstract,
             employment: employment,
             education: eduHistory,
-            certifications: eduHistory,
+            certifications: certHistory,
             skills: skillList
-        });
+        }).then(res => {
+            console.log(res);
+            console.log("/////////////// Resume Successfully Created! ///////////////");
+        }).catch(err => console.error(err));
     };
 
     switch(step) {

@@ -15,7 +15,7 @@ function Confirm(props){
             <hr/>
             {!props.summary.length && !props.skillList.length && !props.employment.length 
             && !props.eduHistory.length && !props.certHistory.length ? (
-                <h3>No Resume content to display yet!</h3>
+                <h3 id="noContent">No Resume content to display yet!</h3>
             ) : (<div/>)}
             {props.summary.length ? (
                 <div className="card">

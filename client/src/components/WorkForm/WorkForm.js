@@ -83,7 +83,6 @@ function WorkForm(props){
                             <br/>
                             <button type="button" className="btn back-btn" onClick={props.prevStep}>Back</button>
                             <button type="button" className="btn continue-btn" onClick={props.nextStep}>Continue</button>
-                            <br/>
                             {props.employment.length ? (
                                 <section>
                                     <div>
