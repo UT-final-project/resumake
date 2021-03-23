@@ -3,10 +3,10 @@ import "./about.css";
 
 function AboutUs () {
     return (
-        <div className="container">
+        <div className="container fullabout">
 
-            <div className="jumbotron text-center">
-                <h1 class="display-4">Why Choose Resumake?</h1>
+            <div className="jumbotron text-center aboutus">
+                <h1 class="display-4">Why Choose Us?</h1>
                 <br/>
                 <br/>
                 <p class="lead">
@@ -29,7 +29,7 @@ function AboutUs () {
                 </div>
             </div>
 
-            <div className="jumbotron text-center">
+            <div className="jumbotron text-center aboutus">
                 <h1 class="display-4">Our Team</h1>
                 <br/>
                 <p class="lead">
