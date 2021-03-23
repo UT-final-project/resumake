@@ -55,7 +55,11 @@ function App() {
             />
           </Route>
           <Route exact path="/form">
-            <UserForm />
+            <UserForm 
+            userLoggedIn={userLoggedIn}
+            getUser={getUser}
+            user={user}
+            />
           </Route>
           <Route exact path="/userhome">
             <Userhome

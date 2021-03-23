@@ -8,10 +8,14 @@ import SkillsList from '../Lists/SkillsList/SkillsList';
 
 
 function Confirm(props){
+    function capitalize(str){
+        return str.charAt(0).toUpperCase() + str.slice(1);
+    }
+
     return(
         <div className="container">
             <br/>
-            <h1>First Name Last Name</h1>
+            <h1>{capitalize(props.user.firstname)} {capitalize(props.user.lastname)}</h1>
             <hr/>
             {!props.summary.length && !props.skillList.length && !props.employment.length 
             && !props.eduHistory.length && !props.certHistory.length ? (
