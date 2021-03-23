@@ -21,6 +21,7 @@ function UserForm(){
         endDateMonth: '',
         endDateYear: ''
     });
+    const [eduHistory, setEduHistory] = useState([]);
     const [education, setEducation] = useState([
         {
             degree: '',
@@ -37,14 +38,6 @@ function UserForm(){
     ]);
     const [skills, setSkills] = useState('');
 
-    // const [resume, setResume] = useState({
-    //     abstract: abstract,
-    //     employment: employment,
-    //     education: education,
-    //     certifications: certifications,
-    //     skills: skills
-    // });
-
     useEffect(() => {
         setJob({
             id: '',
@@ -56,7 +49,13 @@ function UserForm(){
             endDateMonth: '',
             endDateYear: ''
         });
-    },[employment])
+        setEducation({
+            degree: '',
+            school: '',
+            startYear: '',
+            endYear: '',
+        });
+    },[employment, eduHistory])
 
     const addJob = () => {
         setEmployment((employment) => [...employment, job]);
@@ -72,17 +71,13 @@ function UserForm(){
         });
     };
 
-    // Function for the Submit button to post resume data
-
-    function handleResumeSubmit(event){
-        event.preventDefault();
-        API.createResume({
-            resumeName: 'Sample Resume',
-            abstract: abstract,
-            employment: employment,
-            education: education,
-            certifications: certifications,
-            skills: skills
+    const addEdu = () => {
+        setEduHistory((employment) => [...employment, education]);
+        setEducation({
+            degree: '',
+            school: '',
+            startYear: '',
+            endYear: '',
         });
     };
 
@@ -104,14 +99,27 @@ function UserForm(){
     };
     function handleEducationSubmit(event){
         const { name, value } = event.target;
-        setEducation({...education, [name]: value});
+        setEducation({...education, [name]: value, id: Math.random().toString(36).substr(2, 9)});
     };
     function handleCertSubmit(event){
         const { name, value } = event.target;
-        setCertifications({...certifications, [name]: value});
+        setCertifications({...certifications, [name]: value, id: Math.random().toString(36).substr(2, 9)});
     };
     function handleSkillsSubmit(event){
         setSkills(event.target.value);
+    };
+
+    // Function for the Submit button to post resume data
+    function handleResumeSubmit(event){
+        event.preventDefault();
+        API.createResume({
+            resumeName: 'Sample Resume',
+            abstract: abstract,
+            employment: employment,
+            education: eduHistory,
+            certifications: certifications,
+            skills: skills
+        });
     };
 
     switch(step) {
@@ -141,6 +149,8 @@ function UserForm(){
                 prevStep={prevStep}
                 handleChange={handleEducationSubmit}
                 values={education}
+                eduHistory={eduHistory}
+                addEdu={addEdu}
                 />
             )
         case 4:

@@ -4,7 +4,6 @@ import { faBuilding } from '@fortawesome/free-solid-svg-icons';
 import './JobList.css'
 
 function JobList(props){
-  console.log('Props:', props);
   return (
     <section>
       <h2 className="category"><span className="fa-icon"><FontAwesomeIcon icon={faBuilding}/></span> Employment</h2>
@@ -14,10 +13,10 @@ function JobList(props){
             <div className="card">
               <div className="card-header">
                 <div className="row">
-                  <div className="col">
+                  <div className="col-6">
                     <h3 className="card-title d-flex align-items-center">{jobs.prevEmployer}</h3>
                   </div>
-                  <div className="col">
+                  <div className="col-6">
                     <p className="dates d-flex justify-content-end">{jobs.startDateMonth} {jobs.startDateYear} - {jobs.endDateMonth} {jobs.endDateYear}</p>
                   </div>
                 </div>       

@@ -1,11 +1,11 @@
 import React from 'react';
-import JobList from '../JobList/JobList';
+import JobList from '../Lists/JobList/JobList';
 import _ from "lodash";
 import '../UserForm/userForm.css'
 
 function WorkForm(props){
     const current = new Date();
-    // lodash to generate 50 years worth of options
+    // lodash to generate 50 years worth of options in descending order
     const years = _.orderBy(_.range(current.getFullYear() - 50, current.getFullYear()+1), null, 'desc');
     const months = [
         "January",
@@ -44,17 +44,17 @@ function WorkForm(props){
                                             <option>- Month -</option>
                                             {months.map(month => { 
                                                 return (
-                                                    <option>{month}</option>
+                                                    <option key={Math.random().toString(36).substr(2, 9)}>{month}</option>
                                                 );
-                                            })};
+                                            })}
                                         </select>
                                         <select className="form-control month-dropdown" id="startDateSelect" name="startDateYear" value={props.values.startDateYear} onChange={props.handleChange}>
                                             <option>- Year -</option>
                                             {years.map(year => { 
                                                 return (
-                                                    <option>{year}</option>
+                                                    <option key={Math.random().toString(36).substr(2, 9)}>{year}</option>
                                                 );
-                                            })};
+                                            })}
                                         </select>
                                     </div>
                                     <div className="col-sm-3">
@@ -63,18 +63,17 @@ function WorkForm(props){
                                             <option>- Month -</option>
                                             {months.map(month => { 
                                                 return (
-                                                    <option>{month}</option>
+                                                    <option key={Math.random().toString(36).substr(2, 9)}>{month}</option>
                                                 );
-                                            })};
+                                            })}
                                         </select>
                                         <select className="form-control month-dropdown" id="startDateSelect" name="endDateYear" value={props.values.endDateYear} onChange={props.handleChange}>
                                             <option>- Year -</option>
-                                            <option>Present</option>
                                             {years.map(year => { 
                                                 return (
-                                                    <option>{year}</option>
+                                                    <option key={Math.random().toString(36).substr(2, 9)}>{year}</option>
                                                 );
-                                            })};
+                                            })}
                                         </select>
                                     </div>
                                 </div>
@@ -91,7 +90,7 @@ function WorkForm(props){
                                     <hr/>
                                     <br/>
                                 </div>
-                            ):( <div/>)};
+                            ):( <div/>)}
                             <JobList employment={props.employment}/>
                         </div>
                     </form>
