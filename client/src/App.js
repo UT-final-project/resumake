@@ -7,6 +7,7 @@ import Userhome from './components/Userhome/userhome.js';
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { useState } from 'react';
 import API from "./utils/API";
+import AboutUs from './components/About/about';
 import ReactDOM from 'react-dom'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { fab } from '@fortawesome/free-brands-svg-icons'
@@ -73,6 +74,9 @@ function App() {
               getUser={getUser}
               user={user}
             />
+          </Route>
+          <Route exact path="/aboutus">
+            <AboutUs/>
           </Route>
         </Switch>
       </div>
