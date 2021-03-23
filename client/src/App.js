@@ -7,6 +7,12 @@ import Userhome from './components/Userhome/userhome.js';
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { useState } from 'react';
 import API from "./utils/API";
+import ReactDOM from 'react-dom'
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { fab } from '@fortawesome/free-brands-svg-icons'
+import { faPenFancy, faSave, faEye} from '@fortawesome/free-solid-svg-icons'
+
+library.add(fab, faPenFancy, faSave, faEye)
 
 function App() {
   const [user, setUser] = useState();
