@@ -20,7 +20,15 @@ const PORT = process.env.PORT || 3001;
 app.use(logger("dev"));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-app.use(express.static("public"));
+// app.use(express.static("public"));
+
+// Serve up static assets (usually on heroku)
+if (process.env.NODE_ENV === "production") {
+    app.use(express.static("client/build"));
+}
+else if (process.env.NODE_ENV === "development") {
+    app.use(express.static("./client/index.html"));
+}
 
 // Express-session, cors, passport and cookie parser for user authentication
 app.use(cors({
