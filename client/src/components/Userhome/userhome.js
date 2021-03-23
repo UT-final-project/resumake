@@ -1,5 +1,7 @@
 import React, { useEffect } from 'react';
 import './userhome.css';
+import API from "../../utils/API";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 
 function Userhome({ user, getUser, userLoggedIn }) {
@@ -32,8 +34,8 @@ function Userhome({ user, getUser, userLoggedIn }) {
                     <br />
                     <br />
                     <div className="row">
-                        <div className="col-md-6"><button type="button" className="btn userhomebtn editresume-btn">Edit Resume</button></div>
-                        <div className="col-md-6"><button type="button" className="btn userhomebtn download-btn">Download Resume</button></div>
+                        <div className="col-md-6"><button type="button" className="btn userhomebtn editresume-btn"><FontAwesomeIcon icon="pen-fancy" /> Edit Resume</button></div>
+                        <div className="col-md-6"><button type="button" className="btn userhomebtn download-btn"><FontAwesomeIcon icon="save" /> Download Resume</button></div>
                     </div>
                 </div>
                 <div className="col-md-4">
@@ -51,7 +53,7 @@ function Userhome({ user, getUser, userLoggedIn }) {
                     <br />
                     <br />
                     <div className="row">
-                        <div className="col-md-12"><button type="button" className="btn userhomebtn viewwebpage-btn">View Webpage</button></div>
+                        <div className="col-md-12"><button type="button" className="btn userhomebtn viewwebpage-btn"><FontAwesomeIcon icon="eye" /> View Webpage</button></div>
                     </div>
                 </div>
             </div>
