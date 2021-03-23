@@ -29,7 +29,8 @@ function JobList(props){
             </div>
             <br/>
           </div>
-        )})): (
+        );})
+      ): (
         <div/>
       )}
     </section>
