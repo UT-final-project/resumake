@@ -60,7 +60,6 @@ function UserForm(){
 
     const addJob = () => {
         setEmployment((employment) => [...employment, job]);
-        console.log('employment', employment);
         setJob({
             id: '',
             prevEmployer: '',

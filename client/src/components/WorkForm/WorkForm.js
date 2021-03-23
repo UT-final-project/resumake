@@ -113,8 +113,14 @@ function WorkForm(props){
                             <br/>
                             <button type="button" className="btn back-btn" onClick={props.prevStep}>Back</button>
                             <button type="button" className="btn continue-btn" onClick={props.nextStep}>Continue</button>
-                            <hr/>
-                            <h1 className="form-title">Preview</h1>
+                            <br/>
+                            {props.employment.length ? (
+                                <div>
+                                    <h1 className="form-title">Preview</h1>
+                                    <hr/>
+                                    <br/>
+                                </div>
+                            ):( <div/>)}
                             <JobList employment={props.employment}/>
                             {/* {props.employment.length ? (
                                 props.employment.map(jobs => (
