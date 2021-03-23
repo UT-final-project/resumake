@@ -9,7 +9,7 @@ function SkillsForm(props){
                 <h1 className="form-title">Skills</h1>
                     <form>
                         <div className="form-group">
-                            <label for="skillsInput" className="txtInput-heading">Skills</label>
+                            <label htmlFor="skillsInput" className="txtInput-heading">Skills</label>
                             <input type="text" className="form-control" id="skillsInput" placeholder="ex. Javascript, Data Structures and Algorithims, React, etc." name="skill" onChange={props.handleChange}/>
                         </div>
                     </form>

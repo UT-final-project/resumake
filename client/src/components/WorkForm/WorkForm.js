@@ -1,5 +1,5 @@
 import React from 'react';
-import JobList from './JobList/JobList';
+import JobList from '../JobList/JobList';
 import '../UserForm/userForm.css'
 
 function WorkForm(props){
@@ -12,15 +12,15 @@ function WorkForm(props){
                     <form id="work-form">
                         <div className="form-group">
                             <div>
-                                <label for="prevEmployerInput" className="txtInput-heading">Previous Employer</label>
+                                <label htmlFor="prevEmployerInput" className="txtInput-heading">Previous Employer</label>
                                 <input type="text" className="form-control" id="prevEmployerInput" placeholder="ex. Google LLC" name="prevEmployer" value={props.values.prevEmployer} onChange={props.handleChange}/>
-                                <label for="jobTitleInput" className="txtInput-heading">Job Title</label>
+                                <label htmlFor="jobTitleInput" className="txtInput-heading">Job Title</label>
                                 <input type="text" className="form-control" id="jobTitleInput" placeholder="ex. Software Engineer" name="jobTitle" value={props.values.jobTitle} onChange={props.handleChange}/>
-                                <label for="jobDescriptionInput" className="txtInput-heading">Job Description</label>
+                                <label htmlFor="jobDescriptionInput" className="txtInput-heading">Job Description</label>
                                 <textarea className="form-control" id="jobDescriptionInput" rows="3" onChange={props.handleChange} name="jobDescription" value={props.values.jobDescription}/>
                                 <div className="row">
                                     <div className="col-sm-3">
-                                        <label for="startDateSelect" className="txtInput-heading">Start Date (mm/yyyy)</label>
+                                        <label htmlFor="startDateSelect" className="txtInput-heading">Start Date (mm/yyyy)</label>
                                         <select className="form-control month-dropdown" id="startDateSelect" name="startDateMonth" value={props.values.startDateMonth} onChange={props.handleChange}>
                                             <option>- Month -</option>
                                             <option>January</option>
@@ -63,7 +63,7 @@ function WorkForm(props){
                                         </select>
                                     </div>
                                     <div className="col-sm-3">
-                                        <label for="startDateSelect" className="txtInput-heading">End Date (mm/yyyy)</label>
+                                        <label htmlFor="startDateSelect" className="txtInput-heading">End Date (mm/yyyy)</label>
                                         <select className="form-control month-dropdown" id="startDateSelect" name="endDateMonth" value={props.values.endDateMonth} onChange={props.handleChange}>
                                             <option>- Month -</option>
                                             <option>January</option>
@@ -114,6 +114,7 @@ function WorkForm(props){
                             <button type="button" className="btn back-btn" onClick={props.prevStep}>Back</button>
                             <button type="button" className="btn continue-btn" onClick={props.nextStep}>Continue</button>
                             <hr/>
+                            <h1 className="form-title">Preview</h1>
                             <JobList employment={props.employment}/>
                             {/* {props.employment.length ? (
                                 props.employment.map(jobs => (

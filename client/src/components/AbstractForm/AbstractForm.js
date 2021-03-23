@@ -16,7 +16,7 @@ function AbstractForm(props){
                 <div className="col-md-12">
                     <form>
                         <div className="form-group">
-                            <label for="abstractTextArea" className="txtInput-heading">Abstract/Summary</label>
+                            <label htmlFor="abstractTextArea" className="txtInput-heading">Abstract/Summary</label>
                             <textarea className="form-control" id="abstractTextArea" rows="8" defaultValue={props.value} onChange={props.handleChange}/>
                         </div>
                     </form>

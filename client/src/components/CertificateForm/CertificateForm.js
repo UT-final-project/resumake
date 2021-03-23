@@ -9,9 +9,9 @@ function CertificateForm(props){
                 <h1 className="form-title">Certifications</h1>
                     <form>
                         <div className="form-group">
-                            <label for="certInput" className="txtInput-heading">Certifications</label>
+                            <label htmlFor="certInput" className="txtInput-heading">Certifications</label>
                             <input type="text" className="form-control" id="certInput" placeholder="ex. Certificate of Completion: Computer Science Career Path" name="certificate" defaultValue={props.values.certificate} onChange={props.handleChange}/>
-                            <label for="awardedByInput" className="txtInput-heading">Awarded By</label>
+                            <label htmlFor="awardedByInput" className="txtInput-heading">Awarded By</label>
                             <input type="text" className="form-control" id="awardedByInput" placeholder="ex. Codecademy" name="awardedBy" defaultValue={props.values.awardedBy} onChange={props.handleChange}/>
                         </div>
                     </form>

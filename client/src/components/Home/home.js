@@ -63,7 +63,7 @@ function Login() {
                                     className="form-control"
                                     placeholder="Email"
                                     onChange={event => setEmail(event.target.value)}
-                                    autocomplete="email"
+                                    autoComplete="email"
                                 />
                             </div>
                             <div className="input-group flex-nowrap signup-input">
@@ -71,7 +71,7 @@ function Login() {
                                     className="form-control"
                                     placeholder="First Name"
                                     onChange={event => setFirstName(event.target.value)}
-                                    autocomplete="first name"
+                                    autoComplete="first name"
                                 />
                             </div>
                             <div className="input-group flex-nowrap signup-input">
@@ -79,7 +79,7 @@ function Login() {
                                     className="form-control"
                                     placeholder="Last Name"
                                     onChange={event => setLastName(event.target.value)}
-                                    autocomplete="last name"
+                                    autoComplete="last name"
                                 />
                             </div>
                             <div className="input-group flex-nowrap signup-input">
@@ -87,7 +87,7 @@ function Login() {
                                     className="form-control"
                                     placeholder="Password"
                                     onChange={event => setPassword(event.target.value)}
-                                    autocomplete="password"
+                                    autoComplete="password"
                                 />
                             </div>
                             <div className="input-group flex-nowrap signup-input">
@@ -95,7 +95,7 @@ function Login() {
                                     className="form-control"
                                     placeholder="Verify Password"
                                     onChange={event => setVerifyPassword(event.target.value)}
-                                    autocomplete="password confirm"
+                                    autoComplete="password"
                                 />
                             </div>
                             <p id="error"></p>
