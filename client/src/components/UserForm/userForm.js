@@ -132,7 +132,13 @@ function UserForm(){
     // Function for the Submit button to post resume data
     function handleResumeSubmit(event){
         event.preventDefault();
+        console.log('abstract', abstract);
+        console.log('employment', employment);
+        console.log('education', eduHistory);
+        console.log('certifications', certHistory);
+        console.log('skills', skillList);
         API.createResume({
+            author: 1,
             resumeName: 'Sample Resume',
             abstract: abstract,
             employment: employment,
