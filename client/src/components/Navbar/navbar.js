@@ -6,8 +6,8 @@ function Navbar(){
     return(
         <nav className="navbar navbar-expand-lg navbar-light bg-light">
             <div className="container-fluid">
-                <Link to={"/"}>
-                    <a className="navbar-brand navbar-header" href="#">ResuMake</a>
+                <Link className="navbar-brand navbar-header" to={"/"}>
+                    ResuMake
                 </Link> 
                 <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span className="navbar-toggler-icon"></span>
@@ -15,21 +15,25 @@ function Navbar(){
                 <div className="collapse navbar-collapse" id="navbarNav">
                     <ul className="navbar-nav">
                         <li className="nav-item">
-                            <Link to={"/"}>
-                                <a className="nav-link active navbar-link" aria-current="page" href="/">Home</a>
+                            <Link to={"/"} className="nav-link active navbar-link" aria-current="page">
+                                Home
                             </Link>
                         </li>
                         <li className="nav-item">
-                            <a className="nav-link navbar-link" href="#">Features</a>
+                            <Link to={"/"} className="nav-link active navbar-link" aria-current="page">
+                                Features
+                            </Link>
                         </li>
                         <li className="nav-item">
-                            <a className="nav-link navbar-link" href="#">Pricing</a>
+                            <Link to={"/"} className="nav-link active navbar-link" aria-current="page">
+                                Pricing
+                            </Link>
                         </li>
                     </ul>
                     <ul className="navbar-nav ml-auto">
                         <li>
-                            <Link to={"/login"}>
-                                <a type="button" href="/" role="button" class="btn btn-meadow">Log In</a>
+                            <Link to={"/login"} type="button" href="/" role="button" className="btn btn-meadow">
+                                Log In
                             </Link>
                         </li>
                     </ul>

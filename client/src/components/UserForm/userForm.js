@@ -10,76 +10,146 @@ import Confirm from '../Confirm/Confirm';
 function UserForm(){
     const [step, setStep] = useState(1);
     const [abstract, setAbstract] = useState('');
-    const [workHistory, setWorkHistory] = useState(
-        {
+    const [employment, setEmployment] = useState([]);
+    const [job, setJob] = useState({
+        id: '',
+        prevEmployer: '',
+        jobTitle: '',
+        jobDescription: '',
+        startDateMonth: '',
+        startDateYear: '',
+        endDateMonth: '',
+        endDateYear: ''
+    });
+    const [eduHistory, setEduHistory] = useState([]);
+    const [education, setEducation] = useState({
+        degree: '',
+        school: '',
+        startYear: '',
+        endYear: '',
+    });
+    const [certHistory, setCertHistory] = useState([]);
+    const [certifications, setCertifications] = useState({
+        certificate: '',
+        awardedBy: ''
+    });
+    const [skillList, setSkillList] = useState([]);
+    const [skills, setSkills] = useState('');
+
+    useEffect(() => {
+        setJob({
+            id: '',
             prevEmployer: '',
             jobTitle: '',
             jobDescription: '',
             startDateMonth: '',
-            startDateMonth: '',
+            startDateYear: '',
             endDateMonth: '',
             endDateYear: ''
-        }
-    )
-    const [education, setEducation] = useState(
-        {
+        });
+        setEducation({
             degree: '',
             school: '',
             startYear: '',
             endYear: '',
-        }
-    )
-    const [certifications, setCertifications] = useState([
-        {
+        });
+        setCertifications({
             certificate: '',
             awardedBy: ''
-        }
-    ])
-    const [skills, setSkills] = useState('');
+        });
+        setSkills('');
+    },[employment, eduHistory, certHistory, skillList])
 
-    // Function for the Submit button to post resume data
+    // Adds job to employment array and clears job state for new inputs
+    const addJob = () => {
+        setEmployment((employment) => [...employment, job]);
+        setJob({
+            id: '',
+            prevEmployer: '',
+            jobTitle: '',
+            jobDescription: '',
+            startDateMonth: '',
+            startDateYear: '',
+            endDateMonth: '',
+            endDateYear: ''
+        });
+    };
 
-    function handleResumeSubmit(event){
-        event.preventDefault();
-        API.createResume({
-            resumeName: 'Sample Resume',
-            abstract: abstract,
-            employment: workHistory,
-            education: education,
-            certifications: certifications,
-            skills: skills
-        })
-    }
+    // Adds education to eduHistory array and clears education state for new inputs
+    const addEdu = () => {
+        setEduHistory((school) => [...school, education]);
+        setEducation({
+            degree: '',
+            school: '',
+            startYear: '',
+            endYear: '',
+        });
+    };
+
+    // Adds certification to certHistory array and clears certification state for new inputs
+    const addCert = () => {
+        setCertHistory((cert) => [...cert, certifications]);
+        setCertifications({
+            certificate: '',
+            awardedBy: ''
+        });
+    };
+
+    // Adds skills to skillList array and clears skills state for new inputs
+    const addSkill = () => {
+        setSkillList((skill) => [...skill, skills]);
+        setSkills('');
+    };
 
     // Functions to keep track of which step, or form, the user is at
     const nextStep = () => {
-        setStep(step + 1)
-    }
+        setStep(step + 1);
+    };
     const prevStep = () => {
-        setStep(step - 1)
-    }
-
-    console.log(workHistory)
+        setStep(step - 1);
+    };
 
     // Functions to handle change states depending on user input
     function handleAbstractSubmit(event){
-        setAbstract(event.target.value)
-    }
-    function handleWorkSubmit(event){
+        setAbstract(event.target.value);
+    };
+    function handleJobSubmit(event){
         const { name, value } = event.target;
-        setWorkHistory({...workHistory, [name]: value})
-    }
+        setJob({...job, [name]: value, id: Math.random().toString(36).substr(2, 9)});
+    };
     function handleEducationSubmit(event){
         const { name, value } = event.target;
-        setEducation({...education, [name]: value})
-    }
+        setEducation({...education, [name]: value, id: Math.random().toString(36).substr(2, 9)});
+    };
     function handleCertSubmit(event){
         const { name, value } = event.target;
-        setCertifications({...certifications, [name]: value})
-    }
+        setCertifications({...certifications, [name]: value, id: Math.random().toString(36).substr(2, 9)});
+    };
     function handleSkillsSubmit(event){
-        setSkills(event.target.value)
-    }
+        setSkills(event.target.value);
+    };
+
+    // Function for the Submit button to post resume data
+    function handleResumeSubmit(event){
+        event.preventDefault();
+        console.log('abstract', abstract);
+        console.log('employment', employment);
+        console.log('education', eduHistory);
+        console.log('certifications', certHistory);
+        console.log('skills', skillList);
+        API.createResume({
+            author: 1,
+            resumeName: 'Sample Resume',
+            abstract: abstract,
+            employment: employment,
+            education: eduHistory,
+            certifications: certHistory,
+            skills: skillList
+        }).then(res => {
+            console.log(res);
+            console.log("/////////////// Resume Successfully Created! ///////////////");
+        }).catch(err => console.error(err));
+    };
 
     switch(step) {
         case 1:
@@ -95,8 +165,10 @@ function UserForm(){
                 <WorkForm 
                 nextStep={nextStep}
                 prevStep={prevStep}
-                handleChange={handleWorkSubmit}
-                values={workHistory}
+                handleChange={handleJobSubmit}
+                values={job}
+                employment={employment}
+                addJob={addJob}
                 />
             )
         case 3:
@@ -106,6 +178,8 @@ function UserForm(){
                 prevStep={prevStep}
                 handleChange={handleEducationSubmit}
                 values={education}
+                eduHistory={eduHistory}
+                addEdu={addEdu}
                 />
             )
         case 4:
@@ -115,6 +189,8 @@ function UserForm(){
                 prevStep={prevStep}
                 handleChange={handleCertSubmit}
                 values={certifications}
+                certHistory={certHistory}
+                addCert={addCert}
                 />
             )
         case 5:
@@ -123,17 +199,19 @@ function UserForm(){
                 nextStep={nextStep}
                 prevStep={prevStep}
                 handleChange={handleSkillsSubmit}
-                value={skills}
+                values={skills}
+                skillList={skillList}
+                addSkill={addSkill}
                 />
             )
         case 6:
             return(
                 <Confirm
-                abstractValue={abstract}
-                workValue={workHistory}
-                edValue={education}
-                certValue={certifications}
-                skillsValue={skills}
+                summary={abstract}
+                skillList={skillList}
+                employment={employment}
+                eduHistory={eduHistory}
+                certHistory={certHistory}
                 prevStep={prevStep}
                 submitResume={handleResumeSubmit}
                 />

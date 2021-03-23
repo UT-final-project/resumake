@@ -2,10 +2,10 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const ResumeSchema = new Schema({
-    author: {
-        type: Schema.Types.ObjectId,
-        ref: "User"
-    },
+    // author: {
+    //     type: Schema.Types.ObjectId,
+    //     ref: "User"
+    // },
     resumeName: {
         type: String,
         trim: true
@@ -15,57 +15,21 @@ const ResumeSchema = new Schema({
         required: false,
         trim: true
     },
-    employment: [{
-        jobTitle: {
-            type: String,
-            trim: true
-        },
-        jobDescription: {
-            type: String,
-            trim: true
-        },
-        prevEmployer: {
-            type: String,
-            trim: true
-        },
-        startDateMonth: {
-            type: String,
-        },
-        startDateYear: {
-            type: String
-        },
-        endDateMonth: {
-            type: String
-        },
-        endDateYear: {
-            type: String
-        }
-    }],
-    education: [{
-        degree: {
-            type: String
-        },
-        school: {
-            type: String
-        },
-        startYear: {
-            type: String
-        },
-        endYear: {
-            type: String
-        }
-    }],
-    certifications: [{
-        certificate: {
-            type: String
-        },
-        awardedBy: {
-            type: String
-        }
-    }],
+    employment: {
+        type: Array,
+        required: false
+    },
+    education: {
+        type: Array,
+        required: false
+    },
+    certifications: {
+        type: Array,
+        required: false
+    },
     skills: {
-        type: String,
-        trim: true  
+        type: Array,
+        required: false  
     },
     created: {
         type: Date,
@@ -74,7 +38,6 @@ const ResumeSchema = new Schema({
     },
     updated: {
         type: Date,
-        default: Date.now,
         required: false
     }
 });
