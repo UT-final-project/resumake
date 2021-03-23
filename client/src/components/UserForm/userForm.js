@@ -33,6 +33,7 @@ function UserForm(){
         certificate: '',
         awardedBy: ''
     });
+    const [skillList, setSkillList] = useState([]);
     const [skills, setSkills] = useState('');
 
     useEffect(() => {
@@ -56,7 +57,8 @@ function UserForm(){
             certificate: '',
             awardedBy: ''
         });
-    },[employment, eduHistory, certHistory])
+        setSkills('');
+    },[employment, eduHistory, certHistory, skillList])
 
     // Adds job to employment array and clears job state for new inputs
     const addJob = () => {
@@ -84,12 +86,19 @@ function UserForm(){
         });
     };
 
+    // Adds certification to certHistory array and clears certification state for new inputs
     const addCert = () => {
         setCertHistory((cert) => [...cert, certifications]);
         setCertifications({
             certificate: '',
             awardedBy: ''
         });
+    };
+
+    // Adds skills to skillList array and clears skills state for new inputs
+    const addSkill = () => {
+        setSkillList((skill) => [...skill, skills]);
+        setSkills('');
     };
 
     // Functions to keep track of which step, or form, the user is at
@@ -129,7 +138,7 @@ function UserForm(){
             employment: employment,
             education: eduHistory,
             certifications: eduHistory,
-            skills: skills
+            skills: skillList
         });
     };
 
@@ -181,7 +190,9 @@ function UserForm(){
                 nextStep={nextStep}
                 prevStep={prevStep}
                 handleChange={handleSkillsSubmit}
-                value={skills}
+                values={skills}
+                skillList={skillList}
+                addSkill={addSkill}
                 />
             )
         case 6:

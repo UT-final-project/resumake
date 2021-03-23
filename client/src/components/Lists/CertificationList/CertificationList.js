@@ -3,8 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAward, faTrophy } from '@fortawesome/free-solid-svg-icons';
 import './CertificationList.css'
 
-function EducationList(props){
-  console.log(props);
+function CertList(props){
   return (
     <section>
       <h2 className="category"><span className="fa-icon"><FontAwesomeIcon icon={faTrophy}/></span> Certifications</h2>
@@ -36,4 +35,4 @@ function EducationList(props){
   );
 };
 
-export default EducationList;
+export default CertList;
