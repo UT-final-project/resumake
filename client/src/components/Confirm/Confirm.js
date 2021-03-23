@@ -5,6 +5,8 @@ import EduList from '../Lists/EducationList/EducationList';
 import CertList from '../Lists/CertificationList/CertificationList';
 import SkillsList from '../Lists/SkillsList/SkillsList';
 import { Redirect } from "react-router-dom";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTimes } from '@fortawesome/free-solid-svg-icons';
 
 
 
@@ -27,18 +29,18 @@ function Confirm(props) {
 
             {/* Modal starts here */}
 
-            <div class="modal fade" id="submitModal" tabindex="-1" aria-labelledby="submitModal" aria-hidden="true" onClick={handleRedirect}>
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Resume Submitted</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            <div className="modal fade" id="submitModal" tabIndex="-1" aria-labelledby="submitModal" aria-hidden="true" onClick={handleRedirect}>
+                <div className="modal-dialog">
+                    <div className="modal-content">
+                        <div className="modal-header">
+                            <h5 className="modal-title" id="exampleModalLabel">Resume Submitted</h5>
+                            <button type="button" className="btn" data-bs-dismiss="modal" aria-label="Close"><span className="fa-icon"><FontAwesomeIcon icon={faTimes} /></span></button>
                         </div>
-                        <div class="modal-body">
+                        <div className="modal-body">
                             <p>You can veiw and edit your resume from your home page.</p>
                         </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Ok</button>
+                        <div className="modal-footer">
+                            <button type="button" className="btn userhomebtn" data-bs-dismiss="modal">Ok</button>
                             {/* <button type="button" class="btn btn-primary">Ok</button> */}
                         </div>
                     </div>
