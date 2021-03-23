@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import API from '../../utils/API';
 import './login.css';
 import { Link, Redirect } from "react-router-dom";
@@ -45,21 +45,21 @@ function Login({ handleUserState }) {
                 <div className="card-header login-header">
                     Log In
             </div>
-                <div className="card-body">
+                <form className="card-body">
                     <div className="input-group flex-nowrap login-input">
-                        <input type="text" className="form-control" placeholder="Email" onChange={e => setEmail(e.target.value)} />
+                        <input type="text" className="form-control" placeholder="Email" onChange={e => setEmail(e.target.value)} autoComplete="email" />
                     </div>
                     <div className="input-group flex-nowrap login-input">
-                        <input type="password" className="form-control" placeholder="Password" onChange={e => setPassword(e.target.value)} />
+                        <input type="password" className="form-control" placeholder="Password" onChange={e => setPassword(e.target.value)} autoComplete="password" />
                     </div>
                     <p class="error"></p>
                     <button type="button" className="btn login-btn" onClick={handleLogin}>Log In</button>
                     <p className="signup-redirect">Or you can
                     <Link to={"/"}>
-                            <a href="#"> Sign Up</a>
-                        </Link>
+                        <span> Sign Up</span>
+                    </Link>
                     </p>
-                </div>
+                </form>
             </div>
         </div>
     )

@@ -4,6 +4,9 @@ import API from "../../utils/API";
 
 
 function Userhome({ user, getUser, userLoggedIn }) {
+    function capitalize(str){
+        return str.charAt(0).toUpperCase() + str.slice(1);
+    }
 
     useEffect(() => {
         console.log(`User Logged In ${userLoggedIn}`);
@@ -17,7 +20,7 @@ function Userhome({ user, getUser, userLoggedIn }) {
         <div className="container col-md-12">
             <div className="row">
                 <div className="col-md-12">
-                    {user ? (<h1 className="welcometext">Hi, {user.firstname} {user.lastname}!</h1>) :
+                    {user ? (<h1 className="welcometext">Hi, {capitalize(user.firstname)} {capitalize(user.lastname)}!</h1>) :
                         (<h1 className="welcometext">No User Logged In!</h1>)}
                     <br />
                     <br />

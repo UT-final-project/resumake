@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import './home.css'
 import API from "../../utils/API";
 import { Link, Redirect } from "react-router-dom";
@@ -56,7 +56,7 @@ function Login({ handleUserState }) {
 
     return (
         <div className="container">
-            {redirect ? <Redirect push to="/userhome" /> : <></>}
+            {redirect ? <Redirect push to="/form" /> : <></>}
             <div className="row">
                 <div className="col-md-7">
                     <h1 className="primary-title">Used by Professionals</h1>
@@ -64,7 +64,7 @@ function Login({ handleUserState }) {
                     <img src="https://raw.githubusercontent.com/UT-final-project/group1-final-project/34b34d8a8d8484e2bb38e13ab52ff5ce1d4e6e16/client/svg-images/undraw_online_resume_re_ru7s.svg" alt="online-resume" className="online-resume-img" />
                 </div>
                 <div className="col-md-5">
-                    <div className="card signup-card">
+                    <form className="card signup-card">
                         <div className="card-header signup-header">
                             Sign Up
                         </div>
@@ -74,6 +74,7 @@ function Login({ handleUserState }) {
                                     className="form-control"
                                     placeholder="Email"
                                     onChange={event => setEmail(event.target.value)}
+                                    autoComplete="email"
                                 />
                             </div>
                             <div className="input-group flex-nowrap signup-input">
@@ -81,6 +82,7 @@ function Login({ handleUserState }) {
                                     className="form-control"
                                     placeholder="First Name"
                                     onChange={event => setFirstName(event.target.value)}
+                                    autoComplete="first name"
                                 />
                             </div>
                             <div className="input-group flex-nowrap signup-input">
@@ -88,6 +90,7 @@ function Login({ handleUserState }) {
                                     className="form-control"
                                     placeholder="Last Name"
                                     onChange={event => setLastName(event.target.value)}
+                                    autoComplete="last name"
                                 />
                             </div>
                             <div className="input-group flex-nowrap signup-input">
@@ -95,6 +98,7 @@ function Login({ handleUserState }) {
                                     className="form-control"
                                     placeholder="Password"
                                     onChange={event => setPassword(event.target.value)}
+                                    autoComplete="password"
                                 />
                             </div>
                             <div className="input-group flex-nowrap signup-input">
@@ -102,17 +106,18 @@ function Login({ handleUserState }) {
                                     className="form-control"
                                     placeholder="Verify Password"
                                     onChange={event => setVerifyPassword(event.target.value)}
+                                    autoComplete="password"
                                 />
                             </div>
                             <p id="error"></p>
                             <button type="button" className="btn signup-btn" onClick={handleFormSubmit}>Sign Up</button>
                             <p className="signup-redirect">Or you can
                             <Link to={"/login"}>
-                                    <a href="#"> Log In</a>
-                                </Link>
+                                <span> Log In</span>
+                            </Link>
                             </p>
                         </div>
-                    </div>
+                    </form>
                 </div>
             </div>
             <br />
