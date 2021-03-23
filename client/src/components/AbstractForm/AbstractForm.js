@@ -7,6 +7,7 @@ function AbstractForm(props){
             <div className="row">
                 <div className="col-md-12">
                     <h1 className="form-title">Abstract/Summary</h1>
+                    <hr />
                     <p className="form-paragraph">The Abstract section of your resume is one of the first thing employers see in your resume.
                     Every professional has unique skills and experiences they've aquired over the course of their career.
                     This is where you're going to want to highlight those experiences in a short, concise manner.</p>

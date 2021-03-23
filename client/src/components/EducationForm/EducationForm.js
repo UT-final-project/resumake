@@ -12,8 +12,9 @@ function EducationForm(props){
         <div className="container">
             <div className="row">
                 <div className="col-md-12">
-                <h1 className="form-title">Education</h1>
-                    <form>
+                    <h1 className="form-title">Education</h1>
+                    <hr />
+                    <form id="ed-form">
                         <div className="form-group">
                             <label htmlFor="prevEmployerInput" className="txtInput-heading">Degree</label>
                             <input type="text" className="form-control" id="prevEmployerInput" placeholder="ex. Bachelor's of Science in Computer Science" name="degree" value={props.values.degree} onChange={props.handleChange}/>

@@ -1,11 +1,11 @@
 const express = require("express");
 const logger = require("morgan");
 const cors = require("cors");
-const passport = require("passport");
 const passportLocal = require("passport-local").Strategy;
 const cookieParser = require("cookie-parser");
 const bcrypt = require("bcryptjs");
 const session = require("express-session");
+const passport = require("./config/passportConfig");
 require('dotenv').config();
 
 // Mongoose connection config
@@ -20,6 +20,7 @@ const PORT = process.env.PORT || 3001;
 app.use(logger("dev"));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+app.use(express.static("public"));
 
 // Express-session, cors, passport and cookie parser for user authentication
 app.use(cors({
@@ -27,14 +28,13 @@ app.use(cors({
     credentials: true
 }))
 app.use(session({
-    secret: "secretcode",
+    secret: "keyboard cat",
     resave: true,
     saveUninitialized: true
 }));
-app.use(cookieParser("secretcode"));
+app.use(cookieParser("keyboard cat"));
 app.use(passport.initialize());
 app.use(passport.session());
-require("./config/passportConfig")(passport);
 // =============== END OF MIDDLEWARE ============== //
 
 // API and view routes

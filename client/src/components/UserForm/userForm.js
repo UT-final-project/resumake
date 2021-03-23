@@ -109,6 +109,8 @@ function UserForm(){
         setStep(step - 1);
     }
 
+    console.log(workHistory)
+
     // Functions to handle change states depending on user input
     function handleAbstractSubmit(event){
         setAbstract(event.target.value);

@@ -8,6 +8,7 @@ function CertificateForm(props){
             <div className="row">
                 <div className="col-md-12">
                 <h1 className="form-title">Certifications</h1>
+                <hr />
                     <form>
                         <div className="form-group">
                             <label htmlFor="certInput" className="txtInput-heading">Certifications</label>

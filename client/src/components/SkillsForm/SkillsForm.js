@@ -8,6 +8,7 @@ function SkillsForm(props){
             <div className="row">
                 <div className="col-md-12">
                 <h1 className="form-title">Skills</h1>
+                <hr />
                     <form>
                         <div className="form-group">
                             <label htmlFor="skillsInput" className="txtInput-heading">Add One</label>

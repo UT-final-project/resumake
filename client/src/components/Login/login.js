@@ -1,31 +1,46 @@
 import React, { useState } from 'react';
 import API from '../../utils/API';
 import './login.css';
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 
-function Login() {
-    const [username, setEmail] = useState("");
+function Login({ handleUserState }) {
+    const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const [loggedIn, setLoggedIn] = useState(false);
+    const [redirect, setRedirect] = useState(false);
+    // const [errorMessage, setErrorMessage] = useState("");
 
     function handleLogin(e) {
         e.preventDefault();
-        console.log(e);
 
-        API.loginUser({ username, password })
-            .then(res => {
-                console.log({ res });
-                if (res.data.loggedIn) {
-                    !loggedIn ? setLoggedIn(true) : console.log('access denied');
-                }
-                console.log("Login Successful!")
-                window.location.href = "/userhome"
+        let errorMessage = document.querySelector(".error");
+
+        if (!email) {
+            errorMessage.innerHTML = "Please enter a valid Email Address";
+        } else if (!password) {
+            errorMessage.innerHTML = "Please ender a valid Password";
+        } else {
+            API.loginUser({
+                email: email,
+                password: password,
+                withCredentials: true
             })
-            .catch(err => console.log(err));
+                .then((res) => {
+                    let loggedInUser = res.data.userObj;
+                    if (!loggedInUser) {
+                        errorMessage.innerHTML = "Please enter a valid Email Address and Password";
+                        return;
+                    } else {
+                        handleUserState(loggedInUser._id);
+                        setRedirect(true);
+                    }
+                })
+                .catch(err => console.log(err));
+        }
     }
 
     return (
         <div>
+            {redirect ? <Redirect push to="/userhome" /> : <></>}
             <div className="card login-card">
                 <div className="card-header login-header">
                     Log In
@@ -37,6 +52,7 @@ function Login() {
                     <div className="input-group flex-nowrap login-input">
                         <input type="password" className="form-control" placeholder="Password" onChange={e => setPassword(e.target.value)} autoComplete="password" />
                     </div>
+                    <p class="error"></p>
                     <button type="button" className="btn login-btn" onClick={handleLogin}>Log In</button>
                     <p className="signup-redirect">Or you can
                     <Link to={"/"}>

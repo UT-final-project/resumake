@@ -12,7 +12,7 @@ export default {
         return axios.post("/api/users/login", userData)
     },
 
-    createResume: function (resumeData){
+    createResume: function (resumeData) {
         return axios.post("/api/resume", resumeData)
     },
 
@@ -28,7 +28,7 @@ export default {
         return axios.post("api/users/resume/certifications", userData)
     },
 
-    isLoggedIn: function () {
-        return axios.get("/api/users/userhome")
+    isLoggedIn: function (id) {
+        return axios.get("/api/users/" + id)
     }
 };
