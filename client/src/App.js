@@ -7,6 +7,7 @@ import Userhome from './components/Userhome/userhome.js';
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { useState } from 'react';
 import API from "./utils/API";
+import AboutUs from './components/About/about';
 
 function App() {
   const [user, setUser] = useState();
@@ -67,6 +68,9 @@ function App() {
               getUser={getUser}
               user={user}
             />
+          </Route>
+          <Route exact path="/aboutus">
+            <AboutUs/>
           </Route>
         </Switch>
       </div>
