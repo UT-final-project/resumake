@@ -198,11 +198,11 @@ function UserForm(){
         case 6:
             return(
                 <Confirm
-                abstractValue={abstract}
-                workValue={employment}
-                edValue={education}
-                certValue={certifications}
-                skillsValue={skills}
+                summary={abstract}
+                skillList={skillList}
+                employment={employment}
+                eduHistory={eduHistory}
+                certHistory={certHistory}
                 prevStep={prevStep}
                 submitResume={handleResumeSubmit}
                 />

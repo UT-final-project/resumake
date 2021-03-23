@@ -7,20 +7,6 @@ function EducationForm(props){
     const current = new Date();
     // lodash to generate 50 years worth of options in descending order
     const years = _.orderBy(_.range(current.getFullYear() - 50, current.getFullYear()+1), null, 'desc');
-    const months = [
-        "January",
-        "February",
-        "March",
-        "April",
-        "May",
-        "June",
-        "July",
-        "August",
-        "September",
-        "October",
-        "November",
-        "December"
-    ];
     
     return(
         <div className="container">
