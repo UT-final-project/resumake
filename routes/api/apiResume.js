@@ -11,7 +11,7 @@ router.route("/")
 // Matches with "/api/resume/:id"
 router.route('/:id')
   // Responds with a single resume matching the provided ID
-  .get(resumeController.findById)
+  .get(resumeController.findByAuthor)
   // Updates a resume's content matching the provided ID
   .put(resumeController.update)
   // Removes the resume matching the provided ID

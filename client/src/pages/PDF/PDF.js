@@ -1,47 +1,7 @@
-import React, { useState } from 'react';
-import './Confirm.css';
+import React, { useState, useEffect } from 'react';
 import styled, { css } from 'styled-components';
 
-const Header = styled.h1`
-    font-size: 56px;
-    font-family:Georgia, 'Times New Roman', Times, serif;
-    text-align: center;
-
-    ${props =>
-    props.primary && 
-    css`
-        text-align: left;
-        font-size: 32px;
-    `}
-`;
-
-const SubHeader = styled.h2`
-    font-size: 24px;
-    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-    font-weight: 800;
-    ${props =>
-    props.light &&
-    css`
-        font-size: 20px;
-        font-weight: 200;
-    `}
-`;
-
-const ResumeContent = styled.p`
-    font-size: 18px;
-    font-family: Arial, Helvetica, sans-serif;
-    color: white;
-`;
-
-function Confirm(props) {
-    const [redirect, setRedirect] = useState(false);
-
-    function handleRedirect(e) {
-        e.preventDefault();
-
-        setRedirect(true);
-    };
-
+function PDF(props) {
     function capitalize(str) {
         return str.charAt(0).toUpperCase() + str.slice(1);
     };
@@ -119,4 +79,36 @@ function Confirm(props) {
     );
 };
 
-export default Confirm;
+// js styles
+const Header = styled.h1`
+    font-size: 56px;
+    font-family:Georgia, 'Times New Roman', Times, serif;
+    text-align: center;
+
+    ${props =>
+    props.primary && 
+    css`
+        text-align: left;
+        font-size: 32px;
+    `}
+`;
+
+const SubHeader = styled.h2`
+    font-size: 24px;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-weight: 800;
+    ${props =>
+    props.light &&
+    css`
+        font-size: 20px;
+        font-weight: 200;
+    `}
+`;
+
+const ResumeContent = styled.p`
+    font-size: 18px;
+    font-family: Arial, Helvetica, sans-serif;
+    color: white;
+`;
+
+export default PDF;

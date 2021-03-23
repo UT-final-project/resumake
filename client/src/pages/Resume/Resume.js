@@ -1,45 +1,49 @@
-import React, { useState } from 'react';
-import './Confirm.css';
+import React, { useState, useEffect } from 'react';
+import { useParams } from "react-router-dom";
+import './Resume.css';
 import styled, { css } from 'styled-components';
+import API from '../../utils/API';
 
-const Header = styled.h1`
-    font-size: 56px;
-    font-family:Georgia, 'Times New Roman', Times, serif;
-    text-align: center;
+function Resume(props) {
+    const [resume, setResume] = useState({});
+    const [id, setId] = useState({});
+    const {email} = useParams();
 
-    ${props =>
-    props.primary && 
-    css`
-        text-align: left;
-        font-size: 32px;
-    `}
-`;
+    // When this component mounts, request the user ID with the email matching email from useParams()
+    // e.g. localhost:3000/resume/user@mail.com, then use that ID to request a matching resume
+    // unique emails are used both for searchability, sharing links with others and to obscure user IDs
+    useEffect(() => {
+        getUser(email).then(() => {
+            loadResume(id);
+        });
+    });
 
-const SubHeader = styled.h2`
-    font-size: 24px;
-    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-    font-weight: 800;
-    ${props =>
-    props.light &&
-    css`
-        font-size: 20px;
-        font-weight: 200;
-    `}
-`;
+    const getUser = (userEmail) => {
+        API.findUserByEmail(userEmail)
+            .then(res => {
+                if (res.length === 0) {
+                    throw new Error("No users found!");
+                };
+                if (res.status === "error") {
+                    throw new Error(res.data.message);
+                };
+                setId(res._id);
+            })
+            .catch(err => console.log(err)); 
+    };
 
-const ResumeContent = styled.p`
-    font-size: 18px;
-    font-family: Arial, Helvetica, sans-serif;
-    color: white;
-`;
-
-function Confirm(props) {
-    const [redirect, setRedirect] = useState(false);
-
-    function handleRedirect(e) {
-        e.preventDefault();
-
-        setRedirect(true);
+    const loadResume = (userId) => {
+        API.findResumeByAuthor(userId)
+            .then(res => {
+                if (res.length === 0) {
+                    throw new Error("No resumes found!");
+                };
+                if (res.status === "error") {
+                    throw new Error(res.data.message);
+                };
+                setResume(res);
+            })
+            .catch(err => console.log(err));
     };
 
     function capitalize(str) {
@@ -119,4 +123,36 @@ function Confirm(props) {
     );
 };
 
-export default Confirm;
+// js styles
+const Header = styled.h1`
+    font-size: 56px;
+    font-family:Georgia, 'Times New Roman', Times, serif;
+    text-align: center;
+
+    ${props =>
+    props.primary && 
+    css`
+        text-align: left;
+        font-size: 32px;
+    `}
+`;
+
+const SubHeader = styled.h2`
+    font-size: 24px;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-weight: 800;
+    ${props =>
+    props.light &&
+    css`
+        font-size: 20px;
+        font-weight: 200;
+    `}
+`;
+
+const ResumeContent = styled.p`
+    font-size: 18px;
+    font-family: Arial, Helvetica, sans-serif;
+    color: white;
+`;
+
+export default Resume;

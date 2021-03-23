@@ -58,10 +58,11 @@ function UserForm({ user, getUser, userLoggedIn }){
             awardedBy: ''
         });
         setSkills('');
+
         console.log(`User Logged In ${userLoggedIn}`);
         if (userLoggedIn) {
             getUser(user);
-        }
+        };
     },[employment, eduHistory, certHistory, skillList, userLoggedIn])
 
     // Adds job to employment array and clears job state for new inputs
@@ -135,16 +136,11 @@ function UserForm({ user, getUser, userLoggedIn }){
 
     function capitalize(str){
         return str.charAt(0).toUpperCase() + str.slice(1);
-    }
+    };
 
     // Function for the Submit button to post resume data
     function handleResumeSubmit(event){
         event.preventDefault();
-        console.log('abstract', abstract);
-        console.log('employment', employment);
-        console.log('education', eduHistory);
-        console.log('certifications', certHistory);
-        console.log('skills', skillList);
         API.createResume({
             author: user._id,
             firstName: capitalize(user.firstname),
@@ -168,7 +164,7 @@ function UserForm({ user, getUser, userLoggedIn }){
                 handleChange={handleAbstractSubmit}
                 value={abstract}
                 />
-            )
+            );
         case 2:
             return(
                 <WorkForm 
@@ -179,7 +175,7 @@ function UserForm({ user, getUser, userLoggedIn }){
                 employment={employment}
                 addJob={addJob}
                 />
-            )
+            );
         case 3:
             return(
                 <EducationForm 
@@ -190,7 +186,7 @@ function UserForm({ user, getUser, userLoggedIn }){
                 eduHistory={eduHistory}
                 addEdu={addEdu}
                 />
-            )
+            );
         case 4:
             return(
                 <CertificateForm 
@@ -201,7 +197,7 @@ function UserForm({ user, getUser, userLoggedIn }){
                 certHistory={certHistory}
                 addCert={addCert}
                 />
-            )
+            );
         case 5:
             return(
                 <SkillsForm 
@@ -212,7 +208,7 @@ function UserForm({ user, getUser, userLoggedIn }){
                 skillList={skillList}
                 addSkill={addSkill}
                 />
-            )
+            );
         case 6:
             return(
                 <Confirm
@@ -225,7 +221,7 @@ function UserForm({ user, getUser, userLoggedIn }){
                 prevStep={prevStep}
                 submitResume={handleResumeSubmit}
                 />
-            )
+            );
         default:
             return(
                 <AbstractForm
@@ -233,8 +229,8 @@ function UserForm({ user, getUser, userLoggedIn }){
                 handleChange={handleAbstractSubmit}
                 value={abstract}
                 />
-            )
-    }
-}
+            );
+    };
+};
 
 export default UserForm;
