@@ -9,13 +9,33 @@ import { useState } from 'react';
 import API from "./utils/API";
 
 function App() {
-  const [user, setUser] = useState()
+  const [user, setUser] = useState();
+  const [userLoggedIn, setUserLoggedIn] = useState(false);
 
   function handleUserState(id) {
     API.isLoggedIn(id)
       .then((res) => {
-        setUser(res.data)
+        console.log(`isLoggedIn Response `, { res });
+        setUser(res.data);
+
       })
+      .catch((err) => {
+        console.log(err);
+      })
+    setUserLoggedIn(true);
+  }
+
+  function getUser() {
+    console.log("GET USER FUNCTION");
+    if (userLoggedIn) {
+      console.log("userLoggedIn");
+      console.log(user);
+      return user;
+    }
+    else {
+      console.log("NO USER LOGGED IN");
+      return;
+    }
   }
 
 
@@ -39,6 +59,8 @@ function App() {
           </Route>
           <Route exact path="/userhome">
             <Userhome
+              userLoggedIn={userLoggedIn}
+              getUser={getUser}
               user={user}
             />
           </Route>
