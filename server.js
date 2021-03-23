@@ -5,7 +5,7 @@ const passportLocal = require("passport-local").Strategy;
 const cookieParser = require("cookie-parser");
 const bcrypt = require("bcryptjs");
 const session = require("express-session");
-const passport = require("passport");
+const passport = require("./config/passportConfig");
 require('dotenv').config();
 
 // Mongoose connection config
@@ -35,7 +35,6 @@ app.use(session({
 app.use(cookieParser("keyboard cat"));
 app.use(passport.initialize());
 app.use(passport.session());
-require("./config/passportConfig")(passport);
 // =============== END OF MIDDLEWARE ============== //
 
 // API and view routes

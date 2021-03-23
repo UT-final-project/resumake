@@ -1,7 +1,7 @@
 const router = require("express").Router();
 const userController = require("../../controller/userController");
-const passport = require("passport");
-const auth = require("../../config/isAuthenticated");
+const passport = require("../../config/passportConfig");
+const isAuthenticated = require("../../config/isAuthenticated");
 const User = require("../../models/User");
 
 // Matches with "/api/users"
@@ -41,7 +41,7 @@ router.post("/login", (req, res, next) => {
       req.login(user, err => {
         if (err) throw err;
         userObj = user;
-        res.json(userObj)
+        res.json({ userObj, loggedIn: true })
         console.log("/// Logged In ///");
         console.log({ userObj });
       })
@@ -51,7 +51,7 @@ router.post("/login", (req, res, next) => {
 
 
 // Matches with "api/users/userhome"
-router.get("/" + userObj._id, (req, res) => {
+router.get("/" + userObj._id, isAuthenticated, (req, res) => {
   User.findById({ _id: userObj._id }, (err, user) => {
     if (err) throw err;
     else {

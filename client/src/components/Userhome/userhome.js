@@ -2,7 +2,15 @@ import React, { useState, useEffect } from 'react';
 import './userhome.css';
 import API from "../../utils/API";
 
-function Userhome({ user }) {
+
+function Userhome({ user, getUser, userLoggedIn }) {
+
+    useEffect(() => {
+        console.log(`User Logged In ${userLoggedIn}`);
+        if (userLoggedIn) {
+            getUser(user);
+        }
+    }, [userLoggedIn]);
 
     return (
         // Whole Container

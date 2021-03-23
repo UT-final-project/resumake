@@ -7,32 +7,35 @@ function Login({ handleUserState }) {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [redirect, setRedirect] = useState(false);
+    // const [errorMessage, setErrorMessage] = useState("");
 
     function handleLogin(e) {
         e.preventDefault();
 
-        if (!email || !password) {
-            return;
-        }
+        let errorMessage = document.querySelector(".error");
 
-        API.loginUser({
-            email: email,
-            password: password,
-            withCredentials: true
-        })
-            .then((res) => {
-                console.log(res.data);
-                if (!res.data.email || !res.data.password) {
-                    return
-                }
-                else {
-                    // console.log("Login Successful!");
-                    // API.isLoggedIn(res.data._id);
-                    handleUserState(res.data._id);
-                    setRedirect(true);
-                }
+        if (!email) {
+            errorMessage.innerHTML = "Please enter a valid Email Address";
+        } else if (!password) {
+            errorMessage.innerHTML = "Please ender a valid Password";
+        } else {
+            API.loginUser({
+                email: email,
+                password: password,
+                withCredentials: true
             })
-            .catch(err => console.log(err));
+                .then((res) => {
+                    let loggedInUser = res.data.userObj;
+                    if (!loggedInUser) {
+                        errorMessage.innerHTML = "Please enter a valid Email Address and Password";
+                        return;
+                    } else {
+                        handleUserState(loggedInUser._id);
+                        setRedirect(true);
+                    }
+                })
+                .catch(err => console.log(err));
+        }
     }
 
     return (
@@ -49,6 +52,7 @@ function Login({ handleUserState }) {
                     <div className="input-group flex-nowrap login-input">
                         <input type="password" className="form-control" placeholder="Password" onChange={e => setPassword(e.target.value)} />
                     </div>
+                    <p class="error"></p>
                     <button type="button" className="btn login-btn" onClick={handleLogin}>Log In</button>
                     <p className="signup-redirect">Or you can
                     <Link to={"/"}>
