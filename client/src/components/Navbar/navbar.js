@@ -26,8 +26,8 @@ function Navbar() {
                             </Link>
                         </li>
                         <li className="nav-item">
-                            <Link to={"/"} className="nav-link active navbar-link" aria-current="page">
-                                Features
+                            <Link to={"/aboutus"} className="nav-link active navbar-link" aria-current="page">
+                                About
                             </Link>
                         </li>
                         <li className="nav-item">

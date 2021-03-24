@@ -82,7 +82,7 @@ function App() {
                 getUser={getUser}
               />
             </Route>
-            <Route exact path="aboutus">
+            <Route exact path="/aboutus">
               <AboutUs/>
             </Route>
           </Switch>
