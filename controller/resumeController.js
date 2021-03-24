@@ -12,7 +12,7 @@ module.exports = {
   // Finds a resume matching the author ID
   findByAuthor: function(req, res) {
     db.Resume
-      .findOne({author: req.params.id})
+      .findOne({ author: req.params.id })
       .then(dbModel => res.status(200).json(dbModel))
       .catch(err => res.status(422).json(err));
   },

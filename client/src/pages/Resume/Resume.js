@@ -73,6 +73,9 @@ function Resume() {
     useEffect(() => {
     }, [display]);
 
+    useEffect(() => {
+    }, [id]);
+
     const loadData = (userEmail) => {
         API.findUserByEmail(userEmail)
             .then(res => {
@@ -82,15 +85,17 @@ function Resume() {
                 if (res.status === "error") {
                     throw new Error(res.data.message);
                 };
+                console.log('findUserByEmail:', res);
                 setId(res.data._id);
                 setFirstName(res.data.firstname);
                 setLastName(res.data.lastname);
             })
-            .then(loadResume(id))
+            .then(setTimeout(loadResume(id), 1000))
             .catch(err => console.log(err)); 
     };
 
     const loadResume = (userId) => {
+        setTimeout(console.log('author id to query:', id), 100000)
         API.findResumeByAuthor(userId)
             .then(res => {
                 if (res.length === 0) {
@@ -99,6 +104,7 @@ function Resume() {
                 if (res.status === "error") {
                     throw new Error(res.data.message);
                 };
+                console.log('findResumeByAuthor:', res);
                 setResume(res.data[0]);
             })
             .catch(err => console.log(err));
