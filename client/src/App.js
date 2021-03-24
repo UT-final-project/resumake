@@ -8,6 +8,7 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { useState } from 'react';
 import API from "./utils/API";
 import AboutUs from './components/About/about';
+import NothingHere from './components/NothingHere/NothingHere';
 import ReactDOM from 'react-dom'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { fab } from '@fortawesome/free-brands-svg-icons'
@@ -72,11 +73,16 @@ function App() {
                 handleUserState={handleUserState}
               />
             </Route>
+            {userLoggedIn ? 
             <Route exact path="/form">
               <UserForm
                 getUser={getUser}
               />
+            </Route> :
+            <Route exact path="/form">
+              <NothingHere />
             </Route>
+            }
             <Route exact path="/userhome">
               <Userhome
                 getUser={getUser}
