@@ -82,6 +82,9 @@ function App() {
                 getUser={getUser}
               />
             </Route>
+            <Route exact path="aboutus">
+              <AboutUs/>
+            </Route>
           </Switch>
         </UserContext.Provider>
       </div>
