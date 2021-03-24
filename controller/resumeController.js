@@ -18,8 +18,13 @@ module.exports = {
   create: function(req, res) {
     db.Resume
       .create(req.body)
-      .then(dbModel => res.status(201).json(dbModel))
-      .catch(err => res.status(422).json(err));
+      .then(dbModel => {
+        console.log(dbModel)
+        db.User.findByIdAndUpdate(dbModel.author, {$push: {resumes: dbModel._id}})
+        .then(res.status(201).json(dbModel))
+        .catch(err => res.status(422).json(err));
+      })
+      .catch(err => res.status(422).json({err: "Error in creating resume."}));
   },
   update: function(req, res) {
     db.Resume

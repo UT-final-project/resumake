@@ -17,6 +17,7 @@ function Userhome({ getUser }) {
         if (mounted) {
             getUser(user);
         }
+        
         return function cleanup() {
             mounted = false;
         }
