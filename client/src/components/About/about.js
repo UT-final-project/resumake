@@ -64,7 +64,7 @@ function AboutUs () {
                         <div className="middle">
                         <div className="text">
                                 <a href="https://jwhendershott.github.io/responsiveness-portfolio/" target="blank">
-                                    <div className="text">Jakes's Profile</div>
+                                    <div className="text">Jake's Profile</div>
                                 </a>
                             </div>
                         </div>
