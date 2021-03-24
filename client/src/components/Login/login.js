@@ -3,6 +3,8 @@ import API from '../../utils/API';
 import './login.css';
 import { Link, Redirect } from "react-router-dom";
 import UserContext from "../../utils/UserContext";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
 
 function Login({ handleUserState }) {
     const [email, setEmail] = useState("");
@@ -59,7 +61,7 @@ function Login({ handleUserState }) {
                         <input type="password" className="form-control" placeholder="Password" onChange={e => setPassword(e.target.value)} autoComplete="password" />
                     </div>
                     <p className="error"></p>
-                    <button type="button" className="btn login-btn" onClick={handleLogin}>Log In</button>
+                    <button type="button" className="btn login-btn" onClick={handleLogin}> <FontAwesomeIcon icon="sign-in-alt"/> Log In</button>
                     <p className="signup-redirect">Or you can
                     <Link to={"/"}>
                             <span> Sign Up</span>
