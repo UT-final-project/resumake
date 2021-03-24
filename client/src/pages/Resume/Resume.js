@@ -43,6 +43,8 @@ const ResumeContent = styled.p`
     color: white;
 `;
 
+const ref = React.createRef();
+
 function Resume() {
     const [display, setDisplay] = useState('pretty');
     const [btnText, setBtnText] = useState('ATS');
@@ -122,16 +124,11 @@ function Resume() {
     };
 
     // PDF export config
-    const ref = React.createRef();
     const options = {
         orientation: 'landscape',
         unit: 'in',
         format: [4,2]
     };
-
-    // const dl = () => {
-
-    // };
 
     return (
         <section className="container">
@@ -144,14 +141,17 @@ function Resume() {
                         </button>
                     </div>
                 <div className="col d-flex justify-content-center">
-                    <button type="button" id="download" className="btn add-btn">
-                        <span className="fa-icon"><FontAwesomeIcon icon={faFilePdf}/></span> PDF
-                    </button>
+                    <Pdf targetRef={ref} filename={`${firstName}${lastName}-resume.pdf`}>
+                        {({ toPdf }) => 
+                            <button type="button" id="download" className="btn add-btn" onClick={toPdf}>
+                                <span className="fa-icon"><FontAwesomeIcon icon={faFilePdf}/></span> PDF
+                            </button>}
+                    </Pdf>
                 </div>
             </div>
             {display === 'pretty' ? (
                 // The web version of the resume
-                <div>
+                <div ref={ref}>
                     <h1>{capitalize(firstName)} {capitalize(lastName)}</h1>
                     {!resume.abstract.length && !resume.skills.length && !resume.employment.length 
                     && !resume.education.length && !resume.certifications.length ? (
@@ -180,7 +180,7 @@ function Resume() {
                 </div>
             ) : (
                 // The ATS version of the Resume
-                <div>
+                <div ref={ref}>
                     <Header>
                         <p>{capitalize(firstName)} {capitalize(lastName)}</p>
                     </Header>
