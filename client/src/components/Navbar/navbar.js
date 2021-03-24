@@ -12,18 +12,28 @@ function Navbar() {
     return (
         <nav className="navbar navbar-expand-lg navbar-light bg-light">
             <div className="container-fluid">
-                <Link className="navbar-brand navbar-header" to={"/"}>
+                {!userLoggedIn ?
+                    <Link className="navbar-brand navbar-header" to={"/"}>
                     <img src="https://raw.githubusercontent.com/UT-final-project/group1-final-project/develop/client/svg-images/ResumakeLogoTest.png" id="resumakelogo" /> <br />
-                </Link>
+                    </Link> :
+                    <Link className="navbar-brand navbar-header" to={"/userhome"}>
+                    <img src="https://raw.githubusercontent.com/UT-final-project/group1-final-project/develop/client/svg-images/ResumakeLogoTest.png" id="resumakelogo" /> <br />
+                    </Link>
+                }
                 <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span className="navbar-toggler-icon"></span>
                 </button>
                 <div className="collapse navbar-collapse" id="navbarNav">
                     <ul className="navbar-nav">
                         <li className="nav-item">
+                        {!userLoggedIn ? 
                             <Link to={"/"} className="nav-link active navbar-link" aria-current="page">
                                 Home
+                            </Link> : 
+                            <Link to={"/userhome"} className="nav-link active navbar-link" aria-current="page">
+                            Home
                             </Link>
+                        }
                         </li>
                         <li className="nav-item">
                             <Link to={"/aboutus"} className="nav-link active navbar-link" aria-current="page">
@@ -45,7 +55,7 @@ function Navbar() {
                                 :
                                 <Link to={"/login"} type="button" href="/" role="button" className="btn btn-meadow" onClick={handleLogOut}>
                                     Log Out
-                        </Link>}
+                            </Link>}
                         </li>
                     </ul>
                 </div>
