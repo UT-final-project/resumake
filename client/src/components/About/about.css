@@ -1,6 +1,7 @@
 .fullabout h1, h2, h3, h4, h5, h6 {
     color: #fff;
     font-family: 'Slabo 13px', serif;
+    font-weight: 800;
 }
 .fullabout h1 {
     margin-top: 50px;
@@ -9,8 +10,8 @@
 
 .fullabout p {
     font-family: 'Lato', sans-serif;
-    color:#30313d;
-    font-size: 18px;
+    color: #30313d;
+    font-size: 20px;
 }
 
 .jumbotron {
@@ -53,7 +54,7 @@
 
   .ourcontainer:hover .ourphotos {
     opacity: 0.3;
-    transform: scale(1.25);
+    transform: rotate(360deg) scale(1.25);
     border-radius: 100%;
   }
   
@@ -64,8 +65,9 @@
   .text {
     color: #505160;
     background-color:#aedb38;
-    font-size: 18px;
+    font-size: 20px;
     padding: 5px;
+    font-family: 'Slabo 13px', serif;
   }
 
   .text a:hover {
