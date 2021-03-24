@@ -6,3 +6,8 @@ h1 {
 h3#noContent {
   color: white;
 }
+
+button {
+  min-width: 110px;
+  max-height: 60px;
+}

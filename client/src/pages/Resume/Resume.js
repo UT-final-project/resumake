@@ -6,25 +6,31 @@ import JobList from '../../components/Lists/JobList/JobList';
 import EduList from '../../components/Lists/EducationList/EducationList';
 import CertList from '../../components/Lists/CertificationList/CertificationList';
 import SkillsList from '../../components/Lists/SkillsList/SkillsList';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faFilePdf } from '@fortawesome/free-solid-svg-icons';
 
 
-function Resume(props) {
-    // For security reasons state is constructed from API response to avoid exposing passwords
-    // via React component analyzers
+function Resume() {
+    // For security reasons state is constructed from API response
+    // to avoid exposing passwords via React component analyzers
     const { email } = useParams();
-    const [resume, setResume] = useState({});
+    const [resume, setResume] = useState({
+        abstract: '',
+        employment: [],
+        education: [],
+        certifications: [],
+        skills: []
+    });
     const [id, setId] = useState('');
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
-    
 
     // When this component mounts, request the user ID with the email matching email from useParams()
     // e.g. localhost:3000/resume/user@mail.com, then use that ID to request a matching resume
     // unique emails are used both for searchability, sharing links with others and to obscure user IDs
     useEffect(() => {
-        console.log('useParams:',email);
         loadData(email);
-    });
+    },[]);
 
     const loadData = (userEmail) => {
         API.findUserByEmail(userEmail)
@@ -35,10 +41,9 @@ function Resume(props) {
                 if (res.status === "error") {
                     throw new Error(res.data.message);
                 };
-                console.log('User matching email provided:', JSON.stringify(res));
-                setId(res._id);
-                setFirstName(res.firstname);
-                setLastName(res.lastname);
+                setId(res.data._id);
+                setFirstName(res.data.firstname);
+                setLastName(res.data.lastname);
             })
             .then(loadResume(id))
             .catch(err => console.log(err)); 
@@ -53,8 +58,7 @@ function Resume(props) {
                 if (res.status === "error") {
                     throw new Error(res.data.message);
                 };
-                console.log('Resume matching user provided:', JSON.stringify(res));
-                setResume(res);
+                setResume(res.data[0]);
             })
             .catch(err => console.log(err));
     };
@@ -65,10 +69,15 @@ function Resume(props) {
 
     return (
         <div className="container">
-            {/* <h1 className="form-title">Review your Resume</h1>
-            <hr/>
-            <br/>
-            <h1>{capitalize(firstName)} {capitalize(lastName)}</h1>
+            <br/><br/>
+            <div className="row">
+                <div className="col-8">
+                    <h1>{capitalize(firstName)} {capitalize(lastName)}</h1>
+                </div>
+                <div className="col-4 d-flex justify-content-end">
+                    <button type="button" id="download" className="btn add-btn"><span className="fa-icon"><FontAwesomeIcon icon={faFilePdf}/></span> PDF</button>
+                </div>
+            </div>
             {!resume.abstract.length && !resume.skills.length && !resume.employment.length 
             && !resume.education.length && !resume.certifications.length ? (
                 <h3 id="noContent">No Resume content to display yet!</h3>
@@ -84,21 +93,16 @@ function Resume(props) {
             {resume.employment.length ? (
                 <JobList employment={resume.employment}/>
             ) : (<div/>)}
-            <br/>
             {resume.education.length ? (
                 <EduList values={resume.education}/>
             ) : (<div/>)}
-            <br/>
             {resume.certifications.length ? (
                 <CertList values={resume.certifications}/>
             ) : (<div/>)}
-            <br/>
             {resume.skills.length ? (
                 <SkillsList values={resume.skills}/>
             ) : (<div/>)}
-            <br/>
-            <br/>
-            <button type="button" className="btn add-btn">Download</button> */}
+            <br/><br/>
         </div>
     );
 };

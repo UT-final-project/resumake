@@ -7,7 +7,6 @@ export default {
         return axios.post("/api/users", userData);
     },
     findUserByEmail: function (userEmail) {
-        console.log(userEmail);
         return axios.get(`/api/users/email/${userEmail}`);
     },
     // Returns an individual resume from the DB matching the provided user ID
