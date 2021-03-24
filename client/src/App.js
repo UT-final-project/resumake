@@ -11,11 +11,11 @@ import AboutUs from './components/About/about';
 import ReactDOM from 'react-dom'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { fab } from '@fortawesome/free-brands-svg-icons'
-import { faPenFancy, faSave, faEye, faArrowRight, faArrowLeft, faPlus } from '@fortawesome/free-solid-svg-icons'
+import { faPenFancy, faSave, faEye, faArrowRight, faArrowLeft, faPlus, faSignInAlt, faSignOutAlt, faUserPlus, } from '@fortawesome/free-solid-svg-icons'
 import UserContext from "./utils/UserContext";
 
 
-library.add(fab, faPenFancy, faSave, faEye, faArrowRight, faArrowLeft, faPlus)
+library.add(fab, faPenFancy, faSave, faEye, faArrowRight, faArrowLeft, faPlus, faSignInAlt, faSignOutAlt, faUserPlus )
 
 function App() {
   const [user, setUser] = useState();

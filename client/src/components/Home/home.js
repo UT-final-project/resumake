@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import './home.css'
 import API from "../../utils/API";
 import { Link, Redirect } from "react-router-dom";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
 
 function Login({ handleUserState }) {
     const [email, setEmail] = useState("");
@@ -110,7 +112,7 @@ function Login({ handleUserState }) {
                                 />
                             </div>
                             <p id="error"></p>
-                            <button type="button" className="btn signup-btn" onClick={handleFormSubmit}>Sign Up</button>
+                            <button type="button" className="btn signup-btn" onClick={handleFormSubmit}> <FontAwesomeIcon icon="user-plus"/>  Sign Up</button>
                             <p className="signup-redirect">Or you can
                             <Link to={"/login"}>
                                 <span> Log In</span>
