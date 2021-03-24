@@ -4,6 +4,7 @@ h2.category {
 
 h3.card-title {
   margin-bottom: 0;
+  color: black;
 }
 
 p.dates {
@@ -12,4 +13,8 @@ p.dates {
 
 span.fa-icon {
   margin-right: 0.3em;
+}
+
+.job-title{
+  color: black;
 }

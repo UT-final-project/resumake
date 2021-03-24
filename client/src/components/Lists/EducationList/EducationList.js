@@ -22,7 +22,7 @@ function EducationList(props){
                 </div>       
               </div>
               <div className="card-body">
-                <h5>{school.degree}</h5>
+                <h5 className="degree">{school.degree}</h5>
               </div>
             </div>
             <br/>
