@@ -1,0 +1,11 @@
+.not-found{
+    font-family: 'Slabo 13px', Serif;
+    text-align: center;
+    margin: 200px;
+}
+.universe{
+    width: 75%;
+    height: 75%;
+    margin-top: 100px;
+    margin-bottom: 100px;
+}
