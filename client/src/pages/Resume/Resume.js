@@ -7,7 +7,6 @@ import EduList from '../../components/Lists/EducationList/EducationList';
 import CertList from '../../components/Lists/CertificationList/CertificationList';
 import SkillsList from '../../components/Lists/SkillsList/SkillsList';
 import Pdf from "react-to-pdf";
-import PDF from '../PDF/PDF';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFilePdf, faCode, faRobot } from '@fortawesome/free-solid-svg-icons';
 import styled, { css } from 'styled-components';
@@ -58,7 +57,6 @@ function Resume() {
         certifications: [],
         skills: []
     });
-    const [id, setId] = useState('');
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
     const { email } = useParams();
@@ -71,14 +69,10 @@ function Resume() {
     },[]);
 
     useEffect(() => {
-    }, [display]);
+    }, [display, resume]);
 
-    // useEffect(() => {
-    //     loadResume(id);
-    // }, [id]);
-
-    const loadData = (userEmail) => {
-        API.findUserByEmail(userEmail)
+    const loadData = async (userEmail) => {
+        let usrId = await API.findUserByEmail(userEmail)
             .then(res => {
                 if (res.length === 0) {
                     throw new Error("No users found!");
@@ -86,17 +80,15 @@ function Resume() {
                 if (res.status === "error") {
                     throw new Error(res.data.message);
                 };
-                console.log('findUserByEmail:', res);
-                setId(res.data._id);
                 setFirstName(res.data.firstname);
                 setLastName(res.data.lastname);
+                return res.data._id;
             })
-            .then(loadResume(id))
-            .catch(err => console.log(err)); 
+            .catch(err => console.log(err));
+            loadResume(usrId);
     };
 
     const loadResume = (userId) => {
-        setTimeout(console.log('author id to query:', id), 100000)
         API.findResumeByAuthor(userId)
             .then(res => {
                 if (res.length === 0) {
@@ -105,8 +97,7 @@ function Resume() {
                 if (res.status === "error") {
                     throw new Error(res.data.message);
                 };
-                console.log('findResumeByAuthor:', res);
-                setResume(res.data[0]);
+                setResume(res.data);
             })
             .catch(err => console.log(err));
     };
@@ -132,14 +123,14 @@ function Resume() {
 
     // PDF export config
     const options = {
-        orientation: 'landscape',
+        orientation: 'portrait',
         unit: 'in',
-        format: [4,2]
+        format: [100,800]
     };
 
     return (
         <section className="container">
-            <div>
+            {!resume ? (<div>Nothing to Show</div>) : (<div>
                 <br/><br/>
                 <div className="row d-flex justify-content-end">
                     <div className="col-8"/>
@@ -149,7 +140,7 @@ function Resume() {
                             </button>
                         </div>
                     <div className="col d-flex justify-content-center">
-                        <Pdf targetRef={ref} filename={`${firstName}${lastName}-resume.pdf`}>
+                        <Pdf targetRef={ref} filename={`${firstName}${lastName}-resume.pdf`} options={options}>
                             {({ toPdf }) => 
                                 <button type="button" id="download" className="btn add-btn" onClick={toPdf}>
                                     <span className="fa-icon"><FontAwesomeIcon icon={faFilePdf}/></span> PDF
@@ -227,7 +218,7 @@ function Resume() {
                     </div>
                 )}
                 <br/><br/>
-            </div>
+            </div>)}
         </section>
     );
 };
