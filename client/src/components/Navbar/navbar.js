@@ -51,12 +51,12 @@ function Navbar() {
                     <ul className="navbar-nav ml-auto">
                         <li>
                             {!userLoggedIn ?
-                                <Link to={"/login"} type="button" href="/" role="button" className="btn btn-meadow">  
-                                    <FontAwesomeIcon icon="sign-in-alt"/> Log In
+                            <Link to={"/login"} type="button" href="/" role="button" className="btn btn-meadow">  
+                                <FontAwesomeIcon icon="sign-in-alt"/> Log In
                             </Link>
                                 :
-                                <Link to={"/login"} type="button" href="/" role="button" className="btn btn-meadow" onClick={handleLogOut}>
-                                    <FontAwesomeIcon icon="sign-out-alt"/> Log Out
+                            <Link to={"/login"} type="button" href="/" role="button" className="btn btn-meadow" onClick={handleLogOut}>
+                                <FontAwesomeIcon icon="sign-out-alt"/> Log Out
                             </Link>}
                         </li>
                     </ul>

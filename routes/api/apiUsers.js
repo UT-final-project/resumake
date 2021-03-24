@@ -21,15 +21,10 @@ router.route('/:id')
   // Removes the user matching the provided ID
   .delete(userController.remove)
 
-// Matches with "api/users/login"
-// router.post("/login", passport.authenticate("local"), (req, res) => {
-//   console.log("/// API LOGIN ///");
-//   console.log(req.user);
-//   res.json({
-//     user: req.user,
-//     loggedIn: true
-//   })
-// })
+// Matches with "/api/users/email/:email"
+router.route('/email/:email')
+  // Responds with a single user matching the provided email
+  .get(userController.findByEmail)
 
 let userObj = {};
 
@@ -42,14 +37,13 @@ router.post("/login", (req, res, next) => {
       req.login(user, err => {
         if (err) throw err;
         userObj = user;
-        res.json({ userObj, loggedIn: true })
+        res.json({ userObj, loggedIn: true });
         console.log("/// Logged In ///");
         console.log({ userObj });
-      })
+      });
     }
   })(req, res, next);
-})
-
+});
 
 // Matches with "api/users/userhome"
 router.get("/" + userObj._id, isAuthenticated, (req, res) => {
@@ -58,17 +52,16 @@ router.get("/" + userObj._id, isAuthenticated, (req, res) => {
     else {
       res.json(user);
     }
-  })
-})
+  });
+});
 
 router.get("/populateduser", (req, res) => {
   console.log(req.body);
   User.findOne({ _id: req.body._id}).populate('resumes')
-})
+});
 
 router.post("/login", (req, res) => {
   req.logout(user);
-})
-
+});
 
 module.exports = router;

@@ -40,6 +40,12 @@ module.exports = {
             .then(dbModel => res.status(200).json(dbModel))
             .catch(err => res.status(422).json(err));
     },
+    findByEmail: function (req, res) {
+        db.User
+            .findOne({ email: req.params.email })
+            .then(dbModel => res.status(200).json(dbModel))
+            .catch(err => res.status(422).json(err));
+    },
     update: function (req, res) {
         db.User
             .findOneAndUpdate({ _id: req.params.id }, req.body)
@@ -53,7 +59,6 @@ module.exports = {
             .then(dbModel => res.status(200).json(dbModel))
             .catch(err => res.status(422).json(err));
     },
-
     populateUser: function (req, res){
         db.User
             .findById({_id: req.params.id })
@@ -61,7 +66,6 @@ module.exports = {
             .then(dbModel => res.status(200).json(dbModel))
             .catch(err => res.status(422).json(err));
     },
-
     loginUser: function (req, res, next) {
         passport.authenticate("local", {
             sucessRedirect: "/",
@@ -74,7 +78,6 @@ module.exports = {
             loggedIn: true
         })
     },
-
     getUserHomepage: function (req, res, next) {
         auth.isLoggedIn;
         res.json({
@@ -82,5 +85,4 @@ module.exports = {
             loggedIn: true,
         })
     }
-
 };

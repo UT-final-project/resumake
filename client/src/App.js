@@ -4,6 +4,7 @@ import Navbar from './components/Navbar/navbar.js';
 import Login from './components/Login/login.js';
 import UserForm from './components/UserForm/userForm.js';
 import Userhome from './components/Userhome/userhome.js';
+import Resume from './pages/Resume/Resume';
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { useState } from 'react';
 import API from "./utils/API";
@@ -30,9 +31,9 @@ function App() {
       })
       .catch((err) => {
         console.log(err);
-      })
+      });
     setUserLoggedIn(true);
-  }
+  };
 
   function getUser(user) {
     console.log("GET USER FUNCTION");
@@ -44,8 +45,8 @@ function App() {
     else {
       console.log("NO USER LOGGED IN");
       return;
-    }
-  }
+    };
+  };
 
   function handleLogOut(e) {
     e.preventDefault();
@@ -91,11 +92,14 @@ function App() {
             <Route exact path="/aboutus">
               <AboutUs/>
             </Route>
+            <Route exact path="/resume/:email">
+              <Resume/>
+            </Route>
           </Switch>
         </UserContext.Provider>
       </div>
     </Router>
   );
-}
+};
 
 export default App;

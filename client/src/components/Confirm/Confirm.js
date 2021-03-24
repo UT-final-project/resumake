@@ -1,5 +1,9 @@
 import React, { useState } from 'react';
 import './Confirm.css';
+import JobList from '../Lists/JobList/JobList';
+import EduList from '../Lists/EducationList/EducationList';
+import CertList from '../Lists/CertificationList/CertificationList';
+import SkillsList from '../Lists/SkillsList/SkillsList';
 import styled, { css } from 'styled-components';
 import { Redirect } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -37,24 +41,56 @@ const ResumeContent = styled.p`
 `
 
 function Confirm(props) {
-    const [redirect, setRedirect] = useState(false)
 
-    function handleRedirect(e) {
-        e.preventDefault();
-
-        setRedirect(true);
-    }
+    const [redirect, setRedirect] = useState(false);
 
     function capitalize(str) {
         return str.charAt(0).toUpperCase() + str.slice(1);
     };
 
+    function handleRedirect(e) {
+        e.preventDefault();
+        setRedirect(true);        
+    };
+
     return (
         <div className="container">
+            <h1 className="form-title">Review your Resume</h1>
+            <hr/>
+            <br/>
+            <h1>{capitalize(props.user.firstname)} {capitalize(props.user.lastname)}</h1>
+            {!props.summary.length && !props.skillList.length && !props.employment.length 
+            && !props.eduHistory.length && !props.certHistory.length ? (
+                <h3 id="noContent">No Resume content to display yet!</h3>
+            ) : (<div/>)}
+            {props.summary.length ? (
+                <div className="card">
+                    <div className="card-body">
+                        <p>{props.summary}</p>
+                    </div>
+                </div>
+            ) : (<div/>)}
+            <br/>
+            {props.employment.length ? (
+                <JobList employment={props.employment}/>
+            ) : (<div/>)}
+            <br/>
+            {props.eduHistory.length ? (
+                <EduList values={props.eduHistory}/>
+            ) : (<div/>)}
+            <br/>
+            {props.certHistory.length ? (
+                <CertList values={props.certHistory}/>
+            ) : (<div/>)}
+            <br/>
+            {props.skillList.length ? (
+                <SkillsList values={props.skillList}/>
+            ) : (<div/>)}
+            <br/>
+            <br/>
             {redirect ? <Redirect push to="/userhome" /> : <></>}
 
             {/* Modal starts here */}
-
             <div className="modal fade" id="submitModal" tabIndex="-1" aria-labelledby="submitModal" aria-hidden="true" onClick={handleRedirect}>
                 <div className="modal-dialog">
                     <div className="modal-content">
@@ -91,7 +127,7 @@ function Confirm(props) {
             {props.eduHistory.length ? (
                 props.eduHistory.map(school => {
                     return (
-                        <section>
+                        <section key={Math.random().toString(36).substr(2, 9)}>
                             <SubHeader>{school.school}</SubHeader>
                             <SubHeader light>{school.degree}</SubHeader>
                             <SubHeader light>{school.startYear} - {school.endYear}</SubHeader>
@@ -105,7 +141,7 @@ function Confirm(props) {
             {props.employment.length ? (
                 props.employment.map((jobs) => {
                     return (
-                        <section>
+                        <section key={Math.random().toString(36).substr(2, 9)}>
                             <SubHeader>{jobs.jobTitle} at {jobs.prevEmployer}</SubHeader>
                             <SubHeader light>{jobs.startDateMonth} {jobs.startDateYear} - {jobs.endDateMonth} {jobs.endDateYear}</SubHeader>
                             <SubHeader light>{jobs.jobDescription}</SubHeader>
@@ -119,7 +155,7 @@ function Confirm(props) {
             {props.skillList.length ? (
                 props.skillList.map((skill) => {
                     return (
-                        <section>
+                        <section key={Math.random().toString(36).substr(2, 9)}>
                             <SubHeader light>{skill}</SubHeader>
                         </section>
                     )
@@ -131,7 +167,7 @@ function Confirm(props) {
             {props.certHistory.length ? (
                 props.certHistory.map((cert) => {
                     return (
-                        <section>
+                        <section key={Math.random().toString(36).substr(2, 9)}>
                             <SubHeader>{cert.certificate}</SubHeader>
                             <SubHeader light>Awarded By: {cert.awardedBy}</SubHeader>
                         </section>

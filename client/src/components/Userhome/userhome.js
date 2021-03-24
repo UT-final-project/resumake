@@ -1,26 +1,24 @@
 import React, { useEffect, useContext } from 'react';
 import './userhome.css';
-import API from "../../utils/API";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import UserContext from "../../utils/UserContext";
 
 
 function Userhome({ getUser }) {
-    const { user, userLoggedIn } = useContext(UserContext);
+    const { user } = useContext(UserContext);
 
     function capitalize(str) {
         return str.charAt(0).toUpperCase() + str.slice(1);
-    }
+    };
 
     useEffect(() => {
         let mounted = true;
         if (mounted) {
             getUser(user);
-        }
-        
+        };
         return function cleanup() {
             mounted = false;
-        }
+        };
     }, []);
 
     return (
@@ -57,7 +55,7 @@ function Userhome({ getUser }) {
                 </div>
             </div>
         </div>
-    )
-}
+    );
+};
 
 export default Userhome;
