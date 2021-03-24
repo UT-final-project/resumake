@@ -45,9 +45,9 @@ const ResumeContent = styled.p`
 const ref = React.createRef();
 
 function Resume() {
-    const [display, setDisplay] = useState('pretty');
+    const [display, setDisplay] = useState('web');
     const [btnText, setBtnText] = useState('ATS');
-    const [btnIcon, setBtnIcon] = useState(faCode);
+    const [btnIcon, setBtnIcon] = useState(faRobot);
     // For security reasons state is constructed from API response
     // to avoid exposing passwords via React component analyzers
     const [resume, setResume] = useState({
@@ -69,6 +69,7 @@ function Resume() {
     },[]);
 
     useEffect(() => {
+        changeBtn();
     }, [display, resume]);
 
     const loadData = async (userEmail) => {
@@ -109,13 +110,21 @@ function Resume() {
 
     // Change display settings
     const changeDisplay = () => {
-        if (display === 'pretty') {
-            setDisplay('ATS version');
+        if (display === 'web') {
+            setDisplay('ats');
+        }
+        else if (display === 'ats') {
+            setDisplay('web');
+        };
+    };
+
+    // Change buttons on different displays
+    const changeBtn = () => {
+        if (display === 'web') {
             setBtnText('ATS');
             setBtnIcon(faRobot);
         }
-        else {
-            setDisplay('pretty');
+        else if (display === 'ats') {
             setBtnText('Web');
             setBtnIcon(faCode);
         };
@@ -148,7 +157,7 @@ function Resume() {
                         </Pdf>
                     </div>
                 </div>
-                {display === 'pretty' ? (
+                {display === 'web' ? (
                     // The web version of the resume
                     <div ref={ref}>
                         <h1>{capitalize(firstName)} {capitalize(lastName)}</h1>
@@ -171,6 +180,18 @@ function Resume() {
                         </Header>
                         <ResumeContent>{resume.abstract}</ResumeContent>
                         <br/>
+                        <Header primary>Employment</Header>
+                        <hr />
+                        {resume.employment.map((jobs) => {
+                            return(
+                                <section key={Math.random().toString(36).substr(2, 9)}>
+                                    <SubHeader>{jobs.jobTitle} at {jobs.prevEmployer}</SubHeader>
+                                    <SubHeader light>{jobs.startDateMonth} {jobs.startDateYear} - {jobs.endDateMonth} {jobs.endDateYear}</SubHeader>
+                                    <SubHeader light>{jobs.jobDescription}</SubHeader>
+                                </section>
+                            )
+                        })}
+                        <br />
                         <Header primary>Education</Header>
                         <hr/>
                         {resume.education.map(school => {
@@ -181,18 +202,6 @@ function Resume() {
                                     <SubHeader light>{school.startYear} - {school.endYear}</SubHeader>
                                 </section>
                             );
-                        })}
-                        <br />
-                        <Header primary>Experience</Header>
-                        <hr />
-                        {resume.employment.map((jobs) => {
-                            return(
-                                <section key={Math.random().toString(36).substr(2, 9)}>
-                                    <SubHeader>{jobs.jobTitle} at {jobs.prevEmployer}</SubHeader>
-                                    <SubHeader light>{jobs.startDateMonth} {jobs.startDateYear} - {jobs.endDateMonth} {jobs.endDateYear}</SubHeader>
-                                    <SubHeader light>{jobs.jobDescription}</SubHeader>
-                                </section>
-                            )
                         })}
                         <br />
                         <Header primary>Certifications</Header>
