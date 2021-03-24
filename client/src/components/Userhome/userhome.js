@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react';
 import './userhome.css';
-import API from "../../utils/API";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 

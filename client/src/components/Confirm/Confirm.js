@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './Confirm.css';
 import JobList from '../Lists/JobList/JobList';
 import EduList from '../Lists/EducationList/EducationList';

@@ -8,7 +8,6 @@ import Resume from './pages/Resume/Resume';
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { useState } from 'react';
 import API from "./utils/API";
-import ReactDOM from 'react-dom';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { fab } from '@fortawesome/free-brands-svg-icons';
 import { faPenFancy, faSave, faEye, faArrowRight, faArrowLeft, faPlus} from '@fortawesome/free-solid-svg-icons';

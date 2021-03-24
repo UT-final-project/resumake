@@ -7,7 +7,23 @@ h3#noContent {
   color: white;
 }
 
-button {
-  min-width: 110px;
-  max-height: 60px;
+button#pdf {
+  min-width: 80px;
+  max-height: 50px;
+  padding-left: 1px;
+  padding-right: 1px;
+}
+
+button#pdf:hover {
+  color: #212529;
+}
+
+button#pdf a {
+  color: white;
+  text-decoration: none;
+}
+
+button#pdf a:hover {
+  color: #212529;;
+  text-decoration: none;
 }

@@ -6,14 +6,11 @@ import JobList from '../../components/Lists/JobList/JobList';
 import EduList from '../../components/Lists/EducationList/EducationList';
 import CertList from '../../components/Lists/CertificationList/CertificationList';
 import SkillsList from '../../components/Lists/SkillsList/SkillsList';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faFilePdf } from '@fortawesome/free-solid-svg-icons';
-
+import PDF from '../PDF/PDF';
 
 function Resume() {
     // For security reasons state is constructed from API response
     // to avoid exposing passwords via React component analyzers
-    const { email } = useParams();
     const [resume, setResume] = useState({
         abstract: '',
         employment: [],
@@ -24,6 +21,7 @@ function Resume() {
     const [id, setId] = useState('');
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
+    const { email } = useParams();
 
     // When this component mounts, request the user ID with the email matching email from useParams()
     // e.g. localhost:3000/resume/user@mail.com, then use that ID to request a matching resume
@@ -63,6 +61,7 @@ function Resume() {
             .catch(err => console.log(err));
     };
 
+    // Capitalize the first and last names
     function capitalize(str) {
         return str.charAt(0).toUpperCase() + str.slice(1);
     };
@@ -75,7 +74,10 @@ function Resume() {
                     <h1>{capitalize(firstName)} {capitalize(lastName)}</h1>
                 </div>
                 <div className="col-4 d-flex justify-content-end">
-                    <button type="button" id="download" className="btn add-btn"><span className="fa-icon"><FontAwesomeIcon icon={faFilePdf}/></span> PDF</button>
+                    {/* <button type="button" id="download" className="btn add-btn">
+                        <span className="fa-icon"><FontAwesomeIcon icon={faFilePdf}/></span> PDF
+                    </button> */}
+                    <PDF/>
                 </div>
             </div>
             {!resume.abstract.length && !resume.skills.length && !resume.employment.length 
