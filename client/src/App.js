@@ -10,7 +10,8 @@ import API from "./utils/API";
 import ReactDOM from 'react-dom'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { fab } from '@fortawesome/free-brands-svg-icons'
-import { faPenFancy, faSave, faEye} from '@fortawesome/free-solid-svg-icons'
+import { faPenFancy, faSave, faEye } from '@fortawesome/free-solid-svg-icons'
+import UserContext from "./utils/UserContext";
 
 library.add(fab, faPenFancy, faSave, faEye)
 
@@ -23,7 +24,6 @@ function App() {
       .then((res) => {
         console.log(`isLoggedIn Response `, { res });
         setUser(res.data);
-
       })
       .catch((err) => {
         console.log(err);
@@ -31,7 +31,7 @@ function App() {
     setUserLoggedIn(true);
   }
 
-  function getUser() {
+  function getUser(user) {
     console.log("GET USER FUNCTION");
     if (userLoggedIn) {
       console.log("userLoggedIn");
@@ -44,37 +44,44 @@ function App() {
     }
   }
 
+  function handleLogOut(e) {
+    e.preventDefault();
+    setUser();
+    setUserLoggedIn(false);
+    console.log(`User log out status ${userLoggedIn}`);
+    API.logout(user);
+    window.location.href = "/login";
+  }
+
 
   return (
     <Router>
       <div>
-        <Navbar />
-        <Switch>
-          <Route exact path={["/", "/homepage"]}>
-            <Home
-              handleUserState={handleUserState}
-            />
-          </Route>
-          <Route exact path="/login">
-            <Login
-              handleUserState={handleUserState}
-            />
-          </Route>
-          <Route exact path="/form">
-            <UserForm 
-            userLoggedIn={userLoggedIn}
-            getUser={getUser}
-            user={user}
-            />
-          </Route>
-          <Route exact path="/userhome">
-            <Userhome
-              userLoggedIn={userLoggedIn}
-              getUser={getUser}
-              user={user}
-            />
-          </Route>
-        </Switch>
+        <UserContext.Provider value={{ user, userLoggedIn, handleLogOut }}>
+          <Navbar />
+          <Switch>
+            <Route exact path={["/", "/homepage"]}>
+              <Home
+                handleUserState={handleUserState}
+              />
+            </Route>
+            <Route exact path="/login">
+              <Login
+                handleUserState={handleUserState}
+              />
+            </Route>
+            <Route exact path="/form">
+              <UserForm
+                getUser={getUser}
+              />
+            </Route>
+            <Route exact path="/userhome">
+              <Userhome
+                getUser={getUser}
+              />
+            </Route>
+          </Switch>
+        </UserContext.Provider>
       </div>
     </Router>
   );

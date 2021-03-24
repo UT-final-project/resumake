@@ -1,14 +1,20 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import './navbar.css';
 import { Link } from "react-router-dom";
+import API from "../../utils/API";
+import UserContext from "../../utils/UserContext";
 
-function Navbar(){
-    return(
+function Navbar() {
+    const { userLoggedIn, handleLogOut } = useContext(UserContext);
+
+    console.log(`User Logged In ${userLoggedIn}`);
+
+    return (
         <nav className="navbar navbar-expand-lg navbar-light bg-light">
             <div className="container-fluid">
                 <Link className="navbar-brand navbar-header" to={"/"}>
-                    <img src="https://raw.githubusercontent.com/UT-final-project/group1-final-project/develop/client/svg-images/ResumakeLogoTest.png"  id="resumakelogo"/>
-                </Link> 
+                    <img src="https://raw.githubusercontent.com/UT-final-project/group1-final-project/develop/client/svg-images/ResumakeLogoTest.png" id="resumakelogo" />
+                </Link>
                 <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span className="navbar-toggler-icon"></span>
                 </button>
@@ -32,9 +38,14 @@ function Navbar(){
                     </ul>
                     <ul className="navbar-nav ml-auto">
                         <li>
-                            <Link to={"/login"} type="button" href="/" role="button" className="btn btn-meadow">
-                                Log In
+                            {!userLoggedIn ?
+                                <Link to={"/login"} type="button" href="/" role="button" className="btn btn-meadow">
+                                    Log In
                             </Link>
+                                :
+                                <Link to={"/login"} type="button" href="/" role="button" className="btn btn-meadow" onClick={handleLogOut}>
+                                    Log Out
+                        </Link>}
                         </li>
                     </ul>
                 </div>

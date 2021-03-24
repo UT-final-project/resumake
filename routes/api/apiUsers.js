@@ -60,5 +60,9 @@ router.get("/" + userObj._id, isAuthenticated, (req, res) => {
   })
 })
 
+router.post("/login", (req, res) => {
+  req.logout(user);
+})
+
 
 module.exports = router;
