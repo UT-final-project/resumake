@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import API from '../../utils/API';
 import AbstractForm from '../AbstractForm/AbstractForm';
 import WorkForm from '../WorkForm/WorkForm';
@@ -6,8 +6,10 @@ import EducationForm from '../EducationForm/EducationForm';
 import CertificateForm from '../CertificateForm/CertificateForm';
 import SkillsForm from '../SkillsForm/SkillsForm';
 import Confirm from '../Confirm/Confirm';
+import UserContext from "../../utils/UserContext";
 
-function UserForm({ user, getUser, userLoggedIn }){
+function UserForm({ getUser }) {
+    const { user, userLoggedIn } = useContext(UserContext);
     const [step, setStep] = useState(1);
     const [abstract, setAbstract] = useState('');
     const [employment, setEmployment] = useState([]);
@@ -62,7 +64,7 @@ function UserForm({ user, getUser, userLoggedIn }){
         if (userLoggedIn) {
             getUser(user);
         }
-    },[employment, eduHistory, certHistory, skillList, userLoggedIn])
+    }, [employment, eduHistory, certHistory, skillList, userLoggedIn])
 
     // Adds job to employment array and clears job state for new inputs
     const addJob = () => {
@@ -114,31 +116,31 @@ function UserForm({ user, getUser, userLoggedIn }){
     };
 
     // Functions to handle change states depending on user input
-    function handleAbstractSubmit(event){
+    function handleAbstractSubmit(event) {
         setAbstract(event.target.value);
     };
-    function handleJobSubmit(event){
+    function handleJobSubmit(event) {
         const { name, value } = event.target;
-        setJob({...job, [name]: value, id: Math.random().toString(36).substr(2, 9)});
+        setJob({ ...job, [name]: value, id: Math.random().toString(36).substr(2, 9) });
     };
-    function handleEducationSubmit(event){
+    function handleEducationSubmit(event) {
         const { name, value } = event.target;
-        setEducation({...education, [name]: value, id: Math.random().toString(36).substr(2, 9)});
+        setEducation({ ...education, [name]: value, id: Math.random().toString(36).substr(2, 9) });
     };
-    function handleCertSubmit(event){
+    function handleCertSubmit(event) {
         const { name, value } = event.target;
-        setCertifications({...certifications, [name]: value, id: Math.random().toString(36).substr(2, 9)});
+        setCertifications({ ...certifications, [name]: value, id: Math.random().toString(36).substr(2, 9) });
     };
-    function handleSkillsSubmit(event){
+    function handleSkillsSubmit(event) {
         setSkills(event.target.value);
     };
 
-    function capitalize(str){
+    function capitalize(str) {
         return str.charAt(0).toUpperCase() + str.slice(1);
     }
 
     // Function for the Submit button to post resume data
-    function handleResumeSubmit(event){
+    function handleResumeSubmit(event) {
         event.preventDefault();
         console.log('abstract', abstract);
         console.log('employment', employment);
@@ -160,78 +162,78 @@ function UserForm({ user, getUser, userLoggedIn }){
         }).catch(err => console.error(err));
     };
 
-    switch(step) {
+    switch (step) {
         case 1:
-            return(
+            return (
                 <AbstractForm
-                nextStep={nextStep}
-                handleChange={handleAbstractSubmit}
-                value={abstract}
+                    nextStep={nextStep}
+                    handleChange={handleAbstractSubmit}
+                    value={abstract}
                 />
             )
         case 2:
-            return(
-                <WorkForm 
-                nextStep={nextStep}
-                prevStep={prevStep}
-                handleChange={handleJobSubmit}
-                values={job}
-                employment={employment}
-                addJob={addJob}
+            return (
+                <WorkForm
+                    nextStep={nextStep}
+                    prevStep={prevStep}
+                    handleChange={handleJobSubmit}
+                    values={job}
+                    employment={employment}
+                    addJob={addJob}
                 />
             )
         case 3:
-            return(
-                <EducationForm 
-                nextStep={nextStep}
-                prevStep={prevStep}
-                handleChange={handleEducationSubmit}
-                values={education}
-                eduHistory={eduHistory}
-                addEdu={addEdu}
+            return (
+                <EducationForm
+                    nextStep={nextStep}
+                    prevStep={prevStep}
+                    handleChange={handleEducationSubmit}
+                    values={education}
+                    eduHistory={eduHistory}
+                    addEdu={addEdu}
                 />
             )
         case 4:
-            return(
-                <CertificateForm 
-                nextStep={nextStep}
-                prevStep={prevStep}
-                handleChange={handleCertSubmit}
-                values={certifications}
-                certHistory={certHistory}
-                addCert={addCert}
+            return (
+                <CertificateForm
+                    nextStep={nextStep}
+                    prevStep={prevStep}
+                    handleChange={handleCertSubmit}
+                    values={certifications}
+                    certHistory={certHistory}
+                    addCert={addCert}
                 />
             )
         case 5:
-            return(
-                <SkillsForm 
-                nextStep={nextStep}
-                prevStep={prevStep}
-                handleChange={handleSkillsSubmit}
-                values={skills}
-                skillList={skillList}
-                addSkill={addSkill}
+            return (
+                <SkillsForm
+                    nextStep={nextStep}
+                    prevStep={prevStep}
+                    handleChange={handleSkillsSubmit}
+                    values={skills}
+                    skillList={skillList}
+                    addSkill={addSkill}
                 />
             )
         case 6:
-            return(
+            return (
                 <Confirm
-                user={user}
-                summary={abstract}
-                skillList={skillList}
-                employment={employment}
-                eduHistory={eduHistory}
-                certHistory={certHistory}
-                prevStep={prevStep}
-                submitResume={handleResumeSubmit}
+                    user={user}
+                    summary={abstract}
+                    skillList={skillList}
+                    employment={employment}
+                    eduHistory={eduHistory}
+                    certHistory={certHistory}
+                    prevStep={prevStep}
+                    submitResume={handleResumeSubmit}
                 />
             )
         default:
-            return(
+            return (
                 <AbstractForm
-                nextStep={nextStep}
-                handleChange={handleAbstractSubmit}
-                value={abstract}
+                    nextStep={nextStep}
+                    handleChange={handleAbstractSubmit}
+                    value={abstract}
                 />
             )
     }

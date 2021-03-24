@@ -1,20 +1,26 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useContext } from 'react';
 import './userhome.css';
 import API from "../../utils/API";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import UserContext from "../../utils/UserContext";
 
 
-function Userhome({ user, getUser, userLoggedIn }) {
-    function capitalize(str){
+function Userhome({ getUser }) {
+    const { user, userLoggedIn } = useContext(UserContext);
+
+    function capitalize(str) {
         return str.charAt(0).toUpperCase() + str.slice(1);
     }
 
     useEffect(() => {
-        console.log(`User Logged In ${userLoggedIn}`);
-        if (userLoggedIn) {
+        let mounted = true;
+        if (mounted) {
             getUser(user);
         }
-    }, [userLoggedIn]);
+        return function cleanup() {
+            mounted = false;
+        }
+    }, []);
 
     return (
         // Whole Container

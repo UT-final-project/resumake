@@ -1,13 +1,20 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import API from '../../utils/API';
 import './login.css';
 import { Link, Redirect } from "react-router-dom";
+import UserContext from "../../utils/UserContext";
 
 function Login({ handleUserState }) {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [redirect, setRedirect] = useState(false);
-    // const [errorMessage, setErrorMessage] = useState("");
+    const { userLoggedIn } = useContext(UserContext);
+
+    useEffect(() => {
+        if (userLoggedIn) {
+            setRedirect(true);
+        }
+    }, [handleUserState, userLoggedIn]);
 
     function handleLogin(e) {
         e.preventDefault();
@@ -30,8 +37,7 @@ function Login({ handleUserState }) {
                         errorMessage.innerHTML = "Please enter a valid Email Address and Password";
                         return;
                     } else {
-                        handleUserState(loggedInUser._id);
-                        setRedirect(true);
+                        handleUserState(loggedInUser._id)
                     }
                 })
                 .catch(err => console.log(err));
@@ -56,8 +62,8 @@ function Login({ handleUserState }) {
                     <button type="button" className="btn login-btn" onClick={handleLogin}>Log In</button>
                     <p className="signup-redirect">Or you can
                     <Link to={"/"}>
-                        <span> Sign Up</span>
-                    </Link>
+                            <span> Sign Up</span>
+                        </Link>
                     </p>
                 </form>
             </div>
