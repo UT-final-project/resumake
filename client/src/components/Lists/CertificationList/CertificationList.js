@@ -22,7 +22,7 @@ function CertList(props){
                 </div>       
               </div>
               <div className="card-body">
-                <h5>{cert.awardedBy}</h5>
+                <h5 className="awarded-by">{cert.awardedBy}</h5>
               </div>
             </div>
             <br/>

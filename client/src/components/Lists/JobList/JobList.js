@@ -22,7 +22,7 @@ function JobList(props){
                 </div>       
               </div>
               <div className="card-body">
-                <h5>{jobs.jobTitle}</h5>
+                <h5 className="job-title">{jobs.jobTitle}</h5>
                 <p className="card-text">{jobs.jobDescription}</p>
               </div>
             </div>
