@@ -10,22 +10,23 @@ function AboutUs () {
                 <br/>
                 <br/>
                 <p class="d">
-                Resumake was created with our user in mind. We know that your time is important and that making a great impression is vital to landing the job of your dreams. That's where we come in! We've created a resume builder that will make it easy for you to have a PDF version generated and apply for as many jobs as possible.
+                Don’t you wish there was an easier way to make a resume and share it? That’s why we created Resu-Make, a resume builder application that helps you create your resume with ease. To get started create an account, fill out our form, and you’ll have access to your resume as a PDF file and as a web page for ease of access. Here's what makes us special:
+
                 </p>
             </div>
 
             <div className="container row reasonscontainer">
                 <div className="col-md-4 d-flex justify-content-around reasonscard">
                     <h2 className="reasons">1</h2>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Vulputate odio ut enim blandit. </p>
+                    <p>Not only will you be able to have a PDF generated with your employment history, we also create a webpage that employers can view! Stand out from the crowd!</p>
                 </div>
                 <div className="col-md-4 d-flex justify-content-around reasonscard">
                     <h2 className="reasons">2</h2>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Vulputate odio ut enim blandit. </p>
+                    <p>Have to manually enter your employment history? Save time with our generator by using our text version to copy and paste! Allowing more time to apply for jobs!</p>
                 </div>
                 <div className="col-md-4 d-flex justify-content-around reasonscard">
                     <h2 className="reasons">3</h2>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Vulputate odio ut enim blandit. </p>
+                    <p>We've got some great features that we are planning on adding to this application! Make sure to stick around for these updates as we work on templates and styling for you!</p>
                 </div>
             </div>
 
@@ -33,7 +34,7 @@ function AboutUs () {
                 <h1 class="display-4">Our Team</h1>
                 <br/>
                 <p class="lead">
-                The people who made Resumake possible!
+                The people who made Resu-make possible!
                 </p>
             </div>
 
