@@ -1,6 +1,8 @@
 import React from 'react';
 import CertList from '../Lists/CertificationList/CertificationList'
 import '../UserForm/userForm.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+
 
 function CertificateForm(props){
     return(
@@ -17,10 +19,10 @@ function CertificateForm(props){
                             <input type="text" className="form-control" id="awardedByInput" placeholder="ex. Codecademy" name="awardedBy" value={props.values.awardedBy} onChange={props.handleChange}/>
                         </div>
                     </form>
-                    <button type="submit" className="btn add-btn" onClick={props.addCert}>+ Add</button>
+                    <button type="submit" className="btn add-btn" onClick={props.addCert}><FontAwesomeIcon icon="plus"/> Add</button>
                     <br />
-                    <button type="button" className="btn back-btn" onClick={props.prevStep}>Back</button>
-                    <button type="button" className="btn continue-btn" onClick={props.nextStep}>Continue</button>
+                    <button type="button" className="btn back-btn" onClick={props.prevStep}><FontAwesomeIcon icon="arrow-left"/> Back</button>
+                    <button type="button" className="btn continue-btn" onClick={props.nextStep}><FontAwesomeIcon icon="arrow-right"/> Continue</button>
                     <br/>
                     {props.certHistory.length ? (
                         <section>

@@ -1,5 +1,6 @@
 import React from 'react';
 import '../UserForm/userForm.css'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 function AbstractForm(props){
     return(
@@ -21,7 +22,7 @@ function AbstractForm(props){
                             <textarea className="form-control" id="abstractTextArea" rows="8" defaultValue={props.value} onChange={props.handleChange}/>
                         </div>
                     </form>
-                    <button type="button" className="btn continue-btn" onClick={props.nextStep}>Continue</button>
+                    <button type="button" className="btn continue-btn" onClick={props.nextStep}><FontAwesomeIcon icon="arrow-right"/> Continue</button>
                 </div>
             </div>
         </div>

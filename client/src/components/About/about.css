@@ -1,0 +1,17 @@
+h1, h2, h3, h4, h5, h6 {
+    color: #000000;
+}
+
+.aboutus, .fullabout {
+    background-color: #f8f9fa;
+    border-radius: 0;
+    border-top: solid 1px #e9ecef;
+}
+.reasons{
+    font-size: 70px;
+    margin-right: 20px;
+}
+.reasonscard{
+    margin-top: 20px;
+    margin-bottom: 20px;
+}

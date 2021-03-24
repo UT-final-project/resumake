@@ -2,6 +2,8 @@ import React from 'react';
 import EduList from '../Lists/EducationList/EducationList';
 import _ from "lodash";
 import '../UserForm/userForm.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+
 
 function EducationForm(props){
     const current = new Date();
@@ -46,10 +48,10 @@ function EducationForm(props){
                             </div>
                         </div>
                     </form>
-                    <button type="submit" className="btn add-btn" onClick={props.addEdu}>+ Add</button>
+                    <button type="submit" className="btn add-btn" onClick={props.addEdu}><FontAwesomeIcon icon="plus"/> Add</button>
                     <br />
-                    <button type="button" className="btn back-btn" onClick={props.prevStep}>Back</button>
-                    <button type="button" className="btn continue-btn" onClick={props.nextStep}>Continue</button>
+                    <button type="button" className="btn back-btn" onClick={props.prevStep}><FontAwesomeIcon icon="arrow-left"/> Back</button>
+                    <button type="button" className="btn continue-btn" onClick={props.nextStep}><FontAwesomeIcon icon="arrow-right"/> Continue</button>
                     <br/>
                     {props.eduHistory.length ? (
                         <section>
