@@ -36,7 +36,7 @@ function capitalize(str) {
     return str.charAt(0).toUpperCase() + str.slice(1);
 };
 
-function PDF(props){
+function PDFContent(props){
   return (
     <div className="container">
       <br/>
@@ -108,4 +108,4 @@ function PDF(props){
   );
 };
 
-export default PDF;
+export default PDFContent;
