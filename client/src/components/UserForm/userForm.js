@@ -133,7 +133,6 @@ function UserForm({ user, getUser, userLoggedIn }){
     function handleSkillsSubmit(event){
         setSkills(event.target.value);
     };
-
     function capitalize(str){
         return str.charAt(0).toUpperCase() + str.slice(1);
     };

@@ -14,7 +14,7 @@ import styled, { css } from 'styled-components';
 
 // styled-components applied to PDF content
 const Header = styled.h1`
-    font-size: 56px;
+    font-size: 2.5rem;
     font-family:Georgia, 'Times New Roman', Times, serif;
     text-align: left;
     ${props =>
@@ -45,6 +45,8 @@ const ResumeContent = styled.p`
 
 function Resume() {
     const [display, setDisplay] = useState('pretty');
+    const [btnText, setBtnText] = useState('ATS');
+    const [btnIcon, setBtnIcon] = useState(faCode);
     // For security reasons state is constructed from API response
     // to avoid exposing passwords via React component analyzers
     const [resume, setResume] = useState({
@@ -105,8 +107,18 @@ function Resume() {
         return str.charAt(0).toUpperCase() + str.slice(1);
     };
 
+    // Change display settings
     const changeDisplay = () => {
-        display === 'pretty' ? setDisplay('ATS version') : setDisplay('pretty');
+        if (display === 'pretty') {
+            setDisplay('ATS version');
+            setBtnText('ATS');
+            setBtnIcon(faRobot);
+        }
+        else {
+            setDisplay('pretty');
+            setBtnText('Web');
+            setBtnIcon(faCode);
+        };
     };
 
     // PDF export config
@@ -117,30 +129,30 @@ function Resume() {
         format: [4,2]
     };
 
-    const dl = () => {
+    // const dl = () => {
 
-    };
+    // };
 
     return (
         <section className="container">
             <br/><br/>
-            {display === 'pretty' ? (
-                <div>
-                    <div className="row">
-                        <div className="col-8">
-                            <h1>{capitalize(firstName)} {capitalize(lastName)}</h1>
-                        </div>
-                        <div className="col-2 d-flex justify-content-end">
-                                <button type="button" id="download" className="btn back-btn" onClick={changeDisplay}>
-                                    <span className="fa-icon"><FontAwesomeIcon icon={faRobot}/></span> ATS
-                                </button>
-                            </div>
-                        <div className="col-2 d-flex justify-content-end">
-                            <button type="button" id="download" className="btn add-btn" onClick={dl}>
-                                <span className="fa-icon"><FontAwesomeIcon icon={faFilePdf}/></span> PDF
-                            </button>
-                        </div>
+            <div className="row d-flex justify-content-end">
+                <div className="col-8"/>
+                <div className="col d-flex justify-content-center">
+                        <button type="button" id="download" className="btn back-btn" onClick={changeDisplay}>
+                            <span className="fa-icon"><FontAwesomeIcon icon={btnIcon}/></span> {btnText}
+                        </button>
                     </div>
+                <div className="col d-flex justify-content-center">
+                    <button type="button" id="download" className="btn add-btn">
+                        <span className="fa-icon"><FontAwesomeIcon icon={faFilePdf}/></span> PDF
+                    </button>
+                </div>
+            </div>
+            {display === 'pretty' ? (
+                // The web version of the resume
+                <div>
+                    <h1>{capitalize(firstName)} {capitalize(lastName)}</h1>
                     {!resume.abstract.length && !resume.skills.length && !resume.employment.length 
                     && !resume.education.length && !resume.certifications.length ? (
                         <h3 id="noContent">No Resume content to display yet!</h3>
@@ -167,35 +179,15 @@ function Resume() {
                     ) : (<div/>)}
                 </div>
             ) : (
+                // The ATS version of the Resume
                 <div>
                     <Header>
-                        <div className="row">
-                            <div className="col-8">
-                                <h1>{capitalize(firstName)} {capitalize(lastName)}</h1>
-                            </div>
-                            <div className="col-2 d-flex justify-content-end">
-                                <button type="button" id="download" className="btn back-btn" onClick={changeDisplay}>
-                                    <span className="fa-icon"><FontAwesomeIcon icon={faCode}/></span> Web
-                                </button>
-                            </div>
-                            <div className="col-2 d-flex justify-content-end">
-                                <button type="button" id="download" className="btn add-btn" onClick={dl}>
-                                    <span className="fa-icon"><FontAwesomeIcon icon={faFilePdf}/></span> PDF
-                                </button>
-                                <ReactToPdf targetRef={ref} filename="div-blue.pdf" options={options} x={.5} y={.5} scale={0.8}>
-                                    {({toPdf}) => (
-                                        <button onClick={toPdf}>Generate pdf</button>
-                                    )}
-                                </ReactToPdf>
-                            </div>
-                        </div>
+                        <p>{capitalize(firstName)} {capitalize(lastName)}</p>
                     </Header>
                     {!resume.abstract.length && !resume.skills.length && !resume.employment.length 
                     && !resume.education.length && !resume.certifications.length ? (
                         <h3 id="noContent">No Resume content to display yet!</h3>
                     ) : (<div/>)}
-                    <Header primary>Summary</Header>
-                    <hr/>
                     {resume.abstract.length ? (
                         <ResumeContent>{resume.abstract}</ResumeContent>
                     ) : (<div/>)}
@@ -228,18 +220,6 @@ function Resume() {
                         })
                     ) : (<div />)}
                     <br />
-                    <Header primary>Skills</Header>
-                    <hr />
-                    {resume.skills.length ? (
-                        resume.skills.map((skill) => {
-                            return(
-                                <section key={Math.random().toString(36).substr(2, 9)}>
-                                    <SubHeader light>{skill}</SubHeader>
-                                </section>
-                            )
-                        })
-                    ) : (<div />)}
-                    <br />
                     <Header primary>Certifications</Header>
                     <hr />
                     {resume.certifications.length ? (
@@ -248,6 +228,18 @@ function Resume() {
                                 <section key={Math.random().toString(36).substr(2, 9)}>
                                     <SubHeader>{cert.certificate}</SubHeader>
                                     <SubHeader light>Awarded By: {cert.awardedBy}</SubHeader>
+                                </section>
+                            )
+                        })
+                    ) : (<div />)}
+                    <br />
+                    <Header primary>Skills</Header>
+                    <hr />
+                    {resume.skills.length ? (
+                        resume.skills.map((skill) => {
+                            return(
+                                <section key={Math.random().toString(36).substr(2, 9)}>
+                                    <SubHeader light>{skill}</SubHeader>
                                 </section>
                             )
                         })
