@@ -73,8 +73,9 @@ function Resume() {
     useEffect(() => {
     }, [display]);
 
-    useEffect(() => {
-    }, [id]);
+    // useEffect(() => {
+    //     loadResume(id);
+    // }, [id]);
 
     const loadData = (userEmail) => {
         API.findUserByEmail(userEmail)
@@ -160,30 +161,16 @@ function Resume() {
                     // The web version of the resume
                     <div ref={ref}>
                         <h1>{capitalize(firstName)} {capitalize(lastName)}</h1>
-                        {!resume.abstract.length && !resume.skills.length && !resume.employment.length 
-                        && !resume.education.length && !resume.certifications.length ? (
-                            <h3 id="noContent">No Resume content to display yet!</h3>
-                        ) : (<div/>)}
-                        {resume.abstract.length ? (
                             <div className="card">
                                 <div className="card-body">
                                     <p>{resume.abstract}</p>
                                 </div>
                             </div>
-                        ) : (<div/>)}
                         <br/>
-                        {resume.employment.length ? (
-                            <JobList employment={resume.employment}/>
-                        ) : (<div/>)}
-                        {resume.education.length ? (
-                            <EduList values={resume.education}/>
-                        ) : (<div/>)}
-                        {resume.certifications.length ? (
-                            <CertList values={resume.certifications}/>
-                        ) : (<div/>)}
-                        {resume.skills.length ? (
-                            <SkillsList values={resume.skills}/>
-                        ) : (<div/>)}
+                        <JobList employment={resume.employment}/>
+                        <EduList values={resume.education}/>
+                        <CertList values={resume.certifications}/>
+                        <SkillsList values={resume.skills}/>
                     </div>
                 ) : (
                     // The ATS version of the Resume
@@ -191,66 +178,52 @@ function Resume() {
                         <Header>
                             <p>{capitalize(firstName)} {capitalize(lastName)}</p>
                         </Header>
-                        {!resume.abstract.length && !resume.skills.length && !resume.employment.length 
-                        && !resume.education.length && !resume.certifications.length ? (
-                            <h3 id="noContent">No Resume content to display yet!</h3>
-                        ) : (<div/>)}
-                        {resume.abstract.length ? (
-                            <ResumeContent>{resume.abstract}</ResumeContent>
-                        ) : (<div/>)}
+                        <ResumeContent>{resume.abstract}</ResumeContent>
                         <br/>
                         <Header primary>Education</Header>
                         <hr/>
-                        {resume.education.length ? (
-                            resume.education.map(school => {
-                                return(
-                                    <section key={Math.random().toString(36).substr(2, 9)}>
-                                        <SubHeader>{school.school}</SubHeader>
-                                        <SubHeader light>{school.degree}</SubHeader>
-                                        <SubHeader light>{school.startYear} - {school.endYear}</SubHeader>
-                                    </section>
-                                );
-                            })
-                        ) : (<div />)}
+                        {resume.education.map(school => {
+                            return(
+                                <section key={Math.random().toString(36).substr(2, 9)}>
+                                    <SubHeader>{school.school}</SubHeader>
+                                    <SubHeader light>{school.degree}</SubHeader>
+                                    <SubHeader light>{school.startYear} - {school.endYear}</SubHeader>
+                                </section>
+                            );
+                        })}
                         <br />
                         <Header primary>Experience</Header>
                         <hr />
-                        {resume.employment.length ? (
-                            resume.employment.map((jobs) => {
-                                return(
-                                    <section key={Math.random().toString(36).substr(2, 9)}>
-                                        <SubHeader>{jobs.jobTitle} at {jobs.prevEmployer}</SubHeader>
-                                        <SubHeader light>{jobs.startDateMonth} {jobs.startDateYear} - {jobs.endDateMonth} {jobs.endDateYear}</SubHeader>
-                                        <SubHeader light>{jobs.jobDescription}</SubHeader>
-                                    </section>
-                                )
-                            })
-                        ) : (<div />)}
+                        {resume.employment.map((jobs) => {
+                            return(
+                                <section key={Math.random().toString(36).substr(2, 9)}>
+                                    <SubHeader>{jobs.jobTitle} at {jobs.prevEmployer}</SubHeader>
+                                    <SubHeader light>{jobs.startDateMonth} {jobs.startDateYear} - {jobs.endDateMonth} {jobs.endDateYear}</SubHeader>
+                                    <SubHeader light>{jobs.jobDescription}</SubHeader>
+                                </section>
+                            )
+                        })}
                         <br />
                         <Header primary>Certifications</Header>
                         <hr />
-                        {resume.certifications.length ? (
-                            resume.certifications.map((cert) => {
+                            {resume.certifications.map((cert) => {
                                 return(
                                     <section key={Math.random().toString(36).substr(2, 9)}>
                                         <SubHeader>{cert.certificate}</SubHeader>
                                         <SubHeader light>Awarded By: {cert.awardedBy}</SubHeader>
                                     </section>
                                 )
-                            })
-                        ) : (<div />)}
+                            })}
                         <br />
                         <Header primary>Skills</Header>
                         <hr />
-                        {resume.skills.length ? (
-                            resume.skills.map((skill) => {
+                            {resume.skills.map((skill) => {
                                 return(
                                     <section key={Math.random().toString(36).substr(2, 9)}>
                                         <SubHeader light>{skill}</SubHeader>
                                     </section>
                                 )
-                            })
-                        ) : (<div />)}
+                            })}
                     </div>
                 )}
                 <br/><br/>
