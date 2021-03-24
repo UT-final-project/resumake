@@ -9,12 +9,10 @@ const ResumeSchema = new Schema({
     firstName: {
         type: String,
         trim: true,
-        required: true
     },
     lastName: {
         type: String,
         trim: true,
-        required: true
     },
     abstract: {
         type: String,
@@ -48,5 +46,6 @@ const ResumeSchema = new Schema({
     }
 });
 
+const Resume = mongoose.model('Resume', ResumeSchema);
 
-module.exports = mongoose.model('Resume', ResumeSchema);
+module.exports = Resume;

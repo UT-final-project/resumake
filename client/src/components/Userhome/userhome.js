@@ -1,19 +1,25 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useContext } from 'react';
 import './userhome.css';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import UserContext from "../../utils/UserContext";
 
 
-function Userhome({ user, getUser, userLoggedIn }) {
-    function capitalize(str){
+function Userhome({ getUser }) {
+    const { user } = useContext(UserContext);
+
+    function capitalize(str) {
         return str.charAt(0).toUpperCase() + str.slice(1);
     };
 
     useEffect(() => {
-        console.log(`User Logged In ${userLoggedIn}`);
-        if (userLoggedIn) {
+        let mounted = true;
+        if (mounted) {
             getUser(user);
         };
-    }, [userLoggedIn]);
+        return function cleanup() {
+            mounted = false;
+        };
+    }, []);
 
     return (
         // Whole Container
@@ -34,8 +40,7 @@ function Userhome({ user, getUser, userLoggedIn }) {
                         <br />
                         <br />
                         <div className="row d-flex justify-content-around">
-                            <div className="col-6"><button type="button" className="btn userhomebtn editresume-btn"><FontAwesomeIcon icon="pen-fancy"/> Edit Resume</button></div>
-                            <div className="col-6"><button type="button" className="btn userhomebtn download-btn"><FontAwesomeIcon icon="save"/> Download Resume</button></div>
+                            <div className="col-12"><button type="button" className="btn userhomebtn editresume-btn"><FontAwesomeIcon icon="pen-fancy"/> Edit Resume</button></div>
                         </div>
                     </div>
                     <div className="col-md-6 resumesection">

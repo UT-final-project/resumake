@@ -6,3 +6,12 @@ h1 {
 h3#noContent {
   color: white;
 }
+
+.userhomebtn {
+  font-family: 'Lato', sans-serif;
+  background-color: #AEBD38;
+  padding: 10px;
+  color:#ffffff;
+  margin: 20px;
+  font-weight: 600;
+}

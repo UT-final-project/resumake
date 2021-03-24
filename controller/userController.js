@@ -59,6 +59,13 @@ module.exports = {
             .then(dbModel => res.status(200).json(dbModel))
             .catch(err => res.status(422).json(err));
     },
+    populateUser: function (req, res){
+        db.User
+            .findById({_id: req.params.id })
+            .populate('resumes')
+            .then(dbModel => res.status(200).json(dbModel))
+            .catch(err => res.status(422).json(err));
+    },
     loginUser: function (req, res, next) {
         passport.authenticate("local", {
             sucessRedirect: "/",

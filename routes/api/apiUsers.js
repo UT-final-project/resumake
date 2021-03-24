@@ -3,6 +3,7 @@ const userController = require("../../controller/userController");
 const passport = require("../../config/passportConfig");
 const isAuthenticated = require("../../config/isAuthenticated");
 const User = require("../../models/User");
+const { db } = require("../../models/User");
 
 // Matches with "/api/users"
 router.route("/")
@@ -14,7 +15,7 @@ router.route("/")
 // Matches with "/api/users/:id"
 router.route('/:id')
   // Responds with a single user matching the provided ID
-  .get(userController.findById)
+  .get(userController.populateUser)
   // Updates a user's properties matching the provided ID
   .put(userController.update)
   // Removes the user matching the provided ID
@@ -52,6 +53,15 @@ router.get("/" + userObj._id, isAuthenticated, (req, res) => {
       res.json(user);
     }
   });
+});
+
+router.get("/populateduser", (req, res) => {
+  console.log(req.body);
+  User.findOne({ _id: req.body._id}).populate('resumes')
+});
+
+router.post("/login", (req, res) => {
+  req.logout(user);
 });
 
 module.exports = router;
