@@ -57,6 +57,17 @@ UserSchema.methods.validPassword = function (password, encrypted) {
   return bcrypt.compareSync(password, encrypted);
 }
 
+function populateUsers(){
+  return User.findOne({_id: user._id})
+      .populate('resumes')
+      .exec(function(err, resumes){
+          if (err) throw err;
+          console.log("Populated user with resumes!" + resumes)
+      });
+}
+
+
+
 const User = mongoose.model('User', UserSchema);
 
 module.exports = User;
