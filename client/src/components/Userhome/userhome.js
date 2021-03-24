@@ -7,13 +7,13 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 function Userhome({ user, getUser, userLoggedIn }) {
     function capitalize(str){
         return str.charAt(0).toUpperCase() + str.slice(1);
-    }
+    };
 
     useEffect(() => {
         console.log(`User Logged In ${userLoggedIn}`);
         if (userLoggedIn) {
             getUser(user);
-        }
+        };
     }, [userLoggedIn]);
 
     return (
@@ -51,7 +51,7 @@ function Userhome({ user, getUser, userLoggedIn }) {
                 </div>
             </div>
         </div>
-    )
-}
+    );
+};
 
 export default Userhome;

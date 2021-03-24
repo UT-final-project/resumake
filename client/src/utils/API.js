@@ -6,12 +6,13 @@ export default {
     createUser: function (userData) {
         return axios.post("/api/users", userData);
     },
-    findUserByEmail: function (email) {
-        return axios.get("/api/users/email/" + email);
+    findUserByEmail: function (userEmail) {
+        console.log(userEmail);
+        return axios.get(`/api/users/email/${userEmail}`);
     },
     // Returns an individual resume from the DB matching the provided user ID
     findResumeByAuthor: function (id) {
-        return axios.get("/api/resume/" + id);
+        return axios.get(`/api/resume/${id}`);
     },
     // Login user
     loginUser: function (userData) {

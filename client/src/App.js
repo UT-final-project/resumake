@@ -13,7 +13,7 @@ import { library } from '@fortawesome/fontawesome-svg-core';
 import { fab } from '@fortawesome/free-brands-svg-icons';
 import { faPenFancy, faSave, faEye, faArrowRight, faArrowLeft, faPlus} from '@fortawesome/free-solid-svg-icons';
 
-library.add(fab, faPenFancy, faSave, faEye, faArrowRight, faArrowLeft, faPlus)
+library.add(fab, faPenFancy, faSave, faEye, faArrowRight, faArrowLeft, faPlus);
 
 function App() {
   const [user, setUser] = useState();
@@ -74,8 +74,8 @@ function App() {
               user={user}
             />
           </Route>
-          <Route>
-            <Resume exact path="/resume/:email"/>
+          <Route exact path="/resume/:email">
+            <Resume/>
           </Route>
         </Switch>
       </div>
