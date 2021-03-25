@@ -11,43 +11,13 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFilePdf, faCode, faRobot } from '@fortawesome/free-solid-svg-icons';
 import styled, { css } from 'styled-components';
 
-// styled-components applied to PDF content
-const Header = styled.h1`
-    font-size: 2.5rem;
-    font-family:Georgia, 'Times New Roman', Times, serif;
-    text-align: left;
-    ${props =>
-    props.primary && 
-    css`
-        text-align: left;
-        font-size: 32px;
-    `}
-`;
-
-const SubHeader = styled.h2`
-    font-size: 24px;
-    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-    font-weight: 800;
-    ${props =>
-    props.light &&
-    css`
-        font-size: 20px;
-        font-weight: 200;
-    `}
-`;
-
-const ResumeContent = styled.p`
-    font-size: 18px;
-    font-family: Arial, Helvetica, sans-serif;
-    color: white;
-`;
-
+// Allows for direct DOM manipulation of React components -> print component to PDF
 const ref = React.createRef();
 
 function Resume() {
-    const [display, setDisplay] = useState('pretty');
+    const [display, setDisplay] = useState('web');
     const [btnText, setBtnText] = useState('ATS');
-    const [btnIcon, setBtnIcon] = useState(faCode);
+    const [btnIcon, setBtnIcon] = useState(faRobot);
     // For security reasons state is constructed from API response
     // to avoid exposing passwords via React component analyzers
     const [resume, setResume] = useState({
@@ -69,10 +39,12 @@ function Resume() {
     },[]);
 
     useEffect(() => {
+        changeBtn();
     }, [display, resume]);
 
     const loadData = async (userEmail) => {
-        let usrId = await API.findUserByEmail(userEmail)
+        // Ensures that the author ID is obtained from the DB for the next API call
+        let author = await API.findUserByEmail(userEmail)
             .then(res => {
                 if (res.length === 0) {
                     throw new Error("No users found!");
@@ -85,9 +57,10 @@ function Resume() {
                 return res.data._id;
             })
             .catch(err => console.log(err));
-            loadResume(usrId);
+            loadResume(author);
     };
 
+    // Uses the author ID to request the matching resume from the DB
     const loadResume = (userId) => {
         API.findResumeByAuthor(userId)
             .then(res => {
@@ -109,13 +82,21 @@ function Resume() {
 
     // Change display settings
     const changeDisplay = () => {
-        if (display === 'pretty') {
-            setDisplay('ATS version');
+        if (display === 'web') {
+            setDisplay('ats');
+        }
+        else if (display === 'ats') {
+            setDisplay('web');
+        };
+    };
+
+    // Change buttons on different displays
+    const changeBtn = () => {
+        if (display === 'web') {
             setBtnText('ATS');
             setBtnIcon(faRobot);
         }
-        else {
-            setDisplay('pretty');
+        else if (display === 'ats') {
             setBtnText('Web');
             setBtnIcon(faCode);
         };
@@ -124,13 +105,14 @@ function Resume() {
     // PDF export config
     const options = {
         orientation: 'portrait',
-        unit: 'in',
-        format: [100,800]
+        unit: 'px',
+        format: [1300, 800]
     };
 
     return (
-        <section className="container">
-            {!resume ? (<div>Nothing to Show</div>) : (<div>
+        <section className="container" id="resume">
+            {!resume ? (<div>Nothing to Show</div>) : (
+            <div id="content">
                 <br/><br/>
                 <div className="row d-flex justify-content-end">
                     <div className="col-8"/>
@@ -140,7 +122,7 @@ function Resume() {
                             </button>
                         </div>
                     <div className="col d-flex justify-content-center">
-                        <Pdf targetRef={ref} filename={`${firstName}${lastName}-resume.pdf`} options={options}>
+                        <Pdf targetRef={ref} filename={`${firstName}${lastName}-resume.pdf`} options={options} x={50} y={50}>
                             {({ toPdf }) => 
                                 <button type="button" id="download" className="btn add-btn" onClick={toPdf}>
                                     <span className="fa-icon"><FontAwesomeIcon icon={faFilePdf}/></span> PDF
@@ -148,7 +130,7 @@ function Resume() {
                         </Pdf>
                     </div>
                 </div>
-                {display === 'pretty' ? (
+                {display === 'web' ? (
                     // The web version of the resume
                     <div ref={ref}>
                         <h1>{capitalize(firstName)} {capitalize(lastName)}</h1>
@@ -171,6 +153,18 @@ function Resume() {
                         </Header>
                         <ResumeContent>{resume.abstract}</ResumeContent>
                         <br/>
+                        <Header primary>Employment</Header>
+                        <hr />
+                        {resume.employment.map((jobs) => {
+                            return(
+                                <section key={Math.random().toString(36).substr(2, 9)}>
+                                    <SubHeader>{jobs.jobTitle} at {jobs.prevEmployer}</SubHeader>
+                                    <SubHeader light>{jobs.startDateMonth} {jobs.startDateYear} - {jobs.endDateMonth} {jobs.endDateYear}</SubHeader>
+                                    <SubHeader light>{jobs.jobDescription}</SubHeader>
+                                </section>
+                            )
+                        })}
+                        <br />
                         <Header primary>Education</Header>
                         <hr/>
                         {resume.education.map(school => {
@@ -181,18 +175,6 @@ function Resume() {
                                     <SubHeader light>{school.startYear} - {school.endYear}</SubHeader>
                                 </section>
                             );
-                        })}
-                        <br />
-                        <Header primary>Experience</Header>
-                        <hr />
-                        {resume.employment.map((jobs) => {
-                            return(
-                                <section key={Math.random().toString(36).substr(2, 9)}>
-                                    <SubHeader>{jobs.jobTitle} at {jobs.prevEmployer}</SubHeader>
-                                    <SubHeader light>{jobs.startDateMonth} {jobs.startDateYear} - {jobs.endDateMonth} {jobs.endDateYear}</SubHeader>
-                                    <SubHeader light>{jobs.jobDescription}</SubHeader>
-                                </section>
-                            )
                         })}
                         <br />
                         <Header primary>Certifications</Header>
@@ -222,5 +204,40 @@ function Resume() {
         </section>
     );
 };
+
+// styled-components applied to PDF content
+const Header = styled.h1`
+    font-size: 2.5rem;
+    font-family:Georgia, 'Times New Roman', Times, serif;
+    text-align: left;
+    color: black;
+    ${props =>
+    props.primary && 
+    css`
+        text-align: left;
+        font-size: 32px;
+        color: black;
+    `}
+`;
+
+const SubHeader = styled.h2`
+    font-size: 24px;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-weight: 800;
+    color: black;
+    ${props =>
+    props.light &&
+    css`
+        font-size: 20px;
+        font-weight: 200;
+        color: black;
+    `}
+`;
+
+const ResumeContent = styled.p`
+    font-size: 18px;
+    font-family: Arial, Helvetica, sans-serif;
+    color: black;
+`;
 
 export default Resume;
