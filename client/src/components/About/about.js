@@ -71,10 +71,10 @@ function AboutUs () {
                         </div>
                     </div>
                     <div className="container ourcontainer col-sm-2">
-                        <a href="https://charliecan2.github.io/"><img alt="carlos" src="https://raw.githubusercontent.com/UT-final-project/group1-final-project/develop/client/svg-images/Carlos.png" className="ourphotos"/></a>
+                        <a href="https://charliecan2-react-portfolio.herokuapp.com/"><img alt="carlos" src="https://raw.githubusercontent.com/UT-final-project/group1-final-project/develop/client/svg-images/Carlos.png" className="ourphotos"/></a>
                         <div className="middle">
                         <div className="text">
-                                <a href="https://charliecan2.github.io/" target="blank">
+                                <a href="https://charliecan2-react-portfolio.herokuapp.com/" target="blank">
                                     <div className="text">Carlos' Profile</div>
                                 </a>
                             </div>
