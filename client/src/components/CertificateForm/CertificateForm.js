@@ -31,7 +31,10 @@ function CertificateForm(props){
                                 <hr/>
                                 <br/>
                             </div>
-                            <CertList values={props.certHistory}/>
+                            <CertList 
+                            values={props.certHistory}
+                            removeCert={props.removeCert}
+                            />
                         </section>
                     ):( <div/>)}
                 </div>

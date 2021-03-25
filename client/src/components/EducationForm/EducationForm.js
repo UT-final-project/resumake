@@ -60,7 +60,10 @@ function EducationForm(props){
                                 <hr/>
                                 <br/>
                             </div>
-                            <EduList values={props.eduHistory}/>
+                            <EduList 
+                            values={props.eduHistory}
+                            removeEd={props.removeEd}
+                            />
                         </section>
                     ):( <div/>)}
                 </div>

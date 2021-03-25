@@ -1,6 +1,6 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBuilding } from '@fortawesome/free-solid-svg-icons';
+import { faBuilding, faTimes } from '@fortawesome/free-solid-svg-icons';
 import './JobList.css'
 
 function JobList(props){
@@ -18,6 +18,7 @@ function JobList(props){
                   </div>
                   <div className="col-6">
                     <p className="dates d-flex justify-content-end">{jobs.startDateMonth} {jobs.startDateYear} - {jobs.endDateMonth} {jobs.endDateYear}</p>
+                    <button type="button" class="btn btn-secondary d-flex justify-content-end" onClick={() => props.removeJob(jobs.id)}><FontAwesomeIcon icon={faTimes}/> Remove</button>
                   </div>
                 </div>       
               </div>

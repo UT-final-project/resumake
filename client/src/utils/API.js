@@ -34,5 +34,8 @@ export default {
     },
     logout: function (userData) {
         return axios.post("/api/users/login", userData);
+    },
+    updateResume: function (id, resumeData) {
+        return axios.put(`/api/resume/${id}`, resumeData)
     }
 };

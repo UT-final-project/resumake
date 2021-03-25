@@ -1,6 +1,6 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faGraduationCap } from '@fortawesome/free-solid-svg-icons';
+import { faGraduationCap, faTimes } from '@fortawesome/free-solid-svg-icons';
 import './EducationList.css'
 
 function EducationList(props){
@@ -17,6 +17,7 @@ function EducationList(props){
                     <h3 className="card-title d-flex align-items-center">{school.school}</h3>
                   </div>
                   <div className="col-3">
+                  <button type="button" className="btn btn-secondary d-flex justify-content-end" onClick={() => props.removeEd(school.id)}><FontAwesomeIcon icon={faTimes}/>Remove</button>
                     <p className="dates d-flex justify-content-end">{school.startYear} - {school.endYear}</p>
                   </div>
                 </div>       

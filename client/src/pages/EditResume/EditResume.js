@@ -1,15 +1,16 @@
 import React, { useState, useEffect, useContext } from 'react';
 import API from '../../utils/API';
-import AbstractForm from '../AbstractForm/AbstractForm';
-import WorkForm from '../WorkForm/WorkForm';
-import EducationForm from '../EducationForm/EducationForm';
-import CertificateForm from '../CertificateForm/CertificateForm';
-import SkillsForm from '../SkillsForm/SkillsForm';
-import Confirm from '../Confirm/Confirm';
+import AbstractForm from '../../components/AbstractForm/AbstractForm';
+import WorkForm from '../../components/WorkForm/WorkForm';
+import EducationForm from '../../components/EducationForm/EducationForm';
+import CertificateForm from '../../components/CertificateForm/CertificateForm';
+import SkillsForm from '../../components/SkillsForm/SkillsForm';
+import Confirm from '../../components/Confirm/Confirm';
 import UserContext from "../../utils/UserContext";
 
 function UserForm({ getUser }) {
     const { user, userLoggedIn } = useContext(UserContext);
+    const [userResume, setUserResume] = useState();
     const [step, setStep] = useState(1);
     const [abstract, setAbstract] = useState('');
     const [employment, setEmployment] = useState([]);
@@ -61,10 +62,55 @@ function UserForm({ getUser }) {
         });
         setSkills('');
 
-        if (userLoggedIn) {
-            getUser(user);
-        };
-    },[employment, eduHistory, certHistory, skillList, userLoggedIn])
+        // console.log(`User Logged In ${userLoggedIn}`);
+        // if (userLoggedIn) {
+        //     getUser(user);
+        // };
+    }, [employment, eduHistory, certHistory, skillList, userLoggedIn])
+
+    useEffect(() => {
+        if (!user) {
+            return;
+        } else {
+            setUserResume(user.resumes[0]);
+        }
+    }, [user]);
+
+    useEffect(() => {
+        if (!userResume) {
+            return;
+        } else {
+            console.log(userResume);
+
+
+            console.log(userResume.education);
+            console.log(userResume.certifications);
+            console.log(userResume._id);
+
+            setAbstract(userResume.abstract);
+            if (!userResume.employment) {
+                setEmployment([])
+            } else {
+                setEmployment(userResume.employment);
+            }
+            if (!userResume.education[0]) {
+                setEducation([]);
+            } else {
+                setEduHistory(userResume.education);
+            }
+            if (!userResume.certifications[0]) {
+                setCertHistory([]);
+            } else {
+                setCertHistory(userResume.certifications);
+            }
+            if (!userResume.skills) {
+                setSkills([]);
+            } else {
+                setSkillList(userResume.skills);
+            }
+
+        }
+    }, [userResume]);
 
     // Adds job to employment array and clears job state for new inputs
     const addJob = () => {
@@ -172,7 +218,20 @@ function UserForm({ getUser }) {
     // Function for the Submit button to post resume data
     function handleResumeSubmit(event) {
         event.preventDefault();
-        API.createResume({
+        // API.createResume({
+        //     author: user._id,
+        //     firstName: capitalize(user.firstname),
+        //     lastName: capitalize(user.lastname),
+        //     abstract: abstract,
+        //     employment: employment,
+        //     education: eduHistory,
+        //     certifications: certHistory,
+        //     skills: skillList
+        // }).then(res => {
+        //     console.log(res);
+        //     console.log("/////////////// Resume Successfully Created! ///////////////");
+        // }).catch(err => console.error(err));
+        API.updateResume(userResume._id, {
             author: user._id,
             firstName: capitalize(user.firstname),
             lastName: capitalize(user.lastname),
@@ -182,7 +241,8 @@ function UserForm({ getUser }) {
             certifications: certHistory,
             skills: skillList
         }).then(res => {
-            console.log("/////////////// Resume Successfully Created! ///////////////");
+            console.log(res);
+            console.log("/////////////// Resume Successfully Updated! ///////////////");
         }).catch(err => console.error(err));
     };
 

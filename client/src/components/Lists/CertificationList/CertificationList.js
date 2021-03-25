@@ -1,6 +1,6 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faAward, faTrophy } from '@fortawesome/free-solid-svg-icons';
+import { faAward, faTrophy, faTimes } from '@fortawesome/free-solid-svg-icons';
 import './CertificationList.css'
 
 function CertList(props){
@@ -17,6 +17,7 @@ function CertList(props){
                     <h3 className="card-title d-flex align-items-center">{cert.certificate}</h3>
                   </div>
                   <div className="col-3">
+                    <button type="button" className="btn btn-secondary d-flex justify-content-end" onClick={() => props.removeCert(cert.id)}><span className="fa-icon"><FontAwesomeIcon icon={faTimes}/>  Remove</span></button>
                     <p className="dates d-flex justify-content-end"><span className="fa-icon"><FontAwesomeIcon icon={faAward}/></span> </p>
                   </div>
                 </div>       

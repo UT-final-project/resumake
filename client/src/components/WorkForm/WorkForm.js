@@ -92,7 +92,10 @@ function WorkForm(props){
                                         <hr/>
                                         <br/>
                                     </div>
-                                    <JobList employment={props.employment}/>
+                                    <JobList 
+                                    employment={props.employment}
+                                    removeJob={props.removeJob}
+                                    />
                                 </section>
                             ):( <div/>)}
                         </div>
