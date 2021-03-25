@@ -15,8 +15,7 @@ function Userhome({ getUser }) {
     useEffect(() => {
         let mounted = true;
         if (mounted) {
-            getUser(user);
-            
+            getUser(user);   
         };
         return function cleanup() {
             mounted = false;
