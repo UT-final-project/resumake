@@ -10,7 +10,6 @@ import { useState } from 'react';
 import API from "./utils/API";
 import AboutUs from './components/About/about';
 import NothingHere from './components/NothingHere/NothingHere';
-import ReactDOM from 'react-dom'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { fab } from '@fortawesome/free-brands-svg-icons'
 import { faPenFancy, faSave, faEye, faArrowRight, faArrowLeft, faPlus, faSignInAlt, faSignOutAlt, faUserPlus, faFileAlt } from '@fortawesome/free-solid-svg-icons'

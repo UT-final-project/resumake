@@ -4,44 +4,11 @@ import JobList from '../Lists/JobList/JobList';
 import EduList from '../Lists/EducationList/EducationList';
 import CertList from '../Lists/CertificationList/CertificationList';
 import SkillsList from '../Lists/SkillsList/SkillsList';
-import styled, { css } from 'styled-components';
 import { Redirect } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
 
-const Header = styled.h1`
-    font-size: 56px;
-    font-family:Georgia, 'Times New Roman', Times, serif;
-    text-align: center;
-
-    ${props =>
-        props.primary &&
-        css`
-        text-align: left;
-        font-size: 32px;
-    `}
-`
-
-const SubHeader = styled.h2`
-    font-size: 24px;
-    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-    font-weight: 800;
-    ${props =>
-        props.light &&
-        css`
-        font-size: 20px;
-        font-weight: 200;
-    `}
-`
-
-const ResumeContent = styled.p`
-    font-size: 18px;
-    font-family: Arial, Helvetica, sans-serif;
-    color: white;
-`
-
 function Confirm(props) {
-
     const [redirect, setRedirect] = useState(false);
 
     function capitalize(str) {

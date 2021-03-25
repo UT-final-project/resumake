@@ -1,4 +1,3 @@
-import react from 'react';
 import './NothingHere.css'
 
 function NothingHere(){

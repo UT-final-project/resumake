@@ -60,7 +60,7 @@ function Login({ handleUserState }) {
                 <div className="col-md-7">
                     <h1 className="primary-title">Used by Professionals</h1>
                     <p className="home-intro">Want to put your best foot forward and impress employers? Our resume helper can help to create a professional and sleek Resume as well as a Webpage within minutes. Try it out by creating an account with us!</p>
-                    <img alt="cartoon" src="https://raw.githubusercontent.com/UT-final-project/group1-final-project/34b34d8a8d8484e2bb38e13ab52ff5ce1d4e6e16/client/svg-images/undraw_online_resume_re_ru7s.svg" alt="online-resume" className="online-resume-img" />
+                    <img src="https://raw.githubusercontent.com/UT-final-project/group1-final-project/34b34d8a8d8484e2bb38e13ab52ff5ce1d4e6e16/client/svg-images/undraw_online_resume_re_ru7s.svg" alt="online-resume" className="online-resume-img" />
                 </div>
                 <div className="col-md-5">
                     <form className="card signup-card">

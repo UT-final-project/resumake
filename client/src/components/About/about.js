@@ -41,7 +41,7 @@ function AboutUs () {
             <div className="container">
                 <div className="row">
                     <div className="container ourcontainer col-sm-2">
-                        <img src="https://raw.githubusercontent.com/UT-final-project/group1-final-project/develop/client/svg-images/Trevor.png" className="ourphotos"/>
+                        <a href="https://trevorsmithbanjo.github.io/#/"><img alt="trevor" src="https://raw.githubusercontent.com/UT-final-project/group1-final-project/develop/client/svg-images/Trevor.png" className="ourphotos"/></a>
                         <div className="middle">
                             <div className="text">
                                 <a href="https://trevorsmithbanjo.github.io/#/" target="blank">
@@ -51,7 +51,7 @@ function AboutUs () {
                         </div>
                     </div>
                     <div className="container ourcontainer  col-sm-2">
-                        <a href="#"><img src="https://raw.githubusercontent.com/UT-final-project/group1-final-project/develop/client/svg-images/Stephen.png" className="ourphotos"/></a>
+                        <a href="https://stephenlprice.github.io/portfolio/"><img alt="stephen" src="https://raw.githubusercontent.com/UT-final-project/group1-final-project/develop/client/svg-images/Stephen.png" className="ourphotos"/></a>
                         <div className="middle">
                             <div className="text">
                                 <a href="https://stephenlprice.github.io/portfolio/" target="blank">
@@ -61,7 +61,7 @@ function AboutUs () {
                         </div>
                     </div>
                     <div className="container ourcontainer col-sm-2">
-                        <a href="#"><img src="https://raw.githubusercontent.com/UT-final-project/group1-final-project/develop/client/svg-images/Jake.png" className="ourphotos"/></a>
+                        <a href="https://jwhendershott.github.io/responsiveness-portfolio/"><img alt="jake" src="https://raw.githubusercontent.com/UT-final-project/group1-final-project/develop/client/svg-images/Jake.png" className="ourphotos"/></a>
                         <div className="middle">
                         <div className="text">
                                 <a href="https://jwhendershott.github.io/responsiveness-portfolio/" target="blank">
@@ -71,7 +71,7 @@ function AboutUs () {
                         </div>
                     </div>
                     <div className="container ourcontainer col-sm-2">
-                        <a href="#"><img src="https://raw.githubusercontent.com/UT-final-project/group1-final-project/develop/client/svg-images/Carlos.png" className="ourphotos"/></a>
+                        <a href="https://charliecan2.github.io/"><img alt="carlos" src="https://raw.githubusercontent.com/UT-final-project/group1-final-project/develop/client/svg-images/Carlos.png" className="ourphotos"/></a>
                         <div className="middle">
                         <div className="text">
                                 <a href="https://charliecan2.github.io/" target="blank">
@@ -81,7 +81,7 @@ function AboutUs () {
                         </div>
                     </div>
                     <div className="container ourcontainer col-sm-2">
-                        <a href="#"><img src="https://raw.githubusercontent.com/UT-final-project/group1-final-project/develop/client/svg-images/Dana.png" className="ourphotos"/></a>
+                        <a href="https://danacorona.github.io/"><img alt="dana" src="https://raw.githubusercontent.com/UT-final-project/group1-final-project/develop/client/svg-images/Dana.png" className="ourphotos"/></a>
                         <div className="middle">
                         <div className="text">
                                 <a href="https://danacorona.github.io/" target="blank">
