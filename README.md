@@ -1,5 +1,5 @@
 # ResuMake
-<!-- will need to update screen shot for final  -->
+
 ![image](https://user-images.githubusercontent.com/70990105/112179234-7eae3c00-8bc8-11eb-8ec2-47e56ec0a03a.png)
 
 <hr>
@@ -14,15 +14,19 @@ https://github.com/UT-final-project/group1-final-project
 
 ![MIT](https://img.shields.io/badge/License-MIT-green)
 
-An application to build, edit, and export your résumé to a pdf.
+An application to build and export your résumé to a pdf.
 
-<!-- will need to add link -->
-Available here: 
+Available here: http://resumake-pro.herokuapp.com/
 
-<!-- add future developements if needed
 ## Future Developement
-*  -->
-
+* Enable resume templates
+* Allow users to edit previously built resumes
+* Create a webpage/portfolio version of the users resume
+* Implement a job search feature using Indeed’s API
+* Add support for more authentication options such as Auth0, Github, Linkedin.
+* Use JWT to handle user sessions
+* Replace PDF library with one that supports vectorized exports
+* Show PDF in modal before download
 
 ## Credits
 https://github.com/danacorona
