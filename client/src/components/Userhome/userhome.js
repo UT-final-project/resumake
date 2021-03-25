@@ -2,13 +2,14 @@ import React, { useEffect, useContext, useState } from 'react';
 import './userhome.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import UserContext from "../../utils/UserContext";
-import { Link } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 import { set } from 'mongoose';
 
 
 function Userhome({ getUser }) {
     const { user } = useContext(UserContext);
     const [userId, setUserId] = useState();
+    const [redirect, setRedirect] = useState(false);
 
 
     function capitalize(str) {
@@ -36,13 +37,14 @@ function Userhome({ getUser }) {
 
     function editUserBtn(e) {
         e.preventDefault();
-        window.location.href = `/resume/${userId}`;
+        setRedirect(true);
     }
 
 
     return (
         // Whole Container
         <div className="container col-12">
+            {redirect ? <Redirect push to={`/form/${userId}`} /> : <></>}
             <div className="row">
                 <div className="col-12">
                     {user ? (<h1 className="welcometext d-flex justify-content-center">Hi, {capitalize(user.firstname)} {capitalize(user.lastname)}!</h1>) :

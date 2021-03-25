@@ -101,7 +101,7 @@ function App() {
             <Route exact path="/resume/:email">
               <Resume />
             </Route>
-            <Route exact path="/resume/:id">
+            <Route exact path="/form/:id">
               <EditResume />
             </Route>
           </Switch>
