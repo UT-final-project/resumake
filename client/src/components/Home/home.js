@@ -41,13 +41,10 @@ function Login({ handleUserState }) {
                 password: password
             })
                 .then(res => {
-                    console.log({ res });
-                    console.log("User Successfully Created");
                     if (!res.data.email || !res.data.password) {
                         return
                     }
                     else {
-                        console.log("Login Successful!");
                         handleUserState(res.data._id);
                         setRedirect(true);
                     }
@@ -63,7 +60,7 @@ function Login({ handleUserState }) {
                 <div className="col-md-7">
                     <h1 className="primary-title">Used by Professionals</h1>
                     <p className="home-intro">Want to put your best foot forward and impress employers? Our resume helper can help to create a professional and sleek Resume as well as a Webpage within minutes. Try it out by creating an account with us!</p>
-                    <img src="https://raw.githubusercontent.com/UT-final-project/group1-final-project/34b34d8a8d8484e2bb38e13ab52ff5ce1d4e6e16/client/svg-images/undraw_online_resume_re_ru7s.svg" alt="online-resume" className="online-resume-img" />
+                    <img alt="cartoon" src="https://raw.githubusercontent.com/UT-final-project/group1-final-project/34b34d8a8d8484e2bb38e13ab52ff5ce1d4e6e16/client/svg-images/undraw_online_resume_re_ru7s.svg" alt="online-resume" className="online-resume-img" />
                 </div>
                 <div className="col-md-5">
                     <form className="card signup-card">
@@ -112,7 +109,7 @@ function Login({ handleUserState }) {
                                 />
                             </div>
                             <p id="error"></p>
-                            <button type="button" className="btn signup-btn" onClick={handleFormSubmit}> <FontAwesomeIcon icon="user-plus"/>  Sign Up</button>
+                            <button type="submit" className="btn signup-btn" onClick={handleFormSubmit} onSubmit={handleFormSubmit}> <FontAwesomeIcon icon="user-plus"/>  Sign Up</button>
                             <p className="signup-redirect">Or you can
                             <Link to={"/login"}>
                                 <span> Log In</span>
