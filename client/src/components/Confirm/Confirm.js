@@ -9,7 +9,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
 
 function Confirm(props) {
-
     const [redirect, setRedirect] = useState(false);
 
     function capitalize(str) {
@@ -67,7 +66,7 @@ function Confirm(props) {
                             <button type="button" className="btn" data-bs-dismiss="modal" aria-label="Close"><span className="fa-icon"><FontAwesomeIcon icon={faTimes} /></span></button>
                         </div>
                         <div className="modal-body">
-                            <p>You can veiw and edit your resume from your home page.</p>
+                            <p>You can view and edit your resume from your home page.</p>
                         </div>
                         <div className="modal-footer">
                             <button type="button" className="btn userhomebtn" data-bs-dismiss="modal">Ok</button>
