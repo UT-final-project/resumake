@@ -106,7 +106,7 @@ function Resume() {
     const options = {
         orientation: 'portrait',
         unit: 'px',
-        format: [1350, 600]
+        format: [1350, 1000]
     };
 
     return (
@@ -122,7 +122,7 @@ function Resume() {
                             </button>
                         </div>
                     <div className="col d-flex justify-content-center">
-                        <Pdf targetRef={ref} filename={`${firstName}${lastName}-resume.pdf`} options={options} x={30} y={20}>
+                        <Pdf targetRef={ref} filename={`${firstName}${lastName}-resume.pdf`} options={options} x={50} y={50}>
                             {({ toPdf }) => 
                                 <button type="button" id="download" className="btn add-btn" onClick={toPdf}>
                                     <span className="fa-icon"><FontAwesomeIcon icon={faFilePdf}/></span> PDF
