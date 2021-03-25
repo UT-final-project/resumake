@@ -39,11 +39,6 @@ function Navbar() {
                                 About
                             </Link>
                         </li>
-                        <li className="nav-item">
-                            <Link to={"/"} className="nav-link active navbar-link" aria-current="page">
-                                Pricing
-                            </Link>
-                        </li>
                     </ul>
                     <ul className="navbar-nav ml-auto">
                         <li>
