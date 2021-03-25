@@ -11,37 +11,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFilePdf, faCode, faRobot } from '@fortawesome/free-solid-svg-icons';
 import styled, { css } from 'styled-components';
 
-// styled-components applied to PDF content
-const Header = styled.h1`
-    font-size: 2.5rem;
-    font-family:Georgia, 'Times New Roman', Times, serif;
-    text-align: left;
-    ${props =>
-    props.primary && 
-    css`
-        text-align: left;
-        font-size: 32px;
-    `}
-`;
-
-const SubHeader = styled.h2`
-    font-size: 24px;
-    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-    font-weight: 800;
-    ${props =>
-    props.light &&
-    css`
-        font-size: 20px;
-        font-weight: 200;
-    `}
-`;
-
-const ResumeContent = styled.p`
-    font-size: 18px;
-    font-family: Arial, Helvetica, sans-serif;
-    color: white;
-`;
-
+// Allows for direct DOM manipulation of React components -> print component to PDF
 const ref = React.createRef();
 
 function Resume() {
@@ -73,7 +43,8 @@ function Resume() {
     }, [display, resume]);
 
     const loadData = async (userEmail) => {
-        let usrId = await API.findUserByEmail(userEmail)
+        // Ensures that the author ID is obtained from the DB for the next API call
+        let author = await API.findUserByEmail(userEmail)
             .then(res => {
                 if (res.length === 0) {
                     throw new Error("No users found!");
@@ -86,9 +57,10 @@ function Resume() {
                 return res.data._id;
             })
             .catch(err => console.log(err));
-            loadResume(usrId);
+            loadResume(author);
     };
 
+    // Uses the author ID to request the matching resume from the DB
     const loadResume = (userId) => {
         API.findResumeByAuthor(userId)
             .then(res => {
@@ -133,13 +105,14 @@ function Resume() {
     // PDF export config
     const options = {
         orientation: 'portrait',
-        unit: 'in',
-        format: [100,800]
+        unit: 'px',
+        format: [1350, 600]
     };
 
     return (
-        <section className="container">
-            {!resume ? (<div>Nothing to Show</div>) : (<div>
+        <section className="container" id="resume">
+            {!resume ? (<div>Nothing to Show</div>) : (
+            <div id="content">
                 <br/><br/>
                 <div className="row d-flex justify-content-end">
                     <div className="col-8"/>
@@ -149,7 +122,7 @@ function Resume() {
                             </button>
                         </div>
                     <div className="col d-flex justify-content-center">
-                        <Pdf targetRef={ref} filename={`${firstName}${lastName}-resume.pdf`} options={options}>
+                        <Pdf targetRef={ref} filename={`${firstName}${lastName}-resume.pdf`} options={options} x={30} y={20}>
                             {({ toPdf }) => 
                                 <button type="button" id="download" className="btn add-btn" onClick={toPdf}>
                                     <span className="fa-icon"><FontAwesomeIcon icon={faFilePdf}/></span> PDF
@@ -231,5 +204,36 @@ function Resume() {
         </section>
     );
 };
+
+// styled-components applied to PDF content
+const Header = styled.h1`
+    font-size: 2.5rem;
+    font-family:Georgia, 'Times New Roman', Times, serif;
+    text-align: left;
+    ${props =>
+    props.primary && 
+    css`
+        text-align: left;
+        font-size: 32px;
+    `}
+`;
+
+const SubHeader = styled.h2`
+    font-size: 24px;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-weight: 800;
+    ${props =>
+    props.light &&
+    css`
+        font-size: 20px;
+        font-weight: 200;
+    `}
+`;
+
+const ResumeContent = styled.p`
+    font-size: 18px;
+    font-family: Arial, Helvetica, sans-serif;
+    color: white;
+`;
 
 export default Resume;
