@@ -1,8 +1,8 @@
 import React, { useEffect, useContext, useState } from 'react';
 import './userhome.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { Link, Redirect } from "react-router-dom";
 import UserContext from "../../utils/UserContext";
-import { Redirect } from "react-router-dom";
 import { set } from 'mongoose';
 
 
@@ -65,6 +65,7 @@ function Userhome({ getUser }) {
                                 <FontAwesomeIcon icon="pen-fancy" /> Edit Resume</button></div>
                                 : <div className="col-12"><button type="button" className="btn userhomebtn editresume-btn">
                                     <FontAwesomeIcon icon="pen-fancy" /> Edit Resume</button></div>}
+                            <div className="col-12"><button type="button" className="btn userhomebtn editresume-btn"><span className="icon"><FontAwesomeIcon icon="pen-fancy" /></span> Create Resume</button></div>
                         </div>
                     </div>
                     <div className="col-md-6 resumesection">
@@ -73,7 +74,15 @@ function Userhome({ getUser }) {
                         <br />
                         <br />
                         <div className="row">
-                            <div className="col-12"><button type="button" className="btn userhomebtn viewwebpage-btn"><FontAwesomeIcon icon="pen-fancy" /> View Resume</button></div>
+                            <div className="col-12">
+                                {user ?
+                                    <Link to={'/resume/' + user.email}>
+                                        <button type="button" className="btn userhomebtn viewwebpage-btn"><span className="icon"><FontAwesomeIcon icon="file-alt" /></span> View Resume</button>
+                                    </Link>
+                                    :
+                                    <button type="button" className="btn userhomebtn viewwebpage-btn"><span className="icon"><FontAwesomeIcon icon="file-alt" /></span> View Resume</button>
+                                }
+                            </div>
                         </div>
                     </div>
                 </div>

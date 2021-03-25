@@ -1,7 +1,6 @@
 import React, { useContext } from 'react';
 import './navbar.css';
 import { Link } from "react-router-dom";
-import API from "../../utils/API";
 import UserContext from "../../utils/UserContext";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
@@ -9,17 +8,15 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 function Navbar() {
     const { userLoggedIn, handleLogOut } = useContext(UserContext);
 
-    console.log(`User Logged In ${userLoggedIn}`);
-
     return (
         <nav className="navbar navbar-expand-lg navbar-light bg-light">
             <div className="container-fluid">
                 {!userLoggedIn ?
                     <Link className="navbar-brand navbar-header" to={"/"}>
-                    <img src="https://raw.githubusercontent.com/UT-final-project/group1-final-project/develop/client/svg-images/ResumakeLogoTest.png" id="resumakelogo" /> <br />
+                    <img alt="cartoon" src="https://raw.githubusercontent.com/UT-final-project/group1-final-project/develop/client/svg-images/ResumakeLogoTest.png" id="resumakelogo" /> <br />
                     </Link> :
                     <Link className="navbar-brand navbar-header" to={"/userhome"}>
-                    <img src="https://raw.githubusercontent.com/UT-final-project/group1-final-project/develop/client/svg-images/ResumakeLogoTest.png" id="resumakelogo" /> <br />
+                    <img alt="cartoon" src="https://raw.githubusercontent.com/UT-final-project/group1-final-project/develop/client/svg-images/ResumakeLogoTest.png" id="resumakelogo" /> <br />
                     </Link>
                 }
                 <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">

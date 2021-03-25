@@ -1,10 +1,25 @@
+section#resume {
+  margin-top: 20px;
+  background-color: white;
+  border-radius: 10px;
+}
+
+div#content {
+  margin-left: 30px;
+  margin-right: 30px;
+}
+
 h1 {
-  color: white;
+  color: black;
   font-family: 'Slabo 13px', Serif;
 }
 
+h2.category {
+  color: black;
+}
+
 h3#noContent {
-  color: white;
+  color: black;
 }
 
 button#pdf {

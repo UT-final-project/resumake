@@ -41,13 +41,10 @@ function Login({ handleUserState }) {
                 password: password
             })
                 .then(res => {
-                    console.log({ res });
-                    console.log("User Successfully Created");
                     if (!res.data.email || !res.data.password) {
                         return
                     }
                     else {
-                        console.log("Login Successful!");
                         handleUserState(res.data._id);
                         setRedirect(true);
                     }
@@ -112,7 +109,7 @@ function Login({ handleUserState }) {
                                 />
                             </div>
                             <p id="error"></p>
-                            <button type="button" className="btn signup-btn" onClick={handleFormSubmit}> <FontAwesomeIcon icon="user-plus"/>  Sign Up</button>
+                            <button type="submit" className="btn signup-btn" onClick={handleFormSubmit} onSubmit={handleFormSubmit}> <FontAwesomeIcon icon="user-plus"/>  Sign Up</button>
                             <p className="signup-redirect">Or you can
                             <Link to={"/login"}>
                                 <span> Log In</span>

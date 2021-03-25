@@ -61,9 +61,11 @@ function Login({ handleUserState }) {
                         <input type="password" className="form-control" placeholder="Password" onChange={e => setPassword(e.target.value)} autoComplete="password" />
                     </div>
                     <p className="error"></p>
-                    <button type="button" className="btn login-btn" onClick={handleLogin}> <FontAwesomeIcon icon="sign-in-alt"/> Log In</button>
+                    <button type="submit" className="btn login-btn" onClick={handleLogin} onKeyUp={handleLogin} onKeyDown={handleLogin} onSubmit={handleLogin}>
+                        <FontAwesomeIcon icon="sign-in-alt"/> Log In
+                    </button>
                     <p className="signup-redirect">Or you can
-                    <Link to={"/"}>
+                        <Link to={"/"}>
                             <span> Sign Up</span>
                         </Link>
                     </p>

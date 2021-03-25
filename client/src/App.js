@@ -10,15 +10,14 @@ import { useState } from 'react';
 import API from "./utils/API";
 import AboutUs from './components/About/about';
 import NothingHere from './components/NothingHere/NothingHere';
-import ReactDOM from 'react-dom'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { fab } from '@fortawesome/free-brands-svg-icons'
-import { faPenFancy, faSave, faEye, faArrowRight, faArrowLeft, faPlus, faSignInAlt, faSignOutAlt, faUserPlus, } from '@fortawesome/free-solid-svg-icons'
+import { faPenFancy, faSave, faEye, faArrowRight, faArrowLeft, faPlus, faSignInAlt, faSignOutAlt, faUserPlus, faFileAlt } from '@fortawesome/free-solid-svg-icons'
 import UserContext from "./utils/UserContext";
 import EditResume from "./pages/EditResume/EditResume";
 
 
-library.add(fab, faPenFancy, faSave, faEye, faArrowRight, faArrowLeft, faPlus, faSignInAlt, faSignOutAlt, faUserPlus)
+library.add(fab, faPenFancy, faSave, faEye, faArrowRight, faArrowLeft, faPlus, faSignInAlt, faSignOutAlt, faUserPlus, faFileAlt)
 
 function App() {
   const [user, setUser] = useState();
@@ -27,7 +26,6 @@ function App() {
   function handleUserState(id) {
     API.isLoggedIn(id)
       .then((res) => {
-        console.log(`isLoggedIn Response `, { res });
         setUser(res.data);
       })
       .catch((err) => {
@@ -37,14 +35,10 @@ function App() {
   };
 
   function getUser(user) {
-    console.log("GET USER FUNCTION");
     if (userLoggedIn) {
-      console.log("userLoggedIn");
-      console.log(user);
       return user;
     }
     else {
-      console.log("NO USER LOGGED IN");
       return;
     };
   };
