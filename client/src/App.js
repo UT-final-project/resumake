@@ -15,9 +15,10 @@ import { library } from '@fortawesome/fontawesome-svg-core'
 import { fab } from '@fortawesome/free-brands-svg-icons'
 import { faPenFancy, faSave, faEye, faArrowRight, faArrowLeft, faPlus, faSignInAlt, faSignOutAlt, faUserPlus, } from '@fortawesome/free-solid-svg-icons'
 import UserContext from "./utils/UserContext";
+import EditResume from "./pages/EditResume/EditResume";
 
 
-library.add(fab, faPenFancy, faSave, faEye, faArrowRight, faArrowLeft, faPlus, faSignInAlt, faSignOutAlt, faUserPlus )
+library.add(fab, faPenFancy, faSave, faEye, faArrowRight, faArrowLeft, faPlus, faSignInAlt, faSignOutAlt, faUserPlus)
 
 function App() {
   const [user, setUser] = useState();
@@ -74,31 +75,34 @@ function App() {
                 handleUserState={handleUserState}
               />
             </Route>
-            {userLoggedIn ? 
-            <Route exact path="/form">
-              <UserForm
-                getUser={getUser}
-              />
-            </Route> :
-            <Route exact path="/form">
-              <NothingHere />
-            </Route>
+            {userLoggedIn ?
+              <Route exact path="/form">
+                <UserForm
+                  getUser={getUser}
+                />
+              </Route> :
+              <Route exact path="/form">
+                <NothingHere />
+              </Route>
             }
             {userLoggedIn ?
-            <Route exact path="/userhome">
-              <Userhome
-                getUser={getUser}
-              />
-            </Route> :
-            <Route exact path="/userhome">
-              <NothingHere />
-            </Route>
+              <Route exact path="/userhome">
+                <Userhome
+                  getUser={getUser}
+                />
+              </Route> :
+              <Route exact path="/userhome">
+                <NothingHere />
+              </Route>
             }
             <Route exact path="/aboutus">
-              <AboutUs/>
+              <AboutUs />
             </Route>
             <Route exact path="/resume/:email">
-              <Resume/>
+              <Resume />
+            </Route>
+            <Route exact path="/resume/:id">
+              <EditResume />
             </Route>
           </Switch>
         </UserContext.Provider>
