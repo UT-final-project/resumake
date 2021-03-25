@@ -1,6 +1,7 @@
 import React, { useEffect, useContext } from 'react';
 import './userhome.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { Link, Redirect } from "react-router-dom";
 import UserContext from "../../utils/UserContext";
 
 
@@ -49,7 +50,15 @@ function Userhome({ getUser }) {
                         <br/>
                         <br/>
                         <div className="row">
-                            <div className="col-12"><button type="button" className="btn userhomebtn viewwebpage-btn"><span className="icon"><FontAwesomeIcon icon="file-alt"/></span> View Resume</button></div>
+                            <div className="col-12">
+                                {user ? 
+                                <Link to={'/resume/' + user.email}>
+                                    <button type="button" className="btn userhomebtn viewwebpage-btn"><span className="icon"><FontAwesomeIcon icon="file-alt"/></span> View Resume</button>
+                                </Link>
+                                :
+                                <button type="button" className="btn userhomebtn viewwebpage-btn"><span className="icon"><FontAwesomeIcon icon="file-alt"/></span> View Resume</button>
+                                }
+                            </div>
                         </div>
                     </div>
                 </div>

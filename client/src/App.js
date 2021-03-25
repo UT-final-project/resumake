@@ -78,11 +78,16 @@ function App() {
               <NothingHere />
             </Route>
             }
+            {userLoggedIn ?
             <Route exact path="/userhome">
               <Userhome
                 getUser={getUser}
               />
+            </Route> :
+            <Route exact path="/userhome">
+              <NothingHere />
             </Route>
+            }
             <Route exact path="/aboutus">
               <AboutUs/>
             </Route>
