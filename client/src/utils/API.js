@@ -4,35 +4,35 @@ import axios from "axios";
 export default {
     // Create user
     createUser: function (userData) {
-        return axios.post("/api/users", userData)
+        return axios.post("/api/users", userData);
     },
-
+    findUserByEmail: function (userEmail) {
+        return axios.get(`/api/users/email/${userEmail}`);
+    },
+    // Returns an individual resume from the DB matching the provided user ID
+    findResumeByAuthor: function (id) {
+        return axios.get(`/api/resume/${id}`);
+    },
     // Login user
     loginUser: function (userData) {
-        return axios.post("/api/users/login", userData)
+        return axios.post("/api/users/login", userData);
     },
-
     createResume: function (resumeData) {
-        return axios.post("/api/resume", resumeData)
+        return axios.post("/api/resume", resumeData);
     },
-
     postWorkHistory: function (userData) {
-        return axios.post("/api/users/resume/employment", userData)
+        return axios.post("/api/users/resume/employment", userData);
     },
-
     postEducation: function (userData) {
-        return axios.post("/api/users/resume/education", userData)
+        return axios.post("/api/users/resume/education", userData);
     },
-
     postCertifications: function (userData) {
-        return axios.post("api/users/resume/certifications", userData)
+        return axios.post("api/users/resume/certifications", userData);
     },
-
     isLoggedIn: function (id) {
-        return axios.get("/api/users/" + id)
+        return axios.get("/api/users/" + id);
     },
-
     logout: function (userData) {
-        return axios.post("/api/users/login", userData)
+        return axios.post("/api/users/login", userData);
     }
 };

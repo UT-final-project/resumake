@@ -3,6 +3,8 @@ import './navbar.css';
 import { Link } from "react-router-dom";
 import API from "../../utils/API";
 import UserContext from "../../utils/UserContext";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
 
 function Navbar() {
     const { userLoggedIn, handleLogOut } = useContext(UserContext);
@@ -49,12 +51,12 @@ function Navbar() {
                     <ul className="navbar-nav ml-auto">
                         <li>
                             {!userLoggedIn ?
-                                <Link to={"/login"} type="button" href="/" role="button" className="btn btn-meadow">
-                                    Log In
+                            <Link to={"/login"} type="button" href="/" role="button" className="btn btn-meadow">  
+                                <FontAwesomeIcon icon="sign-in-alt"/> Log In
                             </Link>
                                 :
-                                <Link to={"/login"} type="button" href="/" role="button" className="btn btn-meadow" onClick={handleLogOut}>
-                                    Log Out
+                            <Link to={"/login"} type="button" href="/" role="button" className="btn btn-meadow" onClick={handleLogOut}>
+                                <FontAwesomeIcon icon="sign-out-alt"/> Log Out
                             </Link>}
                         </li>
                     </ul>

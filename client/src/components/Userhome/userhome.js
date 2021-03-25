@@ -1,26 +1,26 @@
 import React, { useEffect, useContext } from 'react';
 import './userhome.css';
-import API from "../../utils/API";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { Link, Redirect } from "react-router-dom";
 import UserContext from "../../utils/UserContext";
 
 
 function Userhome({ getUser }) {
-    const { user, userLoggedIn } = useContext(UserContext);
+    const { user } = useContext(UserContext);
 
     function capitalize(str) {
         return str.charAt(0).toUpperCase() + str.slice(1);
-    }
+    };
 
     useEffect(() => {
         let mounted = true;
         if (mounted) {
             getUser(user);
-        }
-        
+            
+        };
         return function cleanup() {
             mounted = false;
-        }
+        };
     }, []);
 
     return (
@@ -51,13 +51,21 @@ function Userhome({ getUser }) {
                         <br />
                         <br />
                         <div className="row">
-                            <div className="col-12"><button type="button" className="btn userhomebtn viewwebpage-btn"><FontAwesomeIcon icon="pen-fancy"/> View Resume</button></div>
+                            <div className="col-12">
+                                {user ? 
+                                <Link to={'/resume/' + user.email}>
+                                    <button type="button" className="btn userhomebtn viewwebpage-btn"><FontAwesomeIcon icon="pen-fancy"/> View Resume</button>
+                                </Link>
+                                :
+                                <button type="button" className="btn userhomebtn viewwebpage-btn"><FontAwesomeIcon icon="pen-fancy"/> View Resume</button>
+                                }
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    )
-}
+    );
+};
 
 export default Userhome;
