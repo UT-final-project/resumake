@@ -106,7 +106,7 @@ function Resume() {
     const options = {
         orientation: 'portrait',
         unit: 'px',
-        format: [1350, 1000]
+        format: [1300, 800]
     };
 
     return (
@@ -210,11 +210,13 @@ const Header = styled.h1`
     font-size: 2.5rem;
     font-family:Georgia, 'Times New Roman', Times, serif;
     text-align: left;
+    color: black;
     ${props =>
     props.primary && 
     css`
         text-align: left;
         font-size: 32px;
+        color: black;
     `}
 `;
 
@@ -222,18 +224,20 @@ const SubHeader = styled.h2`
     font-size: 24px;
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
     font-weight: 800;
+    color: black;
     ${props =>
     props.light &&
     css`
         font-size: 20px;
         font-weight: 200;
+        color: black;
     `}
 `;
 
 const ResumeContent = styled.p`
     font-size: 18px;
     font-family: Arial, Helvetica, sans-serif;
-    color: white;
+    color: black;
 `;
 
 export default Resume;
