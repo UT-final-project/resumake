@@ -1,5 +1,5 @@
 import React from 'react';
-import SkillsList from '../Lists/SkillsList/SkillsList'
+import SkillsListED from '../Edit&DeleteCards/SkillListED/SkillListED'
 import '../UserForm/userForm.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
@@ -14,7 +14,7 @@ function SkillsForm(props){
                     <form>
                         <div className="form-group">
                             <label htmlFor="skillsInput" className="txtInput-heading">Add One</label>
-                            <input type="text" className="form-control" id="skillsInput" placeholder="ex. Javascript, Data Structures and Algorithms, React, etc." name="skill" value={props.values} onChange={props.handleChange}/>
+                            <input type="text" className="form-control" id="skillsInput" placeholder="ex. Javascript, Data Structures and Algorithms, React, etc." name="skill" value={props.values.skill} onChange={props.handleChange}/>
                         </div>
                     </form>
                     <button type="submit" className="btn add-btn" onClick={props.addSkill}><FontAwesomeIcon icon="plus"/> Add</button>
@@ -29,7 +29,10 @@ function SkillsForm(props){
                                 <hr/>
                                 <br/>
                             </div>
-                            <SkillsList values={props.skillList}/>
+                            <SkillsListED 
+                            values={props.skillList}
+                            removeSkill={props.removeSkill}
+                            />
                         </section>
                     ):( <div/>)}
                 </div>

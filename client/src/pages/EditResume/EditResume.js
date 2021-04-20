@@ -37,7 +37,9 @@ function UserForm({ getUser }) {
         awardedBy: ''
     });
     const [skillList, setSkillList] = useState([]);
-    const [skills, setSkills] = useState('');
+    const [skills, setSkills] = useState({
+        skill: ''
+    });
 
     useEffect(() => {
         setJob({
@@ -60,7 +62,9 @@ function UserForm({ getUser }) {
             certificate: '',
             awardedBy: ''
         });
-        setSkills('');
+        setSkills({
+            skill: ''
+        });
 
         // console.log(`User Logged In ${userLoggedIn}`);
         // if (userLoggedIn) {
@@ -150,7 +154,9 @@ function UserForm({ getUser }) {
     // Adds skills to skillList array and clears skills state for new inputs
     const addSkill = () => {
         setSkillList((skill) => [...skill, skills]);
-        setSkills('');
+        setSkills({
+            skill: ''
+        });
     };
 
     // Removes job from employment array
@@ -182,6 +188,15 @@ function UserForm({ getUser }) {
         setCertHistory(filteredCert);
     }
 
+    const removeSkill = async (id) => {
+        let filteredSkill = await skillList.filter(skill => {
+            if (skill.id != id) {
+                return skill
+            }
+        })
+        setSkillList(filteredSkill);
+    }
+
     // Functions to keep track of which step, or form, the user is at
     const nextStep = () => {
         setStep(step + 1);
@@ -207,7 +222,8 @@ function UserForm({ getUser }) {
         setCertifications({ ...certifications, [name]: value, id: Math.random().toString(36).substr(2, 9) });
     };
     function handleSkillsSubmit(event) {
-        setSkills(event.target.value);
+        const { name, value } = event.target;
+        setSkills({ ...skills, [name]: value, id: Math.random().toString(36).substr(2, 9) })
     };
 
     // Function that capitalizes our user's first & last name
@@ -300,6 +316,7 @@ function UserForm({ getUser }) {
                     values={skills}
                     skillList={skillList}
                     addSkill={addSkill}
+                    removeSkill={removeSkill}
                 />
             );
         case 6:

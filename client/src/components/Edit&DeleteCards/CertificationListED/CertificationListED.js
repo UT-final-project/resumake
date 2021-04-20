@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAward, faTrophy, faPenAlt, faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 import './CertificationListED.css'
 
-function CertList(props){
+function CertListED(props){
   return (
     <section>
       <h2 className="category"><span className="fa-icon"><FontAwesomeIcon icon={faTrophy}/></span> Certifications</h2>
@@ -39,4 +39,4 @@ function CertList(props){
   );
 };
 
-export default CertList;
+export default CertListED;

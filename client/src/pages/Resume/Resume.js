@@ -190,10 +190,10 @@ function Resume() {
                         <br />
                         <Header primary>Skills</Header>
                         <hr />
-                            {resume.skills.map((skill) => {
+                            {resume.skills.map((skills) => {
                                 return(
                                     <section key={Math.random().toString(36).substr(2, 9)}>
-                                        <SubHeader light>{skill}</SubHeader>
+                                        <SubHeader light>{skills.skill}</SubHeader>
                                     </section>
                                 )
                             })}

@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGraduationCap, faTrashAlt, faPenAlt } from '@fortawesome/free-solid-svg-icons';
 import './EducationListED.css';
 
-function EducationList(props){
+function EducationListED(props){
   return (
     <section>
       <h2 className="category"><span className="fa-icon"><FontAwesomeIcon icon={faGraduationCap}/></span> Education</h2>
@@ -39,4 +39,4 @@ function EducationList(props){
   );
 };
 
-export default EducationList;
+export default EducationListED;

@@ -11,12 +11,12 @@ function SkillsList(props){
         <div className="card-body">
           <p id="skills">
             {props.values.length ? (
-              props.values.map(skill => { 
+              props.values.map(skills => { 
                 let string = '';
-                props.values.indexOf(skill) === props.values.length - 1 ? (
-                  string = skill + '. '
+                props.values.indexOf(skills) === props.values.length - 1 ? (
+                  string = skills.skill + '. '
                 ) : (
-                  string = skill + ', '
+                  string = skills.skill + ', '
                 )
                 return (
                   string
