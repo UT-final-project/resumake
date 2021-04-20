@@ -1,0 +1,24 @@
+h2.category {
+    color: white;
+}
+  
+h3.card-title {
+    margin-bottom: 0;
+}
+  
+p.dates {
+    margin-bottom: auto;
+}
+  
+span.fa-icon {
+    margin-right: 0.3em;
+}
+  
+.awarded-by{
+    color: black;
+}
+
+.cert-btn{
+    margin-right: 10px;
+    font-family: 'Lato', sans-serif;
+}

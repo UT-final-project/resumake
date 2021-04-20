@@ -1,7 +1,7 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faAward, faTrophy} from '@fortawesome/free-solid-svg-icons';
-import './CertificationList.css'
+import { faAward, faTrophy, faPenAlt, faTrashAlt } from '@fortawesome/free-solid-svg-icons';
+import './CertificationListED.css'
 
 function CertList(props){
   return (
@@ -23,6 +23,10 @@ function CertList(props){
               </div>
               <div className="card-body">
                 <h5 className="awarded-by">{cert.awardedBy}</h5>
+              </div>
+              <div class="card-footer">
+                <button type="button" class="btn btn-secondary cert-btn"><FontAwesomeIcon icon={faPenAlt}/> Edit</button>
+                <button type="button" class="btn btn-secondary cert-btn" onClick={() => props.removeCert(cert.id)}><FontAwesomeIcon icon={faTrashAlt}/> Delete</button>
               </div>
             </div>
             <br/>

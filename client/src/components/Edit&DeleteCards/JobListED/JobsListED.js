@@ -1,9 +1,9 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBuilding } from '@fortawesome/free-solid-svg-icons';
-import './JobList.css'
+import { faBuilding, faTrashAlt, faPenAlt } from '@fortawesome/free-solid-svg-icons';
+import './JobListED.css'
 
-function JobList(props){
+function JobListED(props){
   return (
     <section>
       <h2 className="category"><span className="fa-icon"><FontAwesomeIcon icon={faBuilding}/></span> Employment</h2>
@@ -25,6 +25,10 @@ function JobList(props){
                 <h5 className="job-title">{jobs.jobTitle}</h5>
                 <p className="card-text">{jobs.jobDescription}</p>
               </div>
+              <div class="card-footer">
+                <button type="button" class="btn btn-secondary job-btn"><FontAwesomeIcon icon={faPenAlt}/> Edit</button>
+                <button type="button" class="btn btn-secondary job-btn" onClick={() => props.removeJob(jobs.id)}><FontAwesomeIcon icon={faTrashAlt}/> Delete</button>
+              </div>
             </div>
             <br/>
           </div>
@@ -36,4 +40,4 @@ function JobList(props){
   );
 };
 
-export default JobList;
+export default JobListED;

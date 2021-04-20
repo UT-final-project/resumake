@@ -39,15 +39,21 @@ function Confirm(props) {
             ) : (<div/>)}
             <br/>
             {props.employment.length ? (
-                <JobList employment={props.employment}/>
+                <JobList 
+                employment={props.employment}
+                />
             ) : (<div/>)}
             <br/>
             {props.eduHistory.length ? (
-                <EduList values={props.eduHistory}/>
+                <EduList 
+                values={props.eduHistory}
+                />
             ) : (<div/>)}
             <br/>
             {props.certHistory.length ? (
-                <CertList values={props.certHistory}/>
+                <CertList 
+                values={props.certHistory}
+                />
             ) : (<div/>)}
             <br/>
             {props.skillList.length ? (

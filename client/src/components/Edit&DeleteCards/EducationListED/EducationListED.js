@@ -1,7 +1,7 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faGraduationCap } from '@fortawesome/free-solid-svg-icons';
-import './EducationList.css'
+import { faGraduationCap, faTrashAlt, faPenAlt } from '@fortawesome/free-solid-svg-icons';
+import './EducationListED.css';
 
 function EducationList(props){
   return (
@@ -23,6 +23,10 @@ function EducationList(props){
               </div>
               <div className="card-body">
                 <h5 className="degree">{school.degree}</h5>
+              </div>
+              <div class="card-footer">
+                <button type="button" class="btn btn-secondary ed-btn"><FontAwesomeIcon icon={faPenAlt}/> Edit</button>
+                <button type="button" class="btn btn-secondary ed-btn" onClick={() => props.removeEd(school.id)}><FontAwesomeIcon icon={faTrashAlt}/> Delete</button>
               </div>
             </div>
             <br/>

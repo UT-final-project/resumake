@@ -1,5 +1,5 @@
 import React from 'react';
-import JobList from '../Lists/JobList/JobList';
+import JobListED from '../Edit&DeleteCards/JobListED/JobsListED';
 import _ from "lodash";
 import '../UserForm/userForm.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -92,7 +92,7 @@ function WorkForm(props){
                                         <hr/>
                                         <br/>
                                     </div>
-                                    <JobList 
+                                    <JobListED 
                                     employment={props.employment}
                                     removeJob={props.removeJob}
                                     />

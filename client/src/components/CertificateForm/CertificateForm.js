@@ -1,5 +1,5 @@
 import React from 'react';
-import CertList from '../Lists/CertificationList/CertificationList'
+import CertListED from '../Edit&DeleteCards/CertificationListED/CertificationListED.js'
 import '../UserForm/userForm.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
@@ -31,7 +31,7 @@ function CertificateForm(props){
                                 <hr/>
                                 <br/>
                             </div>
-                            <CertList 
+                            <CertListED 
                             values={props.certHistory}
                             removeCert={props.removeCert}
                             />

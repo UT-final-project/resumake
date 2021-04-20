@@ -1,5 +1,5 @@
 import React from 'react';
-import EduList from '../Lists/EducationList/EducationList';
+import EduListED from '../Edit&DeleteCards/EducationListED/EducationListED.js';
 import _ from "lodash";
 import '../UserForm/userForm.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -60,7 +60,7 @@ function EducationForm(props){
                                 <hr/>
                                 <br/>
                             </div>
-                            <EduList 
+                            <EduListED 
                             values={props.eduHistory}
                             removeEd={props.removeEd}
                             />
